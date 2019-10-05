@@ -29,16 +29,9 @@ namespace MainRepository
         /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
         public User GetUser(string email)
         {
-            ClientModel client;
+            var client = _context.Client.Find(email);
 
-            var clientList = _context.Client.ToList();
-                client = _context.Client.FirstOrDefault(c => c.EMail.Equals(email));
-
-            if (client == null)
-                return null;
-
-            var user = ClientModelToUser(client);
-            return user;            
+            return ClientModelToUser(client);            
         }
 
         /// <summary>
@@ -91,7 +84,7 @@ namespace MainRepository
         /// </summary>
         /// <param name="mail">E-mail Для проверки.</param>
         /// <returns>true, если e-mail уже есть в БД, иначе - false.</returns>
-        private bool IsMailExist(string mail)
+        public bool IsMailExist(string mail)
         {
             try
             {

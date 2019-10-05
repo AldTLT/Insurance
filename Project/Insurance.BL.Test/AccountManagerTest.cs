@@ -46,14 +46,15 @@ namespace Insurance.BL.Test
             var repository = new AuthRepository(new DataContext());
             var manager = new AccountManager(repository);
 
-            var client = new User(
-                "vasya@ya.ru",
-                "Василий Пупкин Иванович",
-                new DateTime(1990, 04, 20),
-                new DateTime(2010, 03, 02),
-                "password");
+            var user = new User(
+                "test@yandex.ru",
+                "Иванов Иван Иванович",
+                new DateTime(1990, 01, 01),
+                new DateTime(2011, 05, 07),
+                "pass123"
+    );
 
-            Assert.IsTrue(manager.Registration(client));
+            Assert.IsTrue(manager.Registration(user));
         }
     }
 }

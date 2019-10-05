@@ -12,11 +12,11 @@ namespace MainRepository
     {
         public DataContext() : base(nameOrConnectionString: "InsuranceDbConnection")
         {
-            
         }
 
         public DbSet<ClientModel> Client { get; set; }
         public DbSet<PolicyModel> Policy { get; set; }
+        public DbSet<CarModel> Car { get; set; }
 
         /// <summary>
         /// Перегрузка метода создания модели.
@@ -27,6 +27,7 @@ namespace MainRepository
             //Добавление конфигурации в модель.
             modelBuilder.Configurations.Add(new ClientModel.ClientConfiguration());
             modelBuilder.Configurations.Add(new PolicyModel.PolicyConfiguration());
+            modelBuilder.Configurations.Add(new CarModel.CarConfiguration());
 
             //Создание модели.
             base.OnModelCreating(modelBuilder);

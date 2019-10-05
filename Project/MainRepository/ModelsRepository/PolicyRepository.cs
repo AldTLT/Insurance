@@ -19,9 +19,31 @@ namespace MainRepository
             _context = context;
         }
 
-        public bool PolicyRegistration()
+        public bool PolicyRegistration(Policy policy)
         {
-            throw new NotImplementedException();
+            var client = _context.Client
+                .Where(c => c.EMail.Equals(policy.User.EMail))
+                .FirstOrDefault();
+
+            //Если пользователь с таким e-mail не зарегистрирован, вернуть false.
+            if (client == null)
+                return false;
+
+            //Создание PolicyModel из Policy.
+            var policyModel = PolicyToPolicyModel(policy);
+            policyModel.Client = client;
+
+            try
+            {
+                _context.Policy.Add(policyModel);
+                _context.SaveChanges();
+            }
+            catch
+            {
+                return false;
+            }
+
+            return true;
         }
 
         /// <summary>

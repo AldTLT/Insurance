@@ -26,23 +26,30 @@ namespace MainRepository.Models
         public ClientModel Client { get; set; }
 
         /// <summary>
+        /// Идентификатор автомобиля.
+        /// </summary>
+        public CarModel Car { get; set; }
+
+        /// <summary>
         /// Дата заключения полиса.
         /// </summary>
         public DateTime PolicyDate { get; set; }
 
         /// <summary>
-        /// Класс представляет метод конфигурирования сущности Policys.
+        /// Класс представляет метод конфигурирования PolicyModel.
         /// </summary>
         public class PolicyConfiguration : EntityTypeConfiguration<PolicyModel>
         {
             public PolicyConfiguration()
             {
                 this.ToTable("Policy")
-                    .HasRequired(t => t.Client);
+                    .HasRequired<ClientModel>(t => t.Client);
+                this.HasRequired(p => p.Car)
+                    .WithRequiredPrincipal(p => p.Policy);
                 this.Property(p => p.PolicyID)
                     .IsRequired();
                 this.HasKey(p => p.PolicyID);
-            }
+             }
         }
 
         /// <summary>

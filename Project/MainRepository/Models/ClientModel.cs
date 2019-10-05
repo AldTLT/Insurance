@@ -40,7 +40,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Коллекция полисов клиента.
         /// </summary>
-        public ICollection<PolicyModel> Policys { get; set; }
+        public virtual ICollection<PolicyModel> Policys { get; set; }
 
         public ClientModel()
         {

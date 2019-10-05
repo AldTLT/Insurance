@@ -32,7 +32,7 @@ namespace MainRepositoryTest
             };
 
             _user = new User(
-                "test@yandex.ru",
+                "test1@yandex.ru",
                 "Иванов Иван Иванович",
                 new DateTime(1990, 01, 01),
                 new DateTime(2011, 05, 07),
@@ -90,6 +90,21 @@ namespace MainRepositoryTest
             var policyModel = _policyRepository.PolicyToPolicyModel(policy);
 
             Assert.AreEqual(expectedPolicyModel, policyModel);
+        }
+
+        [TestMethod]
+        public void PolicyRegistrationTest()
+        {
+            var guid = new Guid().ToString("N");
+            
+            var policy = new Policy(
+                "123",
+                1000,
+                _user,
+                new DateTime(2019, 12, 01)
+                );
+
+            Assert.IsTrue(_policyRepository.PolicyRegistration(policy));
         }
     }
 }

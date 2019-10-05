@@ -75,7 +75,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Insurance.Auth\Insurance.BL.csproj">
+    <ProjectReference Include="..\Insurance.BL\Insurance.BL.csproj">
       <Project>{1fbcf6eb-6d10-4263-80de-0b19fe9f3627}</Project>
       <Name>Insurance.BL</Name>
     </ProjectReference>

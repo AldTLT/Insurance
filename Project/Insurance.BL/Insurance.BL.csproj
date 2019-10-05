@@ -44,7 +44,9 @@
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
     <Compile Include="IAuthRepository.cs" />
+    <Compile Include="ICarRepository.cs" />
     <Compile Include="IPolicyRepository.cs" />
+    <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="PolicyManager.cs" />
