@@ -25,5 +25,15 @@ namespace Insurance.BL
         {
             return _policyRepository.GetPolicy(email);
         }
+
+        /// <summary>
+        /// Метод возвращает результат добавления нового полиса в систему.
+        /// </summary>
+        /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
+        /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
+        public bool PolicyRegistration(Policy policy)
+        {
+            return _policyRepository.PolicyRegistration(policy);
+        }
     }
 }

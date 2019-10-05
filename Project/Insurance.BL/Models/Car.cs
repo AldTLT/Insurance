@@ -11,7 +11,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Уникальный идентификатор автомобиля.
         /// </summary>
-        public string CarId { get; }
+        public Guid? CarId { get; }
 
         /// <summary>
         /// Название модели автомобиля.
@@ -82,7 +82,7 @@ namespace Insurance.BL.Models
         /// </summary>
         public string PolicyId { get; }
 
-        public Car(string carId, string model, int manufacturedYear, int cost, int enginePower, string policyId)
+        public Car(Guid? carId, string model, int manufacturedYear, int cost, int enginePower, string policyId)
         {
             CarId = carId;
             Model = model;

@@ -19,6 +19,11 @@ namespace MainRepository
             _context = context;
         }
 
+        /// <summary>
+        /// Метод возвращает результат добавления нового полиса в систему.
+        /// </summary>
+        /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
+        /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
         public bool PolicyRegistration(Policy policy)
         {
             var client = _context.Client

@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountManager.cs" />
+    <Compile Include="CarManager.cs" />
     <Compile Include="IAuthRepository.cs" />
     <Compile Include="ICarRepository.cs" />
     <Compile Include="IPolicyRepository.cs" />

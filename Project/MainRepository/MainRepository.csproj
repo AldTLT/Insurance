@@ -67,6 +67,10 @@
     <Compile Include="Migrations\201910051813579_car1.designer.cs">
       <DependentUpon>201910051813579_car1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910051850065_car-policyId.cs" />
+    <Compile Include="Migrations\201910051850065_car-policyId.designer.cs">
+      <DependentUpon>201910051850065_car-policyId.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelsRepository\AuthRepository.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Migrations\201910030556155_ClientMigration.cs" />
@@ -137,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910051813579_car1.resx">
       <DependentUpon>201910051813579_car1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910051850065_car-policyId.resx">
+      <DependentUpon>201910051850065_car-policyId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
