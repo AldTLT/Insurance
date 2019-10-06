@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Insurance.BL;
 using Insurance.BL.Models;
 using MainRepository.Models;
+using MainRepository.ModelsRepository;
 
 namespace MainRepository
 {
@@ -20,14 +21,15 @@ namespace MainRepository
         }
 
         /// <summary>
-        /// Метод возвращает результат добавления нового полиса в систему.
+        /// Метод возвращает результат добавления нового полиса и привязанного к нему автомобиля в систему.
         /// </summary>
         /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
         /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
         public bool PolicyRegistration(Policy policy)
         {
+            //Получение клиента по e-mail.
             var client = _context.Client
-                .Where(c => c.EMail.Equals(policy.User.EMail))
+                .Where(c => c.EMail.Equals(policy.UsersEmail))
                 .FirstOrDefault();
 
             //Если пользователь с таким e-mail не зарегистрирован, вернуть false.
@@ -84,13 +86,20 @@ namespace MainRepository
             if (policyModel == null)
                 return null;
 
-            var authRepository = new AuthRepository(_context);
-            var user = authRepository.ClientModelToUser(policyModel.Client);
+            var carRepository = new CarRepository(_context);
+            var car = carRepository.CarModelToCar(policyModel.Car);
 
-            if (user == null)
-                return null;
+            var policy = new Policy
+                (
+                policyModel.PolicyID, 
+                policyModel.Cost, 
+                policyModel.ClientEmail, 
+                policyModel.PolicyDate, 
+                car
+                );
 
-            var policy = new Policy(policyModel.PolicyID, policyModel.Cost, user, policyModel.PolicyDate);
+            if (car != null)
+                car.Policy = policy;
 
             return policy;
         }
@@ -99,22 +108,27 @@ namespace MainRepository
         /// Метод возвращает PolicyModel с данными полученными из Insurance.BL.Models.Policy.
         /// </summary>
         /// <param name="policy">Insurance.BL.Models.Policy по которому берутся данные.</param>
-        /// <returns>PolicyModel с данными из Insurance.BL.Models.Policy.</returns>
+        /// <returns>PolicyModel с данными из Insurance.BL.Models.Policy. Свойство Client = null.</returns>
         public PolicyModel PolicyToPolicyModel(Policy policy)
         {
             if (policy == null)
                 return null;
 
-            var repository = new AuthRepository(_context);
-            var client = repository.UserToClientModel(policy.User);
+            var carRepository = new CarRepository(_context);
+            var carModel = carRepository.CarToCarModel(policy.Car);
 
             var policyModel = new PolicyModel()
             {
                 PolicyID = policy.PolicyID,
                 Cost = policy.Cost,
-                Client = client,
-                PolicyDate = policy.PolicyDate
+                Client = null,
+                ClientEmail = policy.UsersEmail,
+                PolicyDate = policy.PolicyDate,
+                Car = carModel             
             };
+
+            if (carModel != null)
+                carModel.Policy = policyModel;
 
             return policyModel;
         }

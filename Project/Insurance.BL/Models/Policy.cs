@@ -35,7 +35,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Клиент - владелец полиса.
         /// </summary>
-        public User User { get; }
+        public string UsersEmail { get; }
 
         /// <summary>
         /// Дата заключения полиса.
@@ -58,12 +58,18 @@ namespace Insurance.BL.Models
             }
         }
 
-        public Policy(string id, int cost, User user, DateTime policyDate)
+        /// <summary>
+        /// Экземпляр класса Insurance.BL.Model.Car который привязан к полису.
+        /// </summary>
+        public Car Car { get; }
+
+        public Policy(string id, int cost, string usersEmail, DateTime policyDate, Car car)
         {
             PolicyID = id;
             Cost = cost;
-            User = user;
+            UsersEmail = usersEmail;
             PolicyDate = policyDate;
+            Car = car;
         }
 
         /// <summary>
@@ -81,11 +87,18 @@ namespace Insurance.BL.Models
 
             var policy = obj as Policy;
 
+            //Проверка объектов Car.
+            var carEqual = Car == null && policy.Car == null ? true
+                : Car != null && policy.Car == null ? false
+                : Car == null && policy.Car != null ? false
+                : Car.Equals(policy.Car) ? true : false;
+
             return
                 PolicyID.Equals(policy.PolicyID)
                 && Cost.Equals(policy.Cost)
-                && User.Equals(policy.User)
-                && PolicyDate.Equals(policy.PolicyDate);
+                && UsersEmail.Equals(policy.UsersEmail)
+                && PolicyDate.Equals(policy.PolicyDate)
+                && carEqual;
         }
 
         /// <summary>
@@ -97,8 +110,9 @@ namespace Insurance.BL.Models
             return
                 PolicyID.GetHashCode()
                 + Cost.GetHashCode()
-                + User.GetHashCode()
-                + PolicyDate.GetHashCode();
+                + UsersEmail.GetHashCode()
+                + PolicyDate.GetHashCode()
+                + Car.GetHashCode();
         }
 
     }

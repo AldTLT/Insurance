@@ -7,13 +7,23 @@ using Insurance.BL.Models;
 
 namespace Insurance.BL
 {
-    public interface ICarRepository
+    public class CarManager
     {
+        private readonly ICarRepository _carRepository;
+
+        public CarManager(ICarRepository carRepository)
+        {
+            _carRepository = carRepository;
+        }
+
         /// <summary>
         /// Метод возвращает Insurance.BL.Models.Car по id.
         /// </summary>
         /// <param name="carId">Id по которому производится возврат.</param>
         /// <returns>Insurance.BL.Models.Car.</returns>
-        Car GetCar(Guid carId);
+        public Car GetCar(Guid carId)
+        {
+            return _carRepository.GetCar(carId);
+        }
     }
 }

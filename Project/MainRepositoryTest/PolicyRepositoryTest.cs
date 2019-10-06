@@ -32,7 +32,7 @@ namespace MainRepositoryTest
             };
 
             _user = new User(
-                "test1@yandex.ru",
+                "test@yandex.ru",
                 "Иванов Иван Иванович",
                 new DateTime(1990, 01, 01),
                 new DateTime(2011, 05, 07),
@@ -49,15 +49,16 @@ namespace MainRepositoryTest
             var expectedPolicy = new Policy(
                 "qwerty",
                 1000,
-                _user,
-                new DateTime(2019, 12, 01)
+                "test1@yandex.ru",
+                new DateTime(2019, 12, 01),
+                null   
                 );
 
             var policyModel = new PolicyModel()
             {
                 PolicyID = "qwerty",
                 Cost = 1000,
-                Client = _client,
+                ClientEmail = "test1@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01)
             };
 
@@ -76,15 +77,17 @@ namespace MainRepositoryTest
             {
                 PolicyID = "qwerty",
                 Cost = 1000,
-                Client = _client,
-                PolicyDate = new DateTime(2019, 12, 01)
+                ClientEmail = "test1@yandex.ru",
+                PolicyDate = new DateTime(2019, 12, 01),
+                Car = null
             };
 
             var policy = new Policy(
                 "qwerty",
                 1000,
-                _user,
-                new DateTime(2019, 12, 01)
+                "test1@yandex.ru",
+                new DateTime(2019, 12, 01),
+                null
                 );
 
             var policyModel = _policyRepository.PolicyToPolicyModel(policy);
@@ -95,14 +98,24 @@ namespace MainRepositoryTest
         [TestMethod]
         public void PolicyRegistrationTest()
         {
-            var guid = new Guid().ToString("N");
-            
-            var policy = new Policy(
-                "123",
-                1000,
-                _user,
-                new DateTime(2019, 12, 01)
+            var car = new Car
+                (
+                "Ford",
+                2018,
+                900000,
+                105,
+                null
                 );
+                 
+            var policy = new Policy(
+                "0009",
+                1000,
+                "test@yandex.ru",
+                new DateTime(2019, 12, 01),
+                car
+                );
+
+            car.Policy = policy;
 
             Assert.IsTrue(_policyRepository.PolicyRegistration(policy));
         }

@@ -9,11 +9,6 @@ namespace Insurance.BL.Models
     public class Car
     {
         /// <summary>
-        /// Уникальный идентификатор автомобиля.
-        /// </summary>
-        public Guid? CarId { get; }
-
-        /// <summary>
         /// Название модели автомобиля.
         /// </summary>
         public string Model { get; }
@@ -80,16 +75,15 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Идентификатор полиса, которому принадлежит автомобиль.
         /// </summary>
-        public string PolicyId { get; }
+        public Policy Policy { get; set; }
 
-        public Car(Guid? carId, string model, int manufacturedYear, int cost, int enginePower, string policyId)
+        public Car(string model, int manufacturedYear, int cost, int enginePower, Policy policy)
         {
-            CarId = carId;
             Model = model;
             ManufacturedYear = manufacturedYear;
             Cost = cost;
             EnginePower = enginePower;
-            PolicyId = policyId;
+            Policy = policy;
         }
 
         /// <summary>
@@ -107,13 +101,18 @@ namespace Insurance.BL.Models
 
             var car = obj as Car;
 
+            //Проверка объектов Policy.
+            var policyEqual = Policy == null && car.Policy == null ? true
+                : Policy != null && car.Policy == null ? false
+                : Policy == null && car.Policy != null ? false
+                : Policy.Equals(car.Policy) ? true : false;
+
             return
-                CarId.Equals(car.CarId)
-                && Model.Equals(car.Model)
+                Model.Equals(car.Model)
                 && ManufacturedYear.Equals(car.ManufacturedYear)
                 && Cost.Equals(car.Cost)
                 && EnginePower.Equals(car.EnginePower)
-                && PolicyId.Equals(car.PolicyId);
+                && Policy.Equals(car.Policy);
         }
 
         /// <summary>
@@ -123,12 +122,11 @@ namespace Insurance.BL.Models
         public override int GetHashCode()
         {
             return
-                CarId.GetHashCode()
-                + Model.GetHashCode()
+                Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
                 + Cost.GetHashCode()
                 + EnginePower.GetHashCode()
-                + PolicyId.GetHashCode();
+                + Policy.GetHashCode();
         }
     }
 }

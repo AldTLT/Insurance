@@ -21,6 +21,11 @@ namespace MainRepository.Models
         public int Cost { get; set; }
 
         /// <summary>
+        /// Дата заключения полиса.
+        /// </summary>
+        public DateTime PolicyDate { get; set; }
+
+        /// <summary>
         /// Клиент - владелец полиса.
         /// </summary>
         public ClientModel Client { get; set; }
@@ -31,9 +36,9 @@ namespace MainRepository.Models
         public CarModel Car { get; set; }
 
         /// <summary>
-        /// Дата заключения полиса.
+        /// E-mail клиента. Свойство используется для поиска ClientModel.
         /// </summary>
-        public DateTime PolicyDate { get; set; }
+        public string ClientEmail { get; set; }
 
         /// <summary>
         /// Класс представляет метод конфигурирования PolicyModel.
@@ -49,6 +54,7 @@ namespace MainRepository.Models
                 this.Property(p => p.PolicyID)
                     .IsRequired();
                 this.HasKey(p => p.PolicyID);
+                this.Ignore(p => p.ClientEmail);
              }
         }
 
@@ -70,8 +76,7 @@ namespace MainRepository.Models
             return
                 PolicyID.Equals(policyModel.PolicyID)
                 && Cost.Equals(policyModel.Cost)
-                && Client.Equals(policyModel.Client)
-                && PolicyDate.Equals(policyModel.PolicyDate);
+                && PolicyDate.Equals(policyModel.PolicyDate);         
         }
 
         /// <summary>
@@ -83,7 +88,6 @@ namespace MainRepository.Models
             return
                 PolicyID.GetHashCode()
                 + Cost.GetHashCode()
-                + Client.GetHashCode()
                 + PolicyDate.GetHashCode();
         }
     }

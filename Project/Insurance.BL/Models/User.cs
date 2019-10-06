@@ -40,7 +40,6 @@ namespace Insurance.BL.Models
         /// Дата рождения клиента.
         /// </summary>
         private DateTime _birthDate;
-
         public DateTime BirthDate
         {
             get
@@ -69,7 +68,6 @@ namespace Insurance.BL.Models
         /// Дата выдачи водительских прав клиента.
         /// </summary>
         private DateTime _driverLicenseDate;
-
         public DateTime DriverLicenseDate
         {
             get
