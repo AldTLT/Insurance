@@ -85,16 +85,33 @@ namespace MainRepositoryTest
         [TestMethod]
         public void GetUserTest()
         {
-            var expectedUser = new User(
-                "123@mail.ru",
+            var expectedUser = new User
+                (
+                "test@mail.ru",
                 "Василий Пупкин",
-                new DateTime(1990, 05, 10),
-                new DateTime(2010, 10, 13),
-                "123");
+                new DateTime(1990, 10, 10),
+                new DateTime(2010, 10, 10),
+                "123"
+                );
 
-            var user = _authRepository.GetUser("123@mail.ru");
+            var user = _authRepository.GetUser("test@mail.ru");
 
             Assert.AreEqual(expectedUser, user);
+        }
+
+        [TestMethod]
+        public void ClientRegistrationTest()
+        {
+            var user = new User
+                (
+                "test@mail.ru",
+                "Василий Пупкин",
+                new DateTime(1990, 10, 10),
+                new DateTime(2010, 10, 10),
+                "123"
+                );
+
+            Assert.IsTrue(_authRepository.Registration(user));
         }
     }
 }

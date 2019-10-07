@@ -105,7 +105,7 @@ namespace MainRepositoryTest
                  
             var policy = new Policy(
                 1000,
-                "test@yandex.ru",
+                "test@mail.ru",
                 new DateTime(2019, 12, 01),
                 car
                 );

@@ -40,15 +40,15 @@ namespace MainRepository
             var policyModel = PolicyToPolicyModel(policy);
             policyModel.Client = client;
 
-            try
-            {
+            //try
+            //{
                 _context.Policy.Add(policyModel);
                 _context.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
 
             return true;
         }

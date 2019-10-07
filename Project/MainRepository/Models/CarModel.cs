@@ -13,7 +13,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Уникальный идентификатор автомобиля.
         /// </summary>
-        public Guid CarId { get; set; }
+        public Guid? CarId { get; set; }
 
         /// <summary>
         /// Название модели автомобиля.
@@ -41,12 +41,6 @@ namespace MainRepository.Models
         public PolicyModel Policy { get; set; }
 
         /// <summary>
-        /// Идентификатор полиса, которому привязан автомобиль.
-        /// Свойство используется для быстрого поиска PolicyModel.
-        /// </summary>
-        public Guid PolicyId { get; set; }
-
-        /// <summary>
         /// Класс представляет метод конфигурирования CarModel.
         /// </summary>
         public class CarConfiguration : EntityTypeConfiguration<CarModel>
@@ -55,14 +49,12 @@ namespace MainRepository.Models
             {
                 this.ToTable("Car")
                     .HasRequired(c => c.Policy)
-                    .WithRequiredDependent(c => c.Car);
+                    .WithOptional(c => c.Car);           
                 this.Property(c => c.Model)
                     .HasMaxLength(50);
-                this.Property(c => c.CarId)
-                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-                this.HasKey(c => c.CarId);
-                this.Ignore(c => c.PolicyId);
-                    
+                //this.Property(c => c.CarId)
+                //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                this.HasKey(c => c.CarId);                    
             }
         }
 
@@ -86,8 +78,7 @@ namespace MainRepository.Models
                 && Model.Equals(carModel.Model)
                 && ManufacturedYear.Equals(carModel.ManufacturedYear)
                 && Cost.Equals(carModel.Cost)
-                && EnginePower.Equals(carModel.EnginePower)
-                && PolicyId.Equals(carModel.PolicyId);
+                && EnginePower.Equals(carModel.EnginePower);
         }
 
         /// <summary>
@@ -101,8 +92,7 @@ namespace MainRepository.Models
                 + Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
                 + Cost.GetHashCode()
-                + EnginePower.GetHashCode()
-                + PolicyId.GetHashCode();
+                + EnginePower.GetHashCode();
         }
     }
 }

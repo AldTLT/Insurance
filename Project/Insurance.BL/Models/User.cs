@@ -97,6 +97,22 @@ namespace Insurance.BL.Models
         /// </summary>
         public string PasswordHash { get; }
 
+        private int _roleId;
+        public int RoleId
+        {
+            get
+            {
+                return _roleId;
+            }
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException("Role не может быть меньше нуля!");
+
+                _roleId = value;
+            }
+        }
+
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
             EMail = eMail;
@@ -104,6 +120,17 @@ namespace Insurance.BL.Models
             BirthDate = birthDate;
             DriverLicenseDate = driverLicenseDate;
             PasswordHash = passwordHash;
+            RoleId = 0;
+        }
+
+        public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash, int roleId)
+        {
+            EMail = eMail;
+            Name = name;
+            BirthDate = birthDate;
+            DriverLicenseDate = driverLicenseDate;
+            PasswordHash = passwordHash;
+            RoleId = roleId;
         }
 
         /// <summary>

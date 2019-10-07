@@ -1,0 +1,28 @@
+﻿namespace MainRepository.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class carId4 : DbMigration
+    {
+        public override void Up()
+        {
+            DropIndex("dbo.Car", new[] { "CarId" });
+            DropPrimaryKey("dbo.Car");
+            AddColumn("dbo.Car", "PolicyId", c => c.Guid(nullable: false));
+            AlterColumn("dbo.Car", "CarId", c => c.Guid(nullable: false, identity: true));
+            AddPrimaryKey("dbo.Car", "CarId");
+            CreateIndex("dbo.Car", "CarId");
+        }
+        
+        public override void Down()
+        {
+            DropIndex("dbo.Car", new[] { "CarId" });
+            DropPrimaryKey("dbo.Car");
+            AlterColumn("dbo.Car", "CarId", c => c.Guid(nullable: false));
+            DropColumn("dbo.Car", "PolicyId");
+            AddPrimaryKey("dbo.Car", "CarId");
+            CreateIndex("dbo.Car", "CarId");
+        }
+    }
+}

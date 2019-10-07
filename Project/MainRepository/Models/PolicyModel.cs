@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MainRepository.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MainRepository.Models
 {
@@ -13,7 +14,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Идентификатор полиса, первичный ключ.
         /// </summary>
-        public Guid PolicyID { get; set; }
+        public Guid? PolicyID { get; set; }
 
         /// <summary>
         /// Стоимость полиса.
@@ -49,8 +50,10 @@ namespace MainRepository.Models
             {
                 this.ToTable("Policy")
                     .HasRequired<ClientModel>(t => t.Client);
-                this.HasRequired(p => p.Car)
-                    .WithRequiredPrincipal(p => p.Policy);
+                this.Property(p => p.PolicyID)
+                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                //this.HasRequired(p => p.Car)
+                //    .WithRequiredPrincipal(p => p.Policy);
                 this.Property(p => p.PolicyID)
                     .IsRequired();
                 this.HasKey(p => p.PolicyID);
