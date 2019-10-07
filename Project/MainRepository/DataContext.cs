@@ -17,6 +17,7 @@ namespace MainRepository
         public DbSet<ClientModel> Client { get; set; }
         public DbSet<PolicyModel> Policy { get; set; }
         public DbSet<CarModel> Car { get; set; }
+        public DbSet<RoleModel> Role { get; set; }
 
         /// <summary>
         /// Перегрузка метода создания модели.
@@ -28,6 +29,7 @@ namespace MainRepository
             modelBuilder.Configurations.Add(new ClientModel.ClientConfiguration());
             modelBuilder.Configurations.Add(new PolicyModel.PolicyConfiguration());
             modelBuilder.Configurations.Add(new CarModel.CarConfiguration());
+            modelBuilder.Configurations.Add(new RoleModel.RoleConfiguration());
 
             //Создание модели.
             base.OnModelCreating(modelBuilder);

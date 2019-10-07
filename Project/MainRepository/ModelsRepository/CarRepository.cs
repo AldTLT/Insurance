@@ -65,8 +65,7 @@ namespace MainRepository.ModelsRepository
         /// </summary>
         /// <param name="car">Insurance.BL.Models.Car по которому берутся данные.</param>
         /// <returns>CarModel с данными из Insurance.BL.Models.Car.
-        /// Свойство Policy = null.
-        /// Свойство PolicyId = null.</returns>
+        /// Свойство Policy = null.</returns>
         public CarModel CarToCarModel(Car car)
         {
             if (car == null)
@@ -78,8 +77,7 @@ namespace MainRepository.ModelsRepository
                 ManufacturedYear = car.ManufacturedYear,
                 Cost = car.Cost,
                 EnginePower = car.EnginePower,
-                Policy = null,
-                PolicyId = null
+                Policy = null
             };
         }
     }

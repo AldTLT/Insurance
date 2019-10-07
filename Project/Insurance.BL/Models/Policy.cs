@@ -9,11 +9,6 @@ namespace Insurance.BL.Models
     public class Policy
     {
         /// <summary>
-        /// Идентификатор полиса, первичный ключ.
-        /// </summary>
-        public string PolicyID { get; }
-
-        /// <summary>
         /// Стоимость полиса.
         /// </summary>
         private int _cost;
@@ -63,9 +58,8 @@ namespace Insurance.BL.Models
         /// </summary>
         public Car Car { get; }
 
-        public Policy(string id, int cost, string usersEmail, DateTime policyDate, Car car)
+        public Policy(int cost, string usersEmail, DateTime policyDate, Car car)
         {
-            PolicyID = id;
             Cost = cost;
             UsersEmail = usersEmail;
             PolicyDate = policyDate;
@@ -94,8 +88,7 @@ namespace Insurance.BL.Models
                 : Car.Equals(policy.Car) ? true : false;
 
             return
-                PolicyID.Equals(policy.PolicyID)
-                && Cost.Equals(policy.Cost)
+                Cost.Equals(policy.Cost)
                 && UsersEmail.Equals(policy.UsersEmail)
                 && PolicyDate.Equals(policy.PolicyDate)
                 && carEqual;
@@ -108,8 +101,7 @@ namespace Insurance.BL.Models
         public override int GetHashCode()
         {
             return
-                PolicyID.GetHashCode()
-                + Cost.GetHashCode()
+                Cost.GetHashCode()
                 + UsersEmail.GetHashCode()
                 + PolicyDate.GetHashCode()
                 + Car.GetHashCode();

@@ -47,7 +47,6 @@ namespace MainRepositoryTest
         public void PolicyModelToPolicyTest()
         {
             var expectedPolicy = new Policy(
-                "qwerty",
                 1000,
                 "test1@yandex.ru",
                 new DateTime(2019, 12, 01),
@@ -56,7 +55,6 @@ namespace MainRepositoryTest
 
             var policyModel = new PolicyModel()
             {
-                PolicyID = "qwerty",
                 Cost = 1000,
                 ClientEmail = "test1@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01)
@@ -75,7 +73,6 @@ namespace MainRepositoryTest
         {
             var expectedPolicyModel = new PolicyModel()
             {
-                PolicyID = "qwerty",
                 Cost = 1000,
                 ClientEmail = "test1@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01),
@@ -83,7 +80,6 @@ namespace MainRepositoryTest
             };
 
             var policy = new Policy(
-                "qwerty",
                 1000,
                 "test1@yandex.ru",
                 new DateTime(2019, 12, 01),
@@ -108,7 +104,6 @@ namespace MainRepositoryTest
                 );
                  
             var policy = new Policy(
-                "0009",
                 1000,
                 "test@yandex.ru",
                 new DateTime(2019, 12, 01),

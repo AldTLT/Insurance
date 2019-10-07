@@ -13,7 +13,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Уникальный идентификатор автомобиля.
         /// </summary>
-        public Guid? CarId { get; set; }
+        public Guid CarId { get; set; }
 
         /// <summary>
         /// Название модели автомобиля.
@@ -44,7 +44,7 @@ namespace MainRepository.Models
         /// Идентификатор полиса, которому привязан автомобиль.
         /// Свойство используется для быстрого поиска PolicyModel.
         /// </summary>
-        public string PolicyId { get; set; }
+        public Guid PolicyId { get; set; }
 
         /// <summary>
         /// Класс представляет метод конфигурирования CarModel.

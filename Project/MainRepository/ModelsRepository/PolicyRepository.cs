@@ -91,7 +91,6 @@ namespace MainRepository
 
             var policy = new Policy
                 (
-                policyModel.PolicyID, 
                 policyModel.Cost, 
                 policyModel.ClientEmail, 
                 policyModel.PolicyDate, 
@@ -119,7 +118,6 @@ namespace MainRepository
 
             var policyModel = new PolicyModel()
             {
-                PolicyID = policy.PolicyID,
                 Cost = policy.Cost,
                 Client = null,
                 ClientEmail = policy.UsersEmail,

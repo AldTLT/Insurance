@@ -38,6 +38,11 @@ namespace MainRepository.Models
         public string PasswordHash { get; set; }
 
         /// <summary>
+        /// Идентификатор роли.
+        /// </summary>
+        public int RoleId { get; set; }
+
+        /// <summary>
         /// Коллекция полисов клиента.
         /// </summary>
         public virtual ICollection<PolicyModel> Policys { get; set; }

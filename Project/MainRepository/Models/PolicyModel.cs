@@ -13,7 +13,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Идентификатор полиса, первичный ключ.
         /// </summary>
-        public string PolicyID { get; set; }
+        public Guid PolicyID { get; set; }
 
         /// <summary>
         /// Стоимость полиса.
