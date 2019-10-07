@@ -52,8 +52,6 @@ namespace MainRepository.Models
                     .WithOptional(c => c.Car);           
                 this.Property(c => c.Model)
                     .HasMaxLength(50);
-                //this.Property(c => c.CarId)
-                //    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
                 this.HasKey(c => c.CarId);                    
             }
         }

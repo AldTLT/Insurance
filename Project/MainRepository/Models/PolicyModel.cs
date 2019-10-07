@@ -52,8 +52,6 @@ namespace MainRepository.Models
                     .HasRequired<ClientModel>(t => t.Client);
                 this.Property(p => p.PolicyID)
                     .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
-                //this.HasRequired(p => p.Car)
-                //    .WithRequiredPrincipal(p => p.Policy);
                 this.Property(p => p.PolicyID)
                     .IsRequired();
                 this.HasKey(p => p.PolicyID);
