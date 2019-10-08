@@ -13,7 +13,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Уникальный идентификатор автомобиля.
         /// </summary>
-        public Guid? CarId { get; set; }
+        public string CarNumber { get; set; }
 
         /// <summary>
         /// Название модели автомобиля.
@@ -52,7 +52,9 @@ namespace MainRepository.Models
                     .WithOptional(c => c.Car);           
                 this.Property(c => c.Model)
                     .HasMaxLength(50);
-                this.HasKey(c => c.CarId);                    
+                this.Property(c => c.CarNumber)
+                    .HasMaxLength(20);
+                this.HasKey(c => c.CarNumber);                    
             }
         }
 
@@ -72,7 +74,7 @@ namespace MainRepository.Models
             var carModel = obj as CarModel;
 
             return
-                CarId.Equals(carModel.CarId)
+                CarNumber.Equals(carModel.CarNumber)
                 && Model.Equals(carModel.Model)
                 && ManufacturedYear.Equals(carModel.ManufacturedYear)
                 && Cost.Equals(carModel.Cost)
@@ -86,7 +88,7 @@ namespace MainRepository.Models
         public override int GetHashCode()
         {
             return
-                CarId.GetHashCode()
+                CarNumber.GetHashCode()
                 + Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
                 + Cost.GetHashCode()

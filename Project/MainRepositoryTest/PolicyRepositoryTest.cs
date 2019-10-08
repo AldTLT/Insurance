@@ -9,10 +9,10 @@ namespace MainRepositoryTest
     [TestClass]
     public class PolicyRepositoryTest
     {
-        DataContext _dataContext = new DataContext();
-        PolicyRepository _policyRepository;
-        ClientModel _client;
-        User _user;
+        private readonly DataContext _dataContext = new DataContext();
+        private PolicyRepository _policyRepository;
+        private ClientModel _client;
+        private User _user;
 
         /// <summary>
         /// Инициализация объекта.
@@ -48,15 +48,16 @@ namespace MainRepositoryTest
         {
             var expectedPolicy = new Policy(
                 1000,
-                "test1@yandex.ru",
+                "test@yandex.ru",
                 new DateTime(2019, 12, 01),
-                null   
+                null,
+                null
                 );
 
             var policyModel = new PolicyModel()
             {
                 Cost = 1000,
-                ClientEmail = "test1@yandex.ru",
+                ClientEmail = "test@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01)
             };
 
@@ -74,15 +75,16 @@ namespace MainRepositoryTest
             var expectedPolicyModel = new PolicyModel()
             {
                 Cost = 1000,
-                ClientEmail = "test1@yandex.ru",
+                ClientEmail = "test@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01),
                 Car = null
             };
 
             var policy = new Policy(
                 1000,
-                "test1@yandex.ru",
+                "test@yandex.ru",
                 new DateTime(2019, 12, 01),
+                null,
                 null
                 );
 
@@ -94,8 +96,17 @@ namespace MainRepositoryTest
         [TestMethod]
         public void PolicyRegistrationTest()
         {
+            var ratio = new Ratio
+                (
+                1.0,
+                0.5,
+                2,
+                0.8
+                );
+
             var car = new Car
                 (
+                "XX777O163RU",
                 "Ford",
                 2018,
                 900000,
@@ -107,7 +118,8 @@ namespace MainRepositoryTest
                 1000,
                 "test@mail.ru",
                 new DateTime(2019, 12, 01),
-                car
+                car,
+                ratio
                 );
 
             car.Policy = policy;

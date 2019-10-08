@@ -12,6 +12,11 @@ namespace Insurance.BL.Models
     public class User
     {
         /// <summary>
+        /// Идентификатор роли пользователя. По умолчанию: 1 - user.
+        /// </summary>
+        const int RoleIdConst = 1;
+
+        /// <summary>
         /// Константа представляет кол-во дней (3650 ~ 10 лет)
         /// </summary>
         const int AgeInDays = 3650;
@@ -120,7 +125,9 @@ namespace Insurance.BL.Models
             BirthDate = birthDate;
             DriverLicenseDate = driverLicenseDate;
             PasswordHash = passwordHash;
-            RoleId = 0;
+            
+            //Константа - идентификатор пользователя.
+            RoleId = RoleIdConst;
         }
 
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash, int roleId)

@@ -40,15 +40,15 @@ namespace MainRepository
             var policyModel = PolicyToPolicyModel(policy);
             policyModel.Client = client;
 
-            //try
-            //{
+            try
+            {
                 _context.Policy.Add(policyModel);
                 _context.SaveChanges();
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            }
+            catch
+            {
+                return false;
+            }
 
             return true;
         }
@@ -89,12 +89,16 @@ namespace MainRepository
             var carRepository = new CarRepository(_context);
             var car = carRepository.CarModelToCar(policyModel.Car);
 
+            var ratioRepository = new RatioRepository(_context);
+            var ratio = ratioRepository.RatioModelToRatio(policyModel.Ratio);
+
             var policy = new Policy
                 (
                 policyModel.Cost, 
                 policyModel.ClientEmail, 
                 policyModel.PolicyDate, 
-                car
+                car,
+                ratio
                 );
 
             if (car != null)
@@ -116,17 +120,24 @@ namespace MainRepository
             var carRepository = new CarRepository(_context);
             var carModel = carRepository.CarToCarModel(policy.Car);
 
+            var ratioRepository = new RatioRepository(_context);
+            var ratioModel = ratioRepository.RatioToRatioModel(policy.Ratio);
+
             var policyModel = new PolicyModel()
             {
                 Cost = policy.Cost,
                 Client = null,
                 ClientEmail = policy.UsersEmail,
                 PolicyDate = policy.PolicyDate,
-                Car = carModel             
+                Car = carModel,
+                Ratio = ratioModel
             };
 
             if (carModel != null)
                 carModel.Policy = policyModel;
+
+            if (ratioModel != null)
+                ratioModel.Policy = policyModel;
 
             return policyModel;
         }

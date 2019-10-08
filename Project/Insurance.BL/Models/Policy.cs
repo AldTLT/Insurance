@@ -58,12 +58,18 @@ namespace Insurance.BL.Models
         /// </summary>
         public Car Car { get; }
 
-        public Policy(int cost, string usersEmail, DateTime policyDate, Car car)
+        /// <summary>
+        /// Экземпляр класса Insurance.BL.Model.Coefficient который привязан к полису.
+        /// </summary>
+        public Ratio Ratio { get; }
+
+        public Policy(int cost, string usersEmail, DateTime policyDate, Car car, Ratio ratio)
         {
             Cost = cost;
             UsersEmail = usersEmail;
             PolicyDate = policyDate;
             Car = car;
+            Ratio = ratio;
         }
 
         /// <summary>
@@ -81,17 +87,11 @@ namespace Insurance.BL.Models
 
             var policy = obj as Policy;
 
-            //Проверка объектов Car.
-            var carEqual = Car == null && policy.Car == null ? true
-                : Car != null && policy.Car == null ? false
-                : Car == null && policy.Car != null ? false
-                : Car.Equals(policy.Car) ? true : false;
-
             return
                 Cost.Equals(policy.Cost)
                 && UsersEmail.Equals(policy.UsersEmail)
-                && PolicyDate.Equals(policy.PolicyDate)
-                && carEqual;
+                && PolicyDate.Equals(policy.PolicyDate);
+
         }
 
         /// <summary>
@@ -103,9 +103,7 @@ namespace Insurance.BL.Models
             return
                 Cost.GetHashCode()
                 + UsersEmail.GetHashCode()
-                + PolicyDate.GetHashCode()
-                + Car.GetHashCode();
+                + PolicyDate.GetHashCode();
         }
-
     }
 }

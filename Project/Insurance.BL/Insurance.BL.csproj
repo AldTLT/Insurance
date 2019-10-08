@@ -46,16 +46,17 @@
     <Compile Include="CarManager.cs" />
     <Compile Include="Intefaces\IAuthRepository.cs" />
     <Compile Include="Intefaces\ICarRepository.cs" />
-    <Compile Include="Intefaces\ICoefficientRepository.cs" />
+    <Compile Include="Intefaces\IRatioRepository.cs" />
     <Compile Include="Intefaces\IPolicyRepository.cs" />
     <Compile Include="Intefaces\IRoleRepository.cs" />
     <Compile Include="Models\Car.cs" />
-    <Compile Include="Models\Coefficient.cs" />
+    <Compile Include="Models\Ratio.cs" />
     <Compile Include="Models\Policy.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="PolicyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleList.cs" />
     <Compile Include="RoleManager.cs" />
   </ItemGroup>
   <ItemGroup />

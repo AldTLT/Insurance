@@ -21,15 +21,15 @@ namespace MainRepository.ModelsRepository
         /// <summary>
         /// Метод возвращает Insurance.BL.Models.Car по id.
         /// </summary>
-        /// <param name="carId">Id по которому производится возврат.</param>
+        /// <param name="carNumber">Id по которому производится возврат.</param>
         /// <returns>Insurance.BL.Models.Car.</returns>
-        public Car GetCar(Guid carId)
+        public Car GetCar(string carNumber)
         {
             CarModel carModel;
 
             try
             {
-                carModel = _context.Car.Find(carId);
+                carModel = _context.Car.Find(carNumber);
             }
             catch
             {
@@ -51,6 +51,7 @@ namespace MainRepository.ModelsRepository
                 return null;
 
             return new Car(
+                carModel.CarNumber,
                 carModel.Model,
                 carModel.ManufacturedYear,
                 carModel.Cost,
@@ -73,6 +74,7 @@ namespace MainRepository.ModelsRepository
 
             return new CarModel()
             {
+                CarNumber = car.CarNumber,
                 Model = car.Model,
                 ManufacturedYear = car.ManufacturedYear,
                 Cost = car.Cost,

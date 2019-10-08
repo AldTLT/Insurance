@@ -8,6 +8,8 @@ namespace Insurance.BL.Models
 {
     public class Car
     {
+        public string CarNumber { get; }
+
         /// <summary>
         /// Название модели автомобиля.
         /// </summary>
@@ -77,8 +79,9 @@ namespace Insurance.BL.Models
         /// </summary>
         public Policy Policy { get; set; }
 
-        public Car(string model, int manufacturedYear, int cost, int enginePower, Policy policy)
+        public Car(string carNumber, string model, int manufacturedYear, int cost, int enginePower, Policy policy)
         {
+            CarNumber = carNumber;
             Model = model;
             ManufacturedYear = manufacturedYear;
             Cost = cost;
@@ -101,18 +104,12 @@ namespace Insurance.BL.Models
 
             var car = obj as Car;
 
-            //Проверка объектов Policy.
-            var policyEqual = Policy == null && car.Policy == null ? true
-                : Policy != null && car.Policy == null ? false
-                : Policy == null && car.Policy != null ? false
-                : Policy.Equals(car.Policy) ? true : false;
-
             return
-                Model.Equals(car.Model)
+                CarNumber.Equals(car.CarNumber)
+                && Model.Equals(car.Model)
                 && ManufacturedYear.Equals(car.ManufacturedYear)
                 && Cost.Equals(car.Cost)
-                && EnginePower.Equals(car.EnginePower)
-                && Policy.Equals(car.Policy);
+                && EnginePower.Equals(car.EnginePower);
         }
 
         /// <summary>
@@ -122,7 +119,8 @@ namespace Insurance.BL.Models
         public override int GetHashCode()
         {
             return
-                Model.GetHashCode()
+                CarNumber.GetHashCode()
+                + Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
                 + Cost.GetHashCode()
                 + EnginePower.GetHashCode()

@@ -14,7 +14,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Идентификатор полиса, первичный ключ.
         /// </summary>
-        public Guid? PolicyID { get; set; }
+        public Guid PolicyID { get; set; }
 
         /// <summary>
         /// Стоимость полиса.
@@ -35,6 +35,11 @@ namespace MainRepository.Models
         /// Идентификатор автомобиля.
         /// </summary>
         public CarModel Car { get; set; }
+
+        /// <summary>
+        /// Коэффициенты для рассчета.
+        /// </summary>
+        public RatioModel Ratio { get; set; }
 
         /// <summary>
         /// E-mail клиента. Свойство используется для поиска ClientModel.

@@ -7,14 +7,14 @@ using Insurance.BL.Models;
 
 namespace Insurance.BL.Intefaces
 {
-    public interface ICoefficientRepository
+    public interface IRatioRepository
     {
         /// <summary>
         /// Метод возвращает итоговую цену, рассчитанную по коеффициентам на основании заданной цены.
         /// </summary>
-        /// <param name="coefficient">Коэффициенты для рассчета.</param>
+        /// <param name="ratio">Коэффициенты для рассчета.</param>
         /// <param name="cost">Заданная цена, по которой вычисляется итоговая стоимость.</param>
         /// <returns>Итоговая цена, рассчитанная по коэффициентам.</returns>
-        int ToCalculate(Coefficient coefficient, int cost);
+        int ToCalculate(Ratio ratio, int cost);
     }
 }

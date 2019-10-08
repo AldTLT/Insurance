@@ -12,8 +12,8 @@ namespace Insurance.BL
         /// <summary>
         /// Метод возвращает Insurance.BL.Models.Car по id.
         /// </summary>
-        /// <param name="carId">Id по которому производится возврат.</param>
+        /// <param name="carNumber">Id по которому производится возврат.</param>
         /// <returns>Insurance.BL.Models.Car.</returns>
-        Car GetCar(Guid carId);
+        Car GetCar(string carNumber);
     }
 }
