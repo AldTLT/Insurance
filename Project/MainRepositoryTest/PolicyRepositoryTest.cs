@@ -106,7 +106,7 @@ namespace MainRepositoryTest
 
             var car = new Car
                 (
-                "XX777O163RU",
+                "XX777O164RU",
                 "Ford",
                 2018,
                 900000,

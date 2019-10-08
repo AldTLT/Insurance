@@ -56,6 +56,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="PolicyManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RatioManager.cs" />
     <Compile Include="RoleList.cs" />
     <Compile Include="RoleManager.cs" />
   </ItemGroup>

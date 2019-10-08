@@ -16,5 +16,13 @@ namespace Insurance.BL.Intefaces
         /// <param name="cost">Заданная цена, по которой вычисляется итоговая стоимость.</param>
         /// <returns>Итоговая цена, рассчитанная по коэффициентам.</returns>
         int ToCalculate(Ratio ratio, int cost);
+
+        /// <summary>
+        /// Метод возвращает коэффициенты рассчета суммы полиса по номеру автомобиля.
+        /// </summary>
+        /// <param name="carNumber">Номер автомобиля для поиска.</param>
+        /// <returns>Insurance.BL.Models.Ratio</returns>
+        Ratio GetRatio(string carNumber);
+
     }
 }

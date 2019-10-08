@@ -20,6 +20,18 @@ namespace MainRepository.ModelsRepository
             _context = context;
         }
 
+        /// <summary>
+        /// Метод возвращает коэффициенты рассчета суммы полиса по номеру автомобиля.
+        /// </summary>
+        /// <param name="carNumber">Номер автомобиля для поиска.</param>
+        /// <returns>Insurance.BL.Models.Ratio</returns>
+        public Ratio GetRatio(string carNumber)
+        {
+            var ratioModel = _context.Coefficients.FirstOrDefault(r => r.Policy.Car.CarNumber.Equals(carNumber));
+            var ratioRepository = new RatioRepository(_context);
+            return ratioRepository.RatioModelToRatio(ratioModel);
+        }
+
         public int ToCalculate(Ratio ratio, int cost)
         {
             throw new NotImplementedException();
