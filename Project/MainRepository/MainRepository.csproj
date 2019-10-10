@@ -135,6 +135,10 @@
     <Compile Include="Migrations\201910081853089_CarNumber.designer.cs">
       <DependentUpon>201910081853089_CarNumber.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201910101759061_client-role.cs" />
+    <Compile Include="Migrations\201910101759061_client-role.designer.cs">
+      <DependentUpon>201910101759061_client-role.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelsRepository\AuthRepository.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
@@ -231,6 +235,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201910081853089_CarNumber.resx">
       <DependentUpon>201910081853089_CarNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201910101759061_client-role.resx">
+      <DependentUpon>201910101759061_client-role.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

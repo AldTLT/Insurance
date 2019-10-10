@@ -9,6 +9,16 @@ namespace Insurance.BL.Models
     public class Role
     {
         /// <summary>
+        /// Поле представляет экземпляр Role типа user.
+        /// </summary>
+        public static readonly Role User = new Role(1, "user");
+
+        /// <summary>
+        /// Поле представляет экземпляр Role типа user.
+        /// </summary>
+        public static readonly Role Administrator = new Role(2, "administrator");
+
+        /// <summary>
         /// Уникальный идентификатор роли.
         /// </summary>
         public int RoleId { get; }

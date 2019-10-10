@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Insurance.BL;
 using Insurance.BL.Models;
 using MainRepository.Models;
+using MainRepository.ModelsRepository;
 
 namespace MainRepository
 {
@@ -106,13 +107,25 @@ namespace MainRepository
             if (user == null)
                 return null;
 
+            var roleReposiory = new RoleRepository(_context);
+            var roleModelList = new List<RoleModel>();
+            
+            //Получение списка RoleModel пользователя.
+            foreach (var roleId in user.Role)
+            {
+                var roleModel = roleReposiory.GetRoleById(roleId);
+                roleModelList.Add(roleModel);
+            }
+                       
             var client = new ClientModel()
             {
                 EMail = user.EMail,
                 Name = user.Name,
                 BirthDate = user.BirthDate,
                 DriverLicenseDate = user.DriverLicenseDate,
-                PasswordHash = user.PasswordHash
+                PasswordHash = user.PasswordHash,
+                Role = roleModelList
+                
             };
 
             return client;

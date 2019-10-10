@@ -14,7 +14,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Идентификатор роли пользователя. По умолчанию: 1 - user.
         /// </summary>
-        const int RoleIdConst = 1;
+        const int UserRole = 1;
 
         /// <summary>
         /// Константа представляет кол-во дней (3650 ~ 10 лет)
@@ -102,21 +102,10 @@ namespace Insurance.BL.Models
         /// </summary>
         public string PasswordHash { get; }
 
-        private int _roleId;
-        public int RoleId
-        {
-            get
-            {
-                return _roleId;
-            }
-            set
-            {
-                if (value < 0)
-                    throw new ArgumentOutOfRangeException("Role не может быть меньше нуля!");
-
-                _roleId = value;
-            }
-        }
+        /// <summary>
+        /// Коллекция ролей пользователя.
+        /// </summary>
+        public List<int> Role { get; private set; }
 
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
@@ -125,19 +114,19 @@ namespace Insurance.BL.Models
             BirthDate = birthDate;
             DriverLicenseDate = driverLicenseDate;
             PasswordHash = passwordHash;
-            
-            //Константа - идентификатор пользователя.
-            RoleId = RoleIdConst;
+
+            //Установка по умолчанию роли user.
+            Role = new List<int>() { UserRole };
         }
 
-        public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash, int roleId)
+        /// <summary>
+        /// Метод добавляет роль в список ролей текущего экземпляра класса.
+        /// </summary>
+        /// <param name="role">Роль для добавления в список.</param>
+        public void AddRole(Role role)
         {
-            EMail = eMail;
-            Name = name;
-            BirthDate = birthDate;
-            DriverLicenseDate = driverLicenseDate;
-            PasswordHash = passwordHash;
-            RoleId = roleId;
+            if (!Role.Contains(role.RoleId))
+                Role.Add(role.RoleId);
         }
 
         /// <summary>

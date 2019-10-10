@@ -22,27 +22,25 @@ namespace MainRepository.ModelsRepository
         }
 
         /// <summary>
-        /// Метод возвращает идентификатор роли пользователя по e-mail.
+        /// Метод возвращает список идентификаторов роли пользователя по e-mail.
         /// </summary>
         /// <param name="email">E-mail для поиска пользователя.</param>
-        /// <returns>Идентификатор пользователя.</returns>
-        public int GetUserRole(string email)
+        /// <returns>Список идентификаторов пользователя.</returns>
+        public List<int> GetUserRole(string email)
         {
-            var roleId = 0;
-
             try
             {
-                roleId = _context.Client
+                var roleModel = _context.Client
                     .Where(c => c.EMail.Equals(email))
-                    .Select(c => c.RoleId)
+                    .Select(c => c.Role)
                     .First();
+
+                return roleModel.Select(r => r.RoleId).ToList();
             }
             catch
             {
-                return roleId;
+                return null;
             }
-
-            return roleId;
         }
 
         /// <summary>
@@ -51,12 +49,13 @@ namespace MainRepository.ModelsRepository
         /// <param name="email">E-mail пользователя, роль которого требуется изменить.</param>
         /// <param name="role">Роль пользователя, которую необходимо установить.</param>
         /// <returns>true, если роль успешно установлена, иначе - false.</returns>
-        public bool SetUserRole(string email, RoleList role)
+        public bool SetUserRole(string email, int role)
         {
             try
             {
                 var client = _context.Client.FirstOrDefault(c => c.EMail.Equals(email));
-                client.RoleId = (int)role;
+                var roleModel = _context.Role.First(r => r.RoleId.Equals(role));
+                client.Role.Add(roleModel);
                 _context.SaveChanges();
                 return true;
             }
@@ -92,6 +91,23 @@ namespace MainRepository.ModelsRepository
                 roleModel.RoleId,
                 roleModel.RoleName
                 );
+        }
+
+        /// <summary>
+        /// Метод возвращает RoleModel по Id.
+        /// </summary>
+        /// <param name="roleId">Id по которому необходимо найти RoleModel.</param>
+        /// <returns>Экземпляр класса RoleModel.</returns>
+        public RoleModel GetRoleById(int roleId)
+        {
+            try
+            {
+                return _context.Role.Where(r => r.RoleId.Equals(roleId)).FirstOrDefault();
+            }
+            catch
+            {
+                return null;
+            }
         }
     }
 }

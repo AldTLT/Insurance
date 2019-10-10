@@ -38,9 +38,9 @@ namespace MainRepository.Models
         public string PasswordHash { get; set; }
 
         /// <summary>
-        /// Идентификатор роли.
+        /// Коллекция ролей клиента.
         /// </summary>
-        public int RoleId { get; set; }
+        public virtual ICollection<RoleModel> Role { get; set; }
 
         /// <summary>
         /// Коллекция полисов клиента.

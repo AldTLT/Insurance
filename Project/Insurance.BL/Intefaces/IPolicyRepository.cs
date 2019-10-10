@@ -22,6 +22,5 @@ namespace Insurance.BL
         /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
         /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
         bool PolicyRegistration(Policy policy);
-
     }
 }

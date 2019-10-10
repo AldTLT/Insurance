@@ -11,6 +11,16 @@ namespace MainRepository.Models
     public class RoleModel
     {
         /// <summary>
+        /// Поле представляет экземпляр RoleModel типа user.
+        /// </summary>
+        public static readonly RoleModel User = new RoleModel() { RoleId = 1, RoleName = "user" };
+
+        /// <summary>
+        /// Поле представляет экземпляр RoleModel типа administrator.
+        /// </summary>
+        public static readonly RoleModel Administrator = new RoleModel() { RoleId = 2, RoleName = "administrator" };
+
+        /// <summary>
         /// Уникальный идентификатор роли.
         /// </summary>
         public int RoleId { get; set; }
@@ -19,6 +29,16 @@ namespace MainRepository.Models
         /// Наименование роли.
         /// </summary>
         public string RoleName { get; set; }
+
+        /// <summary>
+        /// Коллекция клиентов, соответствующих роли.
+        /// </summary>
+        public ICollection<ClientModel> Client { get; set; }
+
+        public RoleModel()
+        {
+            Client = new HashSet<ClientModel>();
+        }
 
         public class RoleConfiguration : EntityTypeConfiguration<RoleModel>
         {

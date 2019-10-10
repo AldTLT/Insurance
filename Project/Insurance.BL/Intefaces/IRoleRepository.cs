@@ -9,18 +9,18 @@ namespace Insurance.BL
     public interface IRoleRepository
     {
         /// <summary>
-        /// Метод возвращает идентификатор роли пользователя по e-mail.
+        /// Метод возвращает список идентификаторов роли пользователя по e-mail.
         /// </summary>
         /// <param name="email">E-mail пользователя, по которому производится поиск.</param>
-        /// <returns>Идентификатор роли.</returns>
-        int GetUserRole(string email);
+        /// <returns>Список идентификаторов роли.</returns>
+        List<int> GetUserRole(string email);
 
         /// <summary>
         /// Метод возвращает результат установки доступа пользователя.
         /// </summary>
         /// <param name="email">E-mail пользователя, роль которого требуется изменить.</param>
-        /// <param name="role">Роль пользователя, которую необходимо установить.</param>
+        /// <param name="role">Идентификатор роли пользователя, которую необходимо установить.</param>
         /// <returns>true, если роль успешно установлена, иначе - false.</returns>
-        bool SetUserRole(string email, RoleList role);
+        bool SetUserRole(string email, int role);
     }
 }

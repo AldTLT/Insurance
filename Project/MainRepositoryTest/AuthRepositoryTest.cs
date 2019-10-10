@@ -104,7 +104,7 @@ namespace MainRepositoryTest
         {
             var user = new User
                 (
-                "test@mail.ru",
+                "test4@mail.ru",
                 "Василий Пупкин",
                 new DateTime(1990, 10, 10),
                 new DateTime(2010, 10, 10),

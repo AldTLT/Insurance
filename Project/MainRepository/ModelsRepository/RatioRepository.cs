@@ -32,11 +32,6 @@ namespace MainRepository.ModelsRepository
             return ratioRepository.RatioModelToRatio(ratioModel);
         }
 
-        public int ToCalculate(Ratio ratio, int cost)
-        {
-            throw new NotImplementedException();
-        }
-
         /// <summary>
         /// Метод возвращает Insurance.BL.Models.Ratio с данными полученными из RatioModel.
         /// </summary>

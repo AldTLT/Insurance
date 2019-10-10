@@ -30,21 +30,28 @@ namespace Insurance.BL
             return _ratioRepository.GetRatio(carNumber);
         }
 
-        public int ToCalculate(Car car, User user )
+        /// <summary>
+        /// Метод возвращает стоимость полиса, рассчитанную с учетом коэффициентов от базовой стоимости.
+        /// </summary>
+        /// <param name="car">Экземпляр класса Insurance.BL.Models.Car</param>
+        /// <param name="user">Экземпляр класса Insurance.BL.Models.User</param>
+        /// <param name="baseRate">Базовая стоимость полиса.</param>
+        /// <returns>Итоговая стоимость полиса.</returns>
+        public int ToCalculate(Car car, User user, int baseRate)
         {            
             //Рассчет коэффициента, основанного на возрасте автомобиля.
             var carAgeRatio = GetCarAgeRatio(car.ManufacturedYear);
 
             //Рассчет коэффициента, основанного на опыте вождения водителя.
-            var drivingExperience = GetDrivingExperienceRatio(user.DriverLicenseDate);
+            var drivingExpRatio = GetDrivingExperienceRatio(user.DriverLicenseDate);
 
             //Рассчет коэффициента, основанного на возрасте водителя.
             var driverAgeRatio = GetDriverAgeRatio(user.BirthDate);
 
             //Рассчет коэффициента, основанного на мощности двигателя автомобиля.
-            var enginePower = GetEnginePowerRatio(car.EnginePower);
+            var enginePowerRatio = GetEnginePowerRatio(car.EnginePower);
 
-            throw new NotImplementedException();
+            return (int)Math.Truncate(baseRate * carAgeRatio * drivingExpRatio * driverAgeRatio * enginePowerRatio);
         }
 
         /// <summary>
