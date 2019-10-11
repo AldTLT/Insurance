@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Класс представляет методы управления типа User.
+    /// </summary>
     public class RoleManager
     {
         private readonly IRoleRepository _roleRepository;

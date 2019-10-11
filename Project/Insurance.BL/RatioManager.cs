@@ -13,6 +13,11 @@ namespace Insurance.BL
     /// </summary>
     public class RatioManager
     {
+        /// <summary>
+        /// Константа базовая ставка, составляет 5% от стоимости автомобиля.
+        /// </summary>
+        const double baseRate = 0.05;
+
         private readonly IRatioRepository _ratioRepository;
 
         public RatioManager(IRatioRepository ratioRepository)
@@ -21,7 +26,20 @@ namespace Insurance.BL
         }
 
         /// <summary>
-        /// Метод возвращает коэффициенты рассчета суммы полиса по номеру автомобиля.
+        /// Метод возвращает стоимость полиса, рассчитанную с учетом коэффициентов от базовой стоимости.
+        /// </summary>
+        /// <param name="carCost">Базовая стоимость полиса.</param>
+        /// <returns>Итоговая стоимость полиса.</returns>
+        public int CostCalculate(int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
+        {
+            var coefficients = CalculateRatio(manufacturedYear, driverLicenseDate, birthDate, enginePower);
+            var baseCost = carCost * baseRate;
+
+            return (int)Math.Truncate(baseCost * coefficients.Item1 * coefficients.Item2 * coefficients.Item3 * coefficients.Item4);
+        }
+
+        /// <summary>
+        /// Метод возвращает Ratio по номеру автомобиля.
         /// </summary>
         /// <param name="carNumber">Номер автомобиля для поиска.</param>
         /// <returns>Insurance.BL.Models.Ratio</returns>
@@ -31,27 +49,46 @@ namespace Insurance.BL
         }
 
         /// <summary>
-        /// Метод возвращает стоимость полиса, рассчитанную с учетом коэффициентов от базовой стоимости.
+        /// Метод возвращает Ratio с коэффициентами рассчета суммы полиса.
         /// </summary>
         /// <param name="car">Экземпляр класса Insurance.BL.Models.Car</param>
         /// <param name="user">Экземпляр класса Insurance.BL.Models.User</param>
-        /// <param name="baseRate">Базовая стоимость полиса.</param>
-        /// <returns>Итоговая стоимость полиса.</returns>
-        public int ToCalculate(Car car, User user, int baseRate)
-        {            
+        /// <returns>Insurance.BL.Models.Ratio</returns>
+        public Ratio GetRatio(Car car, User user)
+        {
+            var coefficients = CalculateRatio(car.ManufacturedYear, user.DriverLicenseDate, user.BirthDate, car.EnginePower);
+            var ratio = new Ratio(coefficients.Item1, coefficients.Item2, coefficients.Item3, coefficients.Item4);
+
+            return ratio;
+        }
+
+        /// <summary>
+        /// Метод возвращает Tuple<double, double, double, double> с коэффициентами.
+        /// </summary>
+        /// <param name="manufacturedYear">Год выпуска автомобиля.</param>
+        /// <param name="driverLicenseDate">Дата выдачи прав вождения.</param>
+        /// <param name="birthDate">Дата рождения водителя.</param>
+        /// <param name="enginePower">Мощность двигателя автомобиля.</param>
+        /// <returns>Tuple<double, double, double, double> с коэффициентами.
+        /// Item1 - Год выпуска автомобиля.
+        /// Item2 - Дата выдачи прав вождения.
+        /// Item3 - Дата рождения водителя.
+        /// Item4 - Мощность двигателя автомобиля.</returns>
+        private Tuple<double, double, double, double> CalculateRatio(int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
+        {
             //Рассчет коэффициента, основанного на возрасте автомобиля.
-            var carAgeRatio = GetCarAgeRatio(car.ManufacturedYear);
+            var carAgeRatio = GetCarAgeRatio(manufacturedYear);
 
             //Рассчет коэффициента, основанного на опыте вождения водителя.
-            var drivingExpRatio = GetDrivingExperienceRatio(user.DriverLicenseDate);
+            var drivingExpRatio = GetDrivingExperienceRatio(driverLicenseDate);
 
             //Рассчет коэффициента, основанного на возрасте водителя.
-            var driverAgeRatio = GetDriverAgeRatio(user.BirthDate);
+            var driverAgeRatio = GetDriverAgeRatio(birthDate);
 
             //Рассчет коэффициента, основанного на мощности двигателя автомобиля.
-            var enginePowerRatio = GetEnginePowerRatio(car.EnginePower);
+            var enginePowerRatio = GetEnginePowerRatio(enginePower);
 
-            return (int)Math.Truncate(baseRate * carAgeRatio * drivingExpRatio * driverAgeRatio * enginePowerRatio);
+            return new Tuple<double, double, double, double>(carAgeRatio, drivingExpRatio, driverAgeRatio, enginePowerRatio);
         }
 
         /// <summary>

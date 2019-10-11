@@ -7,6 +7,9 @@ using Insurance.BL.Models;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Класс представляет методы управления типа Car.
+    /// </summary>
     public class CarManager
     {
         private readonly ICarRepository _carRepository;

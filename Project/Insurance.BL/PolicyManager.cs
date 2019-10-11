@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Класс представляет методы управления типа Policy.
+    /// </summary>
     public class PolicyManager
     {
         private readonly IPolicyRepository _policyRepository;

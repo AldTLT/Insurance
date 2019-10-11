@@ -8,6 +8,9 @@ using Insurance.BL.Models;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Класс представляет методы управления типа User.
+    /// </summary>
     public class AccountManager
     {
         private readonly IAuthRepository _authRepository;
@@ -46,6 +49,16 @@ namespace Insurance.BL
         public bool IsEmailCorrect(string email)
         {
             return new EmailAddressAttribute().IsValid(email);
+        }
+
+        /// <summary>
+        /// Метод возвращает Insurance.BL.Models.User по email.
+        /// </summary>
+        /// <param name="mail">E-mail пользователя для идентификации.</param>
+        /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
+        User GetUser(string mail)
+        {
+            return _authRepository.GetUser(mail);
         }
     }
 }
