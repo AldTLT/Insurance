@@ -33,11 +33,13 @@ namespace Insurance.WCF
         /// <param name="birthDate">Дата рождения пользователя.</param>
         /// <param name="driverLicenseDate">Дата выдачи прав пользователя.</param>
         /// <param name="password">Пароль пользователя.</param>
-        /// <returns></returns>
+        /// <returns>true, если асккаунт успешно создан, иначе - false.</returns>
         public bool RegistrationAccount(string mail, string fullName, DateTime birthDate, DateTime driverLicenseDate, string password)
         {
             var accountManager = new AccountManager(_authRepository);
-            var account = new User(mail, fullName, birthDate, driverLicenseDate, password);
+            var passwordHash = GetPasswordHash(password);
+            var account = new User(mail, fullName, birthDate, driverLicenseDate, passwordHash);
+
             return accountManager.Registration(account);
         }
 
@@ -46,13 +48,23 @@ namespace Insurance.WCF
         /// </summary>
         /// <param name="email">E-mail пользователя.</param>
         /// <param name="password">Пароль пользователя.</param>
-        /// <returns></returns>
+        /// <returns>true, если пользователь успешно авторизован, иначе - false.</returns>
         public bool SignIn(string email, string password)
         {
             var accountManager = new AccountManager(_authRepository);
+            var passwordHash = GetPasswordHash(password);
 
             return accountManager.SignIn(email, password);
         }
-
+        
+        /// <summary>
+        /// Метод возвращает хэш-код пароля.
+        /// </summary>
+        /// <param name="password">Пароль.</param>
+        /// <returns>Хэш-код.</returns>
+        private string GetPasswordHash(string password)
+        {
+            return password.GetHashCode().ToString();
+        }
     }
 }
