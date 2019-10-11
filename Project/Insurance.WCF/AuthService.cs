@@ -22,7 +22,6 @@ namespace Insurance.WCF
         public AuthService()
         {
             _authRepository = new AuthRepository(_context);
-
         }
 
         /// <summary>

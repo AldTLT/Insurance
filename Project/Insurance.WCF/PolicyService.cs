@@ -20,14 +20,12 @@ namespace Insurance.WCF
         private readonly AuthRepository _authRepository; 
         private readonly string _email;
 
-        public PolicyService(string email)
+        public PolicyService()
         {
             _policyRepository = new PolicyRepository(_context);
             _ratioRepository = new RatioRepository(_context);
             _carRepository = new CarRepository(_context);
             _authRepository = new AuthRepository(_context);
-            _email = email;
-
         }
 
         /// <summary>
