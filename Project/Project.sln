@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.BL.Test", "Insura
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.BL", "Insurance.BL\Insurance.BL.csproj", "{1FBCF6EB-6D10-4263-80DE-0B19FE9F3627}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.WCF", "Insurance.WCF\Insurance.WCF.csproj", "{FCEB76FA-2877-4156-B481-6C5739100379}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1FBCF6EB-6D10-4263-80DE-0B19FE9F3627}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FBCF6EB-6D10-4263-80DE-0B19FE9F3627}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FBCF6EB-6D10-4263-80DE-0B19FE9F3627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEB76FA-2877-4156-B481-6C5739100379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCEB76FA-2877-4156-B481-6C5739100379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEB76FA-2877-4156-B481-6C5739100379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCEB76FA-2877-4156-B481-6C5739100379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
