@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
+    [Serializable]
     public class Policy
     {
         /// <summary>
@@ -104,6 +105,21 @@ namespace Insurance.BL.Models
                 Cost.GetHashCode()
                 + UsersEmail.GetHashCode()
                 + PolicyDate.GetHashCode();
+        }
+
+        /// <summary>
+        /// Метод возвращает строковое представление экземпляра объекта.
+        /// </summary>
+        /// <returns>Строковое представление экземпляра объекта</returns>
+        public override string ToString()
+        {
+            var policyBuilder = new StringBuilder();
+
+            policyBuilder.Append(UsersEmail).Append(":");
+            policyBuilder.Append(Cost.ToString()).Append(":");
+            policyBuilder.Append(PolicyDate.ToString("dd.MM.yyyy"));
+
+            return policyBuilder.ToString();
         }
     }
 }

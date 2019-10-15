@@ -33,7 +33,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Коллекция клиентов, соответствующих роли.
         /// </summary>
-        public ICollection<ClientModel> Client { get; set; }
+        public virtual ICollection<ClientModel> Client { get; set; }
 
         public RoleModel()
         {

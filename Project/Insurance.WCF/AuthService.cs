@@ -24,6 +24,11 @@ namespace Insurance.WCF
             _authRepository = new AuthRepository(_context);
         }
 
+        public User GetUser(string email)
+        {
+            return _authRepository.GetUser(email);
+        }
+
         /// <summary>
         /// Метод возвращает результат создания нового пользователя.
         /// </summary>

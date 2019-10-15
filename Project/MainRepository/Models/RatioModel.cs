@@ -37,7 +37,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Policy для которого рассчитывается коэффициент.
         /// </summary>
-        public PolicyModel Policy { get; set; }
+        public virtual PolicyModel Policy { get; set; }
 
         public class RatioConfiguration : EntityTypeConfiguration<RatioModel>
         {

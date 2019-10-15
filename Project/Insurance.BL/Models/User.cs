@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
-{
+{    
     /// <summary>
     /// Представляет класс User для BL.
     /// </summary>
+    [Serializable]
     public class User
     {
         /// <summary>

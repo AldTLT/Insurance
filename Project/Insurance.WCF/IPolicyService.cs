@@ -35,5 +35,13 @@ namespace Insurance.WCF
         /// <returns>true, если полис успешно зарегистрирован, иначе - false.</returns>
         [OperationContract]
         bool PolicyRegistration(int carCost, string carNumber, string carModel, int manufacturedYear, int cost, int enginePower);
+
+        /// <summary>
+        /// Метод возвращает коллекцию Policy по email пользователя.
+        /// </summary>
+        /// <param name="email">E-mail пользователя.</param>
+        /// <returns>ICollection<Policy> принадлежащих пользователяю.</returns>
+        [OperationContract]
+        ICollection<Policy> GetPolicy(string email);
     }
 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Data.Entity.ModelConfiguration;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,22 +31,22 @@ namespace MainRepository.Models
         /// <summary>
         /// Клиент - владелец полиса.
         /// </summary>
-        public ClientModel Client { get; set; }
+        public virtual ClientModel Client { get; set; }
 
         /// <summary>
         /// Идентификатор автомобиля.
         /// </summary>
-        public CarModel Car { get; set; }
+        public virtual CarModel Car { get; set; }
 
         /// <summary>
         /// Коэффициенты для рассчета.
         /// </summary>
-        public RatioModel Ratio { get; set; }
+        public virtual RatioModel Ratio { get; set; }
 
         /// <summary>
         /// E-mail клиента. Свойство используется для поиска ClientModel.
         /// </summary>
-        public string ClientEmail { get; set; }
+        public virtual string ClientEmail { get; set; }
 
         /// <summary>
         /// Класс представляет метод конфигурирования PolicyModel.

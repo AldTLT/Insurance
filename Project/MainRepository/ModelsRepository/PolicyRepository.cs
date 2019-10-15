@@ -60,10 +60,14 @@ namespace MainRepository
         /// <returns>List<Policy> соответствующих email.</returns>
         public ICollection<Policy> GetPolicy(string email)
         {
-            var policyCollection = _context.Policy.Where(p => p.Client.EMail.Equals(email)).Select(p => p);
+            var policyModelList = _context.Policy
+                .Where(p => p.Client.EMail.Equals(email))
+                .Select(p => p)
+                .ToList();
+
             var policysList = new List<Policy>();
 
-            foreach (var policyModel in policyCollection)
+            foreach (var policyModel in policyModelList)
             {
                 var policy = PolicyModelToPolicy(policyModel);
 
@@ -85,17 +89,28 @@ namespace MainRepository
         {
             if (policyModel == null)
                 return null;
+            Car car = null;
+            Ratio ratio = null;
 
-            var carRepository = new CarRepository(_context);
-            var car = carRepository.CarModelToCar(policyModel.Car);
+            if (policyModel.Car != null)
+            {
+                var carRepository = new CarRepository(_context);
+                car = carRepository.CarModelToCar(policyModel.Car);
+            }
 
-            var ratioRepository = new RatioRepository(_context);
-            var ratio = ratioRepository.RatioModelToRatio(policyModel.Ratio);
+            if (policyModel.Ratio != null)
+            {
+                var ratioRepository = new RatioRepository(_context);
+                ratio = ratioRepository.RatioModelToRatio(policyModel.Ratio);
+            }
+
+            var clientEmail = policyModel.Client == null ? null : policyModel.Client.EMail;
+
 
             var policy = new Policy
                 (
                 policyModel.Cost, 
-                policyModel.ClientEmail, 
+                clientEmail, 
                 policyModel.PolicyDate, 
                 car,
                 ratio
@@ -117,11 +132,20 @@ namespace MainRepository
             if (policy == null)
                 return null;
 
-            var carRepository = new CarRepository(_context);
-            var carModel = carRepository.CarToCarModel(policy.Car);
+            CarModel carModel = null;
+            RatioModel ratioModel = null;
 
-            var ratioRepository = new RatioRepository(_context);
-            var ratioModel = ratioRepository.RatioToRatioModel(policy.Ratio);
+            if (policy.Car != null)
+            {
+                var carRepository = new CarRepository(_context);
+                carModel = carRepository.CarToCarModel(policy.Car);
+            }
+
+            if (policy.Ratio != null)
+            {
+                var ratioRepository = new RatioRepository(_context);
+                ratioModel = ratioRepository.RatioToRatioModel(policy.Ratio);
+            }
 
             var policyModel = new PolicyModel()
             {

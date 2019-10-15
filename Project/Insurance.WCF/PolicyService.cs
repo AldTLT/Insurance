@@ -29,6 +29,16 @@ namespace Insurance.WCF
         }
 
         /// <summary>
+        /// Метод возвращает коллекцию Policy по email пользователя.
+        /// </summary>
+        /// <param name="email">E-mail пользователя.</param>
+        /// <returns>ICollection<Policy> принадлежащих пользователяю.</returns>
+        public ICollection<Policy> GetPolicy(string email)
+        {
+            return _policyRepository.GetPolicy(email);
+        }
+
+        /// <summary>
         /// Метод возвращает итоговую стоимость полиса, рассчитанную исходя из входных данных.
         /// </summary>
         /// <param name="carCost">Стоимость автомобиля.</param>
