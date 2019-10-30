@@ -5,47 +5,139 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using Insurance.WCF;
+using Insurance.BL.Models;
+using System.Web.Http.Description;
+using WebApi.Models;
 
 namespace Insurance.WebApi.Controllers
 {
+    [Authorize]
     public class PolicyController : ApiController
     {
         private readonly IPolicyService _policyService;
+        private readonly IAuthService _authService;
 
         public PolicyController()
         {
             _policyService = new PolicyService();
+            _authService = new AuthService();
         }
 
-        // GET api/values
-        public IEnumerable<string> Get()
+        /// <summary>
+        /// Запрос: получение коллекции Policy.
+        /// </summary>
+        /// <returns></returns>
+        [ResponseType(typeof(Policy))]
+        [Authorize]
+        public IHttpActionResult GetPolicy()
         {
-            return new string[] { "value1", "value2" };
-        }
+            //Получение email из headers запроса.
+            var email = string.Empty;
 
-        // GET api/values/5
-        public string GetPolicy()
-        {
-            var email = Request
-                .Headers
-                .FirstOrDefault(c => c.Key.Equals("email"))
-                .Value
-                .FirstOrDefault();
-
-            var policyCollection = _policyService.GetPolicy(email);
-            var result = string.Empty;
-
-            foreach (var policy in policyCollection)
+            try
             {
-                result += policy.ToString() + " ";
+                email = Request
+                    .Headers
+                    .FirstOrDefault(c => c.Key.Equals("email"))
+                    .Value
+                    .FirstOrDefault();
+            }
+            catch
+            {
+                return NotFound();
             }
 
-            return result;
+            if (string.IsNullOrEmpty(email))
+                return NotFound();
+
+            var policyCollection = _policyService.GetPolicy(email);
+
+            if (policyCollection.Count() == 0)
+                return NotFound();
+
+            return Ok(policyCollection);
         }
 
-        // POST api/values
-        public void Post([FromBody]string value)
+        // Регистрация нового полиса.
+        [Authorize]
+        public IHttpActionResult PolicyRegister(PolicyRegistrationBindingModel model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var email = string.Empty;
+
+            try
+            {
+                email = Request
+                    .Headers
+                    .FirstOrDefault(c => c.Key.Equals("email"))
+                    .Value
+                    .FirstOrDefault();
+            }
+            catch
+            {
+                return NotFound();
+            }
+
+                var registerResult = _policyService.PolicyRegistration(
+                email,
+                model.CarCost,
+                model.CarNumber,
+                model.CarModel,
+                model.ManufacturedYear,
+                model.EnginePower
+                );
+
+            if (!registerResult)
+            {
+                return NotFound();
+            }
+
+            return Ok();
+        }
+
+        /// <summary>
+        /// Получение стоимости полиса.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Authorize]
+        public IHttpActionResult GetPolicyCost(PolicyRegistrationBindingModel model)
+        {
+            DateTime birthDate;
+            DateTime driverLicenseDate;
+            var email = string.Empty;
+
+            try
+            {
+                email = Request
+                    .Headers
+                    .FirstOrDefault(c => c.Key.Equals("email"))
+                    .Value
+                    .FirstOrDefault();
+
+                var user = _authService.GetUser(email);
+                birthDate = user.BirthDate;
+                driverLicenseDate = user.DriverLicenseDate;
+
+
+                var policyCost = _policyService.PolicyCalculate(
+                    email,
+                    model.CarCost,
+                    model.ManufacturedYear,
+                    driverLicenseDate,
+                    birthDate,
+                    model.EnginePower);
+
+                return Ok(policyCost);
+            }
+            catch
+            {
+                return NotFound();
+            }
         }
 
         // PUT api/values/5

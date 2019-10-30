@@ -115,9 +115,26 @@ namespace Insurance.BL.Models
         {
             var policyBuilder = new StringBuilder();
 
-            policyBuilder.Append(UsersEmail).Append(":");
-            policyBuilder.Append(Cost.ToString()).Append(":");
+            policyBuilder.Append(UsersEmail).Append(" ");
+            policyBuilder.Append(Cost.ToString()).Append(" ");
             policyBuilder.Append(PolicyDate.ToString("dd.MM.yyyy"));
+
+            if (Car != null)
+            {
+                policyBuilder.Append(" ").Append(Car.CarNumber).Append(" ");
+                policyBuilder.Append(Car.Model).Append(" ");
+                policyBuilder.Append(Car.Cost).Append(" ");
+                policyBuilder.Append(Car.ManufacturedYear).Append(" ");
+                policyBuilder.Append(Car.EnginePower);
+            }
+
+            if (Ratio != null)
+            {
+                policyBuilder.Append(" ").Append(Ratio.CarAge).Append(" ");
+                policyBuilder.Append(Ratio.DrivingExperience).Append(" ");
+                policyBuilder.Append(Ratio.DriverAge).Append(" ");
+                policyBuilder.Append(Ratio.EnginePower);
+            }
 
             return policyBuilder.ToString();
         }

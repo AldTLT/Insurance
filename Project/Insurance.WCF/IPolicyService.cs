@@ -21,7 +21,7 @@ namespace Insurance.WCF
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
         /// <returns>Итоговая стоимость полиса.</returns>
         [OperationContract]
-        int PolicyCalculate(int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower);
+        int PolicyCalculate(string email, int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower);
 
         /// <summary>
         /// Метод возвращает результат регистрации полиса в системе.
@@ -30,11 +30,10 @@ namespace Insurance.WCF
         /// <param name="carNumber">Номер автомобиля.</param>
         /// <param name="carModel">Модель автомобиля.</param>
         /// <param name="manufacturedYear">Год выпуска автомобиля.</param>
-        /// <param name="cost">Стоимость автомобиля.</param>
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
         /// <returns>true, если полис успешно зарегистрирован, иначе - false.</returns>
         [OperationContract]
-        bool PolicyRegistration(int carCost, string carNumber, string carModel, int manufacturedYear, int cost, int enginePower);
+        bool PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower);
 
         /// <summary>
         /// Метод возвращает коллекцию Policy по email пользователя.

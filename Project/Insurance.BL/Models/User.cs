@@ -13,9 +13,9 @@ namespace Insurance.BL.Models
     public class User
     {
         /// <summary>
-        /// Идентификатор роли пользователя. По умолчанию: 1 - user.
+        /// Идентификатор роли пользователя. По умолчанию: user.
         /// </summary>
-        const int UserRole = 1;
+        const string UserRole = "user";
 
         /// <summary>
         /// Константа представляет кол-во дней (3650 ~ 10 лет)
@@ -106,7 +106,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Коллекция ролей пользователя.
         /// </summary>
-        public List<int> Role { get; private set; }
+        public List<string> Role { get; private set; }
 
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
@@ -117,7 +117,7 @@ namespace Insurance.BL.Models
             PasswordHash = passwordHash;
 
             //Установка по умолчанию роли user.
-            Role = new List<int>() { UserRole };
+            Role = new List<string>() { UserRole };
         }
 
         /// <summary>
@@ -126,8 +126,8 @@ namespace Insurance.BL.Models
         /// <param name="role">Роль для добавления в список.</param>
         public void AddRole(Role role)
         {
-            if (!Role.Contains(role.RoleId))
-                Role.Add(role.RoleId);
+            if (!Role.Contains(role.RoleName))
+                Role.Add(role.RoleName);
         }
 
         /// <summary>

@@ -11,26 +11,20 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Поле представляет экземпляр Role типа user.
         /// </summary>
-        public static readonly Role User = new Role(1, "user");
+        public static readonly Role User = new Role("user");
 
         /// <summary>
         /// Поле представляет экземпляр Role типа user.
         /// </summary>
-        public static readonly Role Administrator = new Role(2, "administrator");
-
-        /// <summary>
-        /// Уникальный идентификатор роли.
-        /// </summary>
-        public int RoleId { get; }
+        public static readonly Role Administrator = new Role("administrator");
 
         /// <summary>
         /// Наименование роли.
         /// </summary>
         public string RoleName { get; }
 
-        public Role(int roleId, string roleName)
+        public Role(string roleName)
         {
-            RoleId = roleId;
             RoleName = roleName;
         }
 
@@ -49,9 +43,7 @@ namespace Insurance.BL.Models
 
             var role = obj as Role;
 
-            return
-                RoleId.Equals(role.RoleId)
-                && RoleName.Equals(role.RoleName);
+            return RoleName.Equals(role.RoleName);
         }
 
         /// <summary>
@@ -60,9 +52,7 @@ namespace Insurance.BL.Models
         /// <returns>Хэш-код объекта.</returns>
         public override int GetHashCode()
         {
-            return
-                RoleId.GetHashCode()
-                + RoleName.GetHashCode();
+            return RoleName.GetHashCode();
         }
     }
 }

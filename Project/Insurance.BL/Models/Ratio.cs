@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
+    [Serializable]
     public class Ratio
     {
         /// <summary>

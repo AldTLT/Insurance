@@ -13,17 +13,12 @@ namespace MainRepository.Models
         /// <summary>
         /// Поле представляет экземпляр RoleModel типа user.
         /// </summary>
-        public static readonly RoleModel User = new RoleModel() { RoleId = 1, RoleName = "user" };
+        public static readonly RoleModel User = new RoleModel() { RoleName = "user" };
 
         /// <summary>
         /// Поле представляет экземпляр RoleModel типа administrator.
         /// </summary>
-        public static readonly RoleModel Administrator = new RoleModel() { RoleId = 2, RoleName = "administrator" };
-
-        /// <summary>
-        /// Уникальный идентификатор роли.
-        /// </summary>
-        public int RoleId { get; set; }
+        public static readonly RoleModel Administrator = new RoleModel() { RoleName = "administrator" };
 
         /// <summary>
         /// Наименование роли.
@@ -45,9 +40,7 @@ namespace MainRepository.Models
             public RoleConfiguration()
             {
                 this.ToTable("Role")
-                    .HasKey(r => r.RoleId);
-                this.Property(r => r.RoleId)
-                    .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                    .HasKey(r => r.RoleName);
                 this.Property(r => r.RoleName)
                     .HasMaxLength(30);                
             }
@@ -68,9 +61,7 @@ namespace MainRepository.Models
 
             var roleModel = obj as RoleModel;
 
-            return
-                RoleId.Equals(roleModel.RoleId)
-                && RoleName.Equals(roleModel.RoleName);
+            return RoleName.Equals(roleModel.RoleName);
         }
 
         /// <summary>
@@ -79,9 +70,7 @@ namespace MainRepository.Models
         /// <returns>Хэш-код объекта.</returns>
         public override int GetHashCode()
         {
-            return
-                RoleId.GetHashCode()
-                + RoleName.GetHashCode();
+            return RoleName.GetHashCode();
         }
     }
 }

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
+    [Serializable]
     public class Car
     {
         public string CarNumber { get; }
@@ -74,19 +75,18 @@ namespace Insurance.BL.Models
             }
         }
 
-        /// <summary>
-        /// Идентификатор полиса, которому принадлежит автомобиль.
-        /// </summary>
-        public Policy Policy { get; set; }
+        ///// <summary>
+        ///// Идентификатор полиса, которому принадлежит автомобиль.
+        ///// </summary>
+        //public Policy Policy { get; set; }
 
-        public Car(string carNumber, string model, int manufacturedYear, int cost, int enginePower, Policy policy)
+        public Car(string carNumber, string model, int manufacturedYear, int cost, int enginePower)
         {
             CarNumber = carNumber;
             Model = model;
             ManufacturedYear = manufacturedYear;
             Cost = cost;
             EnginePower = enginePower;
-            Policy = policy;
         }
 
         /// <summary>
@@ -123,8 +123,7 @@ namespace Insurance.BL.Models
                 + Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
                 + Cost.GetHashCode()
-                + EnginePower.GetHashCode()
-                + Policy.GetHashCode();
+                + EnginePower.GetHashCode();
         }
     }
 }

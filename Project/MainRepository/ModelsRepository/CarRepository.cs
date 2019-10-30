@@ -55,8 +55,7 @@ namespace MainRepository.ModelsRepository
                 carModel.Model,
                 carModel.ManufacturedYear,
                 carModel.Cost,
-                carModel.EnginePower,
-                null
+                carModel.EnginePower
                 );
         }
 

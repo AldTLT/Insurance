@@ -26,7 +26,7 @@ namespace MainRepository.ModelsRepository
         /// </summary>
         /// <param name="email">E-mail для поиска пользователя.</param>
         /// <returns>Список идентификаторов пользователя.</returns>
-        public List<int> GetUserRole(string email)
+        public List<string> GetUserRole(string email)
         {
             try
             {
@@ -35,7 +35,7 @@ namespace MainRepository.ModelsRepository
                     .Select(c => c.Role)
                     .First();
 
-                return roleModel.Select(r => r.RoleId).ToList();
+                return roleModel.Select(r => r.RoleName).ToList();
             }
             catch
             {
@@ -49,12 +49,12 @@ namespace MainRepository.ModelsRepository
         /// <param name="email">E-mail пользователя, роль которого требуется изменить.</param>
         /// <param name="role">Роль пользователя, которую необходимо установить.</param>
         /// <returns>true, если роль успешно установлена, иначе - false.</returns>
-        public bool SetUserRole(string email, int role)
+        public bool SetUserRole(string email, string role)
         {
             try
             {
                 var client = _context.Client.FirstOrDefault(c => c.EMail.Equals(email));
-                var roleModel = _context.Role.First(r => r.RoleId.Equals(role));
+                var roleModel = _context.Role.First(r => r.RoleName.Equals(role));
                 client.Role.Add(roleModel);
                 _context.SaveChanges();
                 return true;
@@ -72,11 +72,7 @@ namespace MainRepository.ModelsRepository
         /// <returns>PolicyModel с данными из Insurance.BL.Models.Role.</returns>
         public RoleModel RoleToRoleModel(Role role)
         {
-            return new RoleModel()
-            {
-                RoleId = role.RoleId,
-                RoleName = role.RoleName
-            };
+            return new RoleModel() { RoleName = role.RoleName };
         }
 
         /// <summary>
@@ -86,23 +82,19 @@ namespace MainRepository.ModelsRepository
         /// <returns>Insurance.BL.Models.Role с данными из RoleModel.</returns>
         public Role RoleModelToRole(RoleModel roleModel)
         {
-            return new Role
-                (
-                roleModel.RoleId,
-                roleModel.RoleName
-                );
+            return new Role ( roleModel.RoleName );
         }
 
         /// <summary>
         /// Метод возвращает RoleModel по Id.
         /// </summary>
-        /// <param name="roleId">Id по которому необходимо найти RoleModel.</param>
+        /// <param name="roleName">Имя роли по которому необходимо найти RoleModel.</param>
         /// <returns>Экземпляр класса RoleModel.</returns>
-        public RoleModel GetRoleById(int roleId)
+        public RoleModel GetRoleById(string roleName)
         {
             try
             {
-                return _context.Role.Where(r => r.RoleId.Equals(roleId)).FirstOrDefault();
+                return _context.Role.Where(r => r.RoleName.Equals(roleName)).FirstOrDefault();
             }
             catch
             {

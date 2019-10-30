@@ -28,8 +28,8 @@ namespace MainRepositoryTest
         [TestMethod]
         public void RoleToRoleModelTest()
         {
-            var expectedRoleModel = new RoleModel() { RoleId = 1, RoleName = "user" };
-            var role = new Role(1, "user");
+            var expectedRoleModel = new RoleModel() { RoleName = "user" };
+            var role = new Role("user");
             var roleModel = _roleRepository.RoleToRoleModel(role);
 
             Assert.AreEqual(expectedRoleModel, roleModel);
@@ -41,8 +41,8 @@ namespace MainRepositoryTest
         [TestMethod]
         public void RoleModelToRoleTest()
         {
-            var expectedRole = new Role(2, "administrator");
-            var roleModel = new RoleModel() { RoleId = 2, RoleName = "administrator" };
+            var expectedRole = new Role("administrator");
+            var roleModel = new RoleModel() { RoleName = "administrator" };
             var role = _roleRepository.RoleModelToRole(roleModel);
 
             Assert.AreEqual(expectedRole, role);

@@ -8,6 +8,7 @@ using MainRepository;
 using Insurance.BL;
 using MainRepository.ModelsRepository;
 using Insurance.BL.Models;
+using Stub;
 
 namespace Insurance.WCF
 {
@@ -17,11 +18,12 @@ namespace Insurance.WCF
     public class AuthService : IAuthService
     {
         private readonly DataContext _context = new DataContext();
-        private readonly AuthRepository _authRepository;
+        private readonly IAuthRepository _authRepository;
 
         public AuthService()
         {
-            _authRepository = new AuthRepository(_context);
+            //_authRepository = new AuthRepository(_context);
+            _authRepository = new StubAuthRepository();
         }
 
         public User GetUser(string email)

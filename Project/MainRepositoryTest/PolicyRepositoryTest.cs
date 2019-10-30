@@ -106,12 +106,11 @@ namespace MainRepositoryTest
 
             var car = new Car
                 (
-                "XX777O161RU",
+                "XX777O163RU",
                 "Ford",
                 2018,
                 900000,
-                105,
-                null
+                105
                 );
                  
             var policy = new Policy(
@@ -121,8 +120,6 @@ namespace MainRepositoryTest
                 car,
                 ratio
                 );
-
-            car.Policy = policy;
 
             Assert.IsTrue(_policyRepository.PolicyRegistration(policy));
         }

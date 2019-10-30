@@ -43,8 +43,7 @@ namespace MainRepositoryTest
                 "Kalina",
                 2017,
                 500000,
-                88,
-                null
+                88
                 );
 
             var carModel = _carRepository.CarToCarModel(car);
@@ -64,8 +63,7 @@ namespace MainRepositoryTest
                 "FIAT",
                 2019,
                 600000,
-                102,
-                null
+                102
                 );
 
             var carModel = new CarModel()

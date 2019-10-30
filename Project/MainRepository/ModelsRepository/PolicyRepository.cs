@@ -104,8 +104,7 @@ namespace MainRepository
                 ratio = ratioRepository.RatioModelToRatio(policyModel.Ratio);
             }
 
-            var clientEmail = policyModel.Client == null ? null : policyModel.Client.EMail;
-
+            var clientEmail = policyModel.Client != null ? policyModel.Client.EMail : policyModel.ClientEmail != null ? policyModel.ClientEmail : null;
 
             var policy = new Policy
                 (
@@ -115,9 +114,6 @@ namespace MainRepository
                 car,
                 ratio
                 );
-
-            if (car != null)
-                car.Policy = policy;
 
             return policy;
         }

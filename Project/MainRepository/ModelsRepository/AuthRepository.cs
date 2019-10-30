@@ -111,9 +111,9 @@ namespace MainRepository
             var roleModelList = new List<RoleModel>();
             
             //Получение списка RoleModel пользователя.
-            foreach (var roleId in user.Role)
+            foreach (var roleName in user.Role)
             {
-                var roleModel = roleReposiory.GetRoleById(roleId);
+                var roleModel = roleReposiory.GetRoleById(roleName);
                 roleModelList.Add(roleModel);
             }
                        

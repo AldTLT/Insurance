@@ -82,6 +82,10 @@
       <Project>{af019b20-6c39-42a0-a2b1-541b0ecd2df8}</Project>
       <Name>MainRepository</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Stub\Stub.csproj">
+      <Project>{b061bbbf-d2ba-4dde-bb81-52a6bf240252}</Project>
+      <Name>Stub</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

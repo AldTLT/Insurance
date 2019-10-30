@@ -8,24 +8,30 @@ using MainRepository;
 using Insurance.BL;
 using MainRepository.ModelsRepository;
 using Insurance.BL.Models;
+using Stub;
+using Insurance.BL.Intefaces;
 
 namespace Insurance.WCF
 {
     public class PolicyService : IPolicyService
     {
         private readonly DataContext _context = new DataContext();
-        private readonly PolicyRepository _policyRepository;
-        private readonly RatioRepository _ratioRepository;
-        private readonly CarRepository _carRepository;
-        private readonly AuthRepository _authRepository; 
-        private readonly string _email;
+        private readonly IPolicyRepository _policyRepository;
+        private readonly IRatioRepository _ratioRepository;
+        private readonly ICarRepository _carRepository;
+        private readonly IAuthRepository _authRepository; 
 
         public PolicyService()
         {
-            _policyRepository = new PolicyRepository(_context);
-            _ratioRepository = new RatioRepository(_context);
-            _carRepository = new CarRepository(_context);
-            _authRepository = new AuthRepository(_context);
+            //_policyRepository = new PolicyRepository(_context);
+            //_ratioRepository = new RatioRepository(_context);
+            //_carRepository = new CarRepository(_context);
+            //_authRepository = new AuthRepository(_context);
+
+            _policyRepository = new StubPolicyRepository();
+            _authRepository = new StubAuthRepository();
+            _ratioRepository = new StubRatioRepository();
+            _carRepository = new StubCarRepository();
         }
 
         /// <summary>
@@ -47,11 +53,11 @@ namespace Insurance.WCF
         /// <param name="birthDate">Дата рождения водителя.</param>
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
         /// <returns>Итоговая стоимость полиса.</returns>
-        public int PolicyCalculate(int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
+        public int PolicyCalculate(string email, int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
         {
             var ratioManager = new RatioManager(_ratioRepository);
             var accountManager = new AccountManager(_authRepository);
-            var user = _authRepository.GetUser(_email);
+            var user = _authRepository.GetUser(email);
  
             var policyCost = ratioManager.CostCalculate(carCost, manufacturedYear, user.DriverLicenseDate, user.BirthDate, enginePower);
 
@@ -68,20 +74,18 @@ namespace Insurance.WCF
         /// <param name="cost">Стоимость автомобиля.</param>
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
         /// <returns>true, если полис успешно зарегистрирован, иначе - false.</returns>
-        public bool PolicyRegistration(int carCost, string carNumber, string carModel, int manufacturedYear, int cost, int enginePower)
+        public bool PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower)
         {
             var accountManager = new AccountManager(_authRepository);
             var carManager = new CarManager(_carRepository);
             var ratioManager = new RatioManager(_ratioRepository);
 
-            var car = new Car(carNumber, carModel, manufacturedYear, cost, enginePower, null);
-            var user = _authRepository.GetUser(_email);
+            var car = new Car(carNumber, carModel, manufacturedYear, carCost, enginePower);
+            var user = _authRepository.GetUser(email);
             var ratio = ratioManager.GetRatio(car, user);
             var policyCost = ratioManager.CostCalculate(carCost, manufacturedYear, user.DriverLicenseDate, user.BirthDate, enginePower);
 
-            var policy = new Policy(policyCost, _email, DateTime.Today, car, ratio);
-
-            car.Policy = policy;
+            var policy = new Policy(policyCost, email, DateTime.Today, car, ratio);
 
             return _policyRepository.PolicyRegistration(policy);
         }
