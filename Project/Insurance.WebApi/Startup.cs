@@ -3,12 +3,10 @@ using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
-using Insurance.WebApi;
-using TokenAuthenticationInWebAPI.Models;
 
-[assembly: OwinStartup(typeof(TokenAuthenticationInWebAPI.App_Start.Startup))]
+[assembly: OwinStartup(typeof(Insurance.WebApi.Startup))]
 
-namespace TokenAuthenticationInWebAPI.App_Start
+namespace Insurance.WebApi
 {
     // Класс конфигурации сервера авторизации OAuthAuthorizationServer.
     public class Startup
@@ -26,7 +24,7 @@ namespace TokenAuthenticationInWebAPI.App_Start
                 //Время действия токена
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(1),
                 //Реализация класса проверки данных пользователя, запрашивающего токен
-                Provider = new MyAuthorizationServerProvider()
+                Provider = new AuthorizationServerProvider()
             };
             //Генерация токена
             app.UseOAuthAuthorizationServer(options);

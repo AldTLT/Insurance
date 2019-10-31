@@ -11,7 +11,7 @@ using WebApi.Models;
 
 namespace Insurance.WebApi.Controllers
 {
-    [Authorize]
+    [RoutePrefix("api/Policy")]
     public class PolicyController : ApiController
     {
         private readonly IPolicyService _policyService;
@@ -29,6 +29,7 @@ namespace Insurance.WebApi.Controllers
         /// <returns></returns>
         [ResponseType(typeof(Policy))]
         [Authorize]
+        [Route("Policy")]
         public IHttpActionResult GetPolicy()
         {
             //Получение email из headers запроса.
@@ -60,6 +61,7 @@ namespace Insurance.WebApi.Controllers
 
         // Регистрация нового полиса.
         [Authorize]
+        [Route("PolicyRegister")]
         public IHttpActionResult PolicyRegister(PolicyRegistrationBindingModel model)
         {
             if (!ModelState.IsValid)
@@ -105,6 +107,7 @@ namespace Insurance.WebApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [Authorize]
+        [Route("PolicyCost")]
         public IHttpActionResult GetPolicyCost(PolicyRegistrationBindingModel model)
         {
             DateTime birthDate;

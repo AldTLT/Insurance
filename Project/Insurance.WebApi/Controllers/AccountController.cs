@@ -11,6 +11,7 @@ using WebApi.Models;
 
 namespace Insurance.WebApi.Controllers
 {
+    [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {
         private readonly IAuthService _authService;
@@ -26,6 +27,7 @@ namespace Insurance.WebApi.Controllers
         /// <returns></returns>
         [ResponseType(typeof(User))]
         [Authorize(Roles = "admin")]
+        [Route("User")]
         public IHttpActionResult GetUser()
         {
             var email = string.Empty;

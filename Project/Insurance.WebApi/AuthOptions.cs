@@ -3,15 +3,19 @@ using System.Text;
 
 namespace TokenApp
 {
-    public class AuthOptions
-    {
-        public const string ISSUER = "MyAuthServer"; // издатель токена
-        public const string AUDIENCE = "http://localhost:51884/"; // потребитель токена
-        const string KEY = "mysupersecret_secretkey!123";   // ключ для шифрации
-        public const int LIFETIME = 1; // время жизни токена - 1 минута
-        public static SymmetricSecurityKey GetSymmetricSecurityKey()
-        {
-            return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
-        }
-    }
+    //public class AuthOptions
+    //{
+    //    // издатель токена
+    //    public const string ISSUER = "AuthServer";
+    //    // потребитель токена
+    //    public const string AUDIENCE = "http://localhost:51884/";
+    //    // ключ для шифрации, можно задать любую последовательность символов
+    //    const string KEY = "mysupersecret_secretkey!123";
+    //    // время жизни токена - 1 минута
+    //    public const int LIFETIME = 1;
+    //    public static SymmetricSecurityKey GetSymmetricSecurityKey()
+    //    {
+    //        return new SymmetricSecurityKey(Encoding.ASCII.GetBytes(KEY));
+    //    }
+    //}
 }

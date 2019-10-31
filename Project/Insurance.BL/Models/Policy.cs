@@ -45,10 +45,10 @@ namespace Insurance.BL.Models
             }
             private set
             {
-                if (value < DateTime.Today)
-                {
-                    throw new ArgumentOutOfRangeException("Дата заключения полиса не может быть раньше сегодняшней даты!");
-                }
+                //if (value < DateTime.Today)
+                //{
+                //    throw new ArgumentOutOfRangeException("Дата заключения полиса не может быть раньше сегодняшней даты!");
+                //}
 
                 _policyDate = value;
             }
