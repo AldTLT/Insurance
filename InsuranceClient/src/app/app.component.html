@@ -1,14 +1,4 @@
-<router-outlet></router-outlet>
-
-
-<!-- <h1>Insurance Product</h1>
-<div>
-  <p>
-    <button (click)="showAuthMenu()">Войти</button>
-  </p>
-<div>
-  <p>
-    <app-auth></app-auth>
-  </p>
-</div>
-</div> -->
+<router-outlet>
+  <button routerLink='/authorization'>Войти</button>
+  <button (click)='logOut()'>Выйти</button>
+</router-outlet>

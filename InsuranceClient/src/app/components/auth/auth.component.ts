@@ -14,15 +14,23 @@ import { Router, RouterModule } from '@angular/router';
 export class AuthComponent implements OnInit {
 
   isLoginError: boolean = false;
+  data: Authorization = new Authorization();
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) {
+    this.data.password = "qwerty123";
+    this.data.username = "test@mail.ru";
+   }
 
   ngOnInit() {
   }
 
+  onSubmit(email: string, password: string){
+
+  }
+
   signIn(authData: Authorization){
     this.authService.authorization(authData).subscribe((data:any) => {
-      localStorage.setItem('userToken', data.access_token);
+      localStorage.setItem('token', data.access_token);
       this.router.navigate(['/home'])
     },
     (err: HttpErrorResponse) => {

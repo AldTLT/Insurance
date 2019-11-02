@@ -1,6 +1,8 @@
 <div class="authorization">
     <h2>Вход в личный кабинет</h2>
-    <p>E-mail<input type="text"></p>
-    <p>Пароль<input type="password"></p>
-    <p><button (click)="signIn()">Войти</button></p>
+    <p *ngIf='isLoginError'>Неверный логин или пароль</p>
+    <p>E-mail<input type="text" [(ngModel)]="data.username"></p>
+    <p>Пароль<input type="password" [(ngModel)]="data.password" ></p>
+    <p><button (click)="signIn(data)">Войти</button></p>
+    <p>Новый пользователь?<button routerLink="/registration">Зарегистрироваться</button></p>
 </div>

@@ -1,7 +1,8 @@
-import { Injectable, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Authorization } from '../models/authorizationData';
-import { from } from 'rxjs';
+import { User } from '../models/userdata';
+import 'rxjs/add/operator/map';
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +24,7 @@ export class AuthService {
   //Получение токена авторизации
   authorization(data: Authorization){
     var bodyData = "grant_type=" + data.grant_type + "&password=" + data.password + "&username=" + data.username;
-    var reqHeader = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'});
+    var reqHeader = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded', 'No-Auth':'True'});
     return this.http.post(this.rootUrl + '/token', bodyData, { headers: reqHeader });
   }
 
@@ -31,5 +32,13 @@ export class AuthService {
   getUser(token: string, email: string){
     this.httpOptions.headers = new HttpHeaders({'email' : email, 'Authorization' : token})
     return this.http.get('http://localhost:63943/api/account/user', this.httpOptions);
+  }
+
+  register(user: User){
+
+    const body: User = user;
+
+    var reqHeader = new HttpHeaders({'No-Auth':'True'});
+    return this.http.post(this.rootUrl + '/api/account/register', body, { headers: reqHeader });
   }
 }
