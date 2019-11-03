@@ -12,13 +12,15 @@ import { RegistrComponent } from './components/registr/registr.component';
 import { routes } from './app-routing.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
+import { PersonalComponent } from './components/personal/personal.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AuthComponent,
     HomeComponent,
-    RegistrComponent
+    RegistrComponent,
+    PersonalComponent
 
   ],
   imports: [

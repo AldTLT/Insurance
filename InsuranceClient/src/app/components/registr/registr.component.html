@@ -1,10 +1,10 @@
 <div class = "registration">
     <h2>Регистрация нового пользователя</h2>
-    <p>E-mail<input type="text"></p>
-    <p>Полное имя<input type="text"></p>
-    <p>Дата рождения<input type="date"></p>
-    <p>Дата выдачи прав<input type="date"></p>
-    <p>Пароль<input type="password"></p>
+    <p>E-mail<input type="text" [(ngModel)]="userData.email"></p>
+    <p>Полное имя<input type="text" [(ngModel)]="userData.name"></p>
+    <p>Дата рождения<input type="date" [(ngModel)]="userData.birthDate"></p>
+    <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.driverLicenseDate"></p>
+    <p>Пароль<input type="password" [(ngModel)]="userData.password"></p>
     <p>Подтверждение пароля<input type="password"></p>
-    <p><button>Зарегистрироваться</button></p>
+    <p><button (click)="userRegistration(userData)">Зарегистрироваться</button></p>
 </div>

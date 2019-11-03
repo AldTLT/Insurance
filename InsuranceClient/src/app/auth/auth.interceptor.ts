@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpUserEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs/';
-import 'rxjs/add/operator/do';
+// import 'rxjs/add/operator/do';
+import { Observable } from 'rxjs';
 
 
 @Injectable()
@@ -19,14 +19,14 @@ export class AuthInterceptor implements HttpInterceptor {
             const clonedreq = req.clone({
                 headers: req.headers.set("Authorization", "Bearer " + localStorage.getItem('token'))
             })
-            return next.handle(clonedreq)
-            .do(
-                success => { },
-                error => {
-                    if (error.status === 401)
-                    this.router.navigateByUrl('/authorization');
-                }
-            );
+            return next.handle(clonedreq);
+            // .do(
+            //     success => { },
+            //     error => {
+            //         if (error.status === 401)
+            //         this.router.navigateByUrl('/authorization');
+            //     }
+            // );
         }
     }
 }

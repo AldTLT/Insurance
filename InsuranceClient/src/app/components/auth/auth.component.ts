@@ -31,7 +31,7 @@ export class AuthComponent implements OnInit {
   signIn(authData: Authorization){
     this.authService.authorization(authData).subscribe((data:any) => {
       localStorage.setItem('token', data.access_token);
-      this.router.navigate(['/home'])
+      this.router.navigate(['/personal'])
     },
     (err: HttpErrorResponse) => {
       this.isLoginError = true;
