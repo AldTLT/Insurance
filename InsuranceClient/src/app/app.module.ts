@@ -13,6 +13,10 @@ import { routes } from './app-routing.module';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { PersonalComponent } from './components/personal/personal.component';
+import { SuccessComponent } from './components/registr/success/success.component';
+import { PoliciesComponent } from './components/personal/policies/policies.component';
+import { DataComponent } from './components/personal/data/data.component';
+import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { PersonalComponent } from './components/personal/personal.component';
     AuthComponent,
     HomeComponent,
     RegistrComponent,
-    PersonalComponent
+    PersonalComponent,
+    SuccessComponent,
+    PoliciesComponent,
+    DataComponent,
+    BuypolicyComponent
 
   ],
   imports: [

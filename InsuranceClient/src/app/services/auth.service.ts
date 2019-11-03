@@ -29,15 +29,16 @@ export class AuthService {
   }
 
   //Получение пользователя по email
-  getUser(token: string, email: string){
-    this.httpOptions.headers = new HttpHeaders({'email' : email, 'Authorization' : token})
-    return this.http.get('http://localhost:63943/api/account/user', this.httpOptions);
+  getUser(email: string){
+    var reqHeader = new HttpHeaders({'No-Auth':'True'});
+    this.httpOptions.headers = new HttpHeaders({'email' : email })
+    return this.http.get(this.rootUrl + '/api/account/user', this.httpOptions );
+    // this.httpOptions.headers = new HttpHeaders({'email' : email, 'Authorization' : token})
+    // return this.http.get('http://localhost:63943/api/account/user', this.httpOptions);
   }
 
   register(user: User){
-
     const body: User = user;
-
     var reqHeader = new HttpHeaders({'No-Auth':'True'});
     return this.http.post(this.rootUrl + '/api/account/register', body, { headers: reqHeader });
   }

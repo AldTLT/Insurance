@@ -9,18 +9,12 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private router: Router){
-
-  }
+  constructor(private router: Router){}
 
   ngOnInit(){
-
   }
 
   title = 'InsuranceClient';
-
-  showAuthMenu(){
-  }
 
   logOut(){
     localStorage.removeItem('token');
