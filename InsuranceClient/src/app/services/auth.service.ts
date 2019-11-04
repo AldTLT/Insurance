@@ -9,10 +9,7 @@ import { User } from '../models/userdata';
 })
 export class AuthService {
 
-  private registerUrl = "http://localhost:63943/api/account/register";
-  private loginUrl = "http://localhost:63943/api/account/login"
-  private rootUrl = "http://localhost:63943"
-
+  private rootUrl = "http://localhost:63943";
   httpOptions = {
     headers: new HttpHeaders()
   };

@@ -17,6 +17,7 @@ import { SuccessComponent } from './components/registr/success/success.component
 import { PoliciesComponent } from './components/personal/policies/policies.component';
 import { DataComponent } from './components/personal/data/data.component';
 import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.component';
+import { PolicyComponent } from './components/personal/policies/policy/policy.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.co
     SuccessComponent,
     PoliciesComponent,
     DataComponent,
-    BuypolicyComponent
+    BuypolicyComponent,
+    PolicyComponent
 
   ],
   imports: [

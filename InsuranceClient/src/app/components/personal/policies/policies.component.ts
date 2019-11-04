@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PolicyService } from 'src/app/services/policy.service';
+import { EmailValidator } from '@angular/forms';
 
 @Component({
   selector: 'app-policies',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoliciesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private policyService: PolicyService) { }
+
+  policies: any;
 
   ngOnInit() {
+    var email = localStorage.getItem('email');
+    this.policyService.getPolicies(email).subscribe((data: any) => {
+      this.policies = data;
+      console.log(this.policies);
+    })
   }
-
 }
