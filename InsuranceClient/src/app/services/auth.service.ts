@@ -14,8 +14,6 @@ export class AuthService {
     headers: new HttpHeaders()
   };
 
-  // body: any = "grant_type=password&username=test@mail.ru&password=qwerty123";
-
   constructor(private http: HttpClient) { }
 
   //Получение токена авторизации
@@ -30,8 +28,6 @@ export class AuthService {
     var reqHeader = new HttpHeaders({'No-Auth':'True'});
     this.httpOptions.headers = new HttpHeaders({'email' : email })
     return this.http.get(this.rootUrl + '/api/account/user', this.httpOptions );
-    // this.httpOptions.headers = new HttpHeaders({'email' : email, 'Authorization' : token})
-    // return this.http.get('http://localhost:63943/api/account/user', this.httpOptions);
   }
 
   register(user: User){

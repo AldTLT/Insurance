@@ -17,7 +17,7 @@ export class AppComponent implements OnInit{
   title = 'InsuranceClient';
 
   logOut(){
-    localStorage.removeItem('token');
+    localStorage.clear();
     this.router.navigate(['/authorization']);
   }
 }

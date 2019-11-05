@@ -9,14 +9,17 @@ import { SuccessComponent } from './components/registr/success/success.component
 import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.component';
 import { DataComponent } from './components/personal/data/data.component';
 import { PoliciesComponent } from './components/personal/policies/policies.component';
+import { PayComponent } from './components/personal/pay/pay.component';
+import { CalcGuard } from './auth/calc.guard';
 
 export const routes: Routes = [
   { path: 'personal', component: PersonalComponent, canActivate: [AuthGuard], 
     children: [
       { path: 'buypolicy', component: BuypolicyComponent},
+      { path: 'pay', component: PayComponent, canActivate: [CalcGuard] },
       { path: 'data', component: DataComponent},
       { path: 'policies', component: PoliciesComponent}
-    ]}, //Если canActivate - true, home доступен
+    ]},
     
   { path: 'authorization', component: AuthComponent},
   { path: 'registration', component: RegistrComponent,

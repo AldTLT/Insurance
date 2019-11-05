@@ -20,10 +20,9 @@ export class PolicyService {
       return this.http.get(this.rootUrl + '/api/policy/policy', this.httpOptions );
     }
 
-    // calculatePolicyCost(car: Car){
-    //   const body: Car = car;
-    //   const email = localStorage.getItem('email');
-    //   var reqHeader = new HttpHeaders({'No-Auth':'True', 'email' : email});
-    //   return this.http.get(this.rootUrl + '/api/policy/policycost', {headers: reqHeader, observe: body } );
-    // }
+    calculatePolicyCost(car: Car, email: string){
+      const body: Car = car;
+      var reqHeader = new HttpHeaders({'email' : email});
+      return this.http.post(this.rootUrl + '/api/policy/policycost', body, { headers: reqHeader } );
+    }
 }

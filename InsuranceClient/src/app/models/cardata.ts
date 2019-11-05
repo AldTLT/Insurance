@@ -1,7 +1,7 @@
 export class Car{
-    carNumber: string;
-    carModel: string;
+    CarNumber: string;
+    CarModel: string;
     ManufacturedYear: number;
     EnginePower: number;
-    carCost: number;
+    CarCost: number;
 }

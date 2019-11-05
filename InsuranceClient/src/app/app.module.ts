@@ -18,6 +18,7 @@ import { PoliciesComponent } from './components/personal/policies/policies.compo
 import { DataComponent } from './components/personal/data/data.component';
 import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.component';
 import { PolicyComponent } from './components/personal/policies/policy/policy.component';
+import { PayComponent } from './components/personal/pay/pay.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PolicyComponent } from './components/personal/policies/policy/policy.co
     PoliciesComponent,
     DataComponent,
     BuypolicyComponent,
-    PolicyComponent
+    PolicyComponent,
+    PayComponent
 
   ],
   imports: [

@@ -29,9 +29,13 @@ export class AuthComponent implements OnInit {
   }
 
   signIn(authData: Authorization){
+
+
     this.authService.authorization(authData).subscribe((data:any) => {
+      //Сохранение e-mail
+      localStorage.setItem('email', authData.username);
+      //Сохранение токена
       localStorage.setItem('token', data.access_token);
-      localStorage.setItem('email', data.email);
       console.log(localStorage.getItem('email'));
       this.router.navigate(['/personal'])
     },
