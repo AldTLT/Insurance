@@ -1,27 +1,10 @@
 <h3>Данные по ТС</h3>
 
 <div>    
-    <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"></span>
-            </div>
-            <input 
-            type="text" 
-            class="form-control" 
-            placeholder="Номер автомобиля" 
-            aria-label="CarNumber" 
-            aria-describedby="basic-addon1">
-        </div>
-
-    <div class="input-group mb-3">
-        <div class="input-group-prepend">
-            <span class="input-group-text" id="basic-addon1"></span>
-        </div>
-        <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Модель автомобиля" 
-        aria-label="CarModel" 
-        aria-describedby="basic-addon1">
-    </div>
+    <p>Номер автомобиля:<input type="text" [(ngModel)]="car.carNumber"></p>
+    <p>Модель автомобиля:<input type="text" [(ngModel)]="car.carModel"></p>
+    <p>Год выпуска автомобиля:<input type="text" [(ngModel)]="car.ManufacturedYear"></p>
+    <p>Мощность двигателя автомобиля:<input type="text" [(ngModel)]="car.EnginePower"></p>
+    <p>Стоимость автомобиля:<input type="text" [(ngModel)]="car.carCost"></p>
+    <button (click)="calculatePolicy(car)">Расcчитать</button>
 </div>

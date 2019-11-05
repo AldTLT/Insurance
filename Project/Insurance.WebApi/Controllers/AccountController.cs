@@ -68,21 +68,30 @@ namespace Insurance.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var registerResult = _authService.RegistrationAccount
-                (
-                model.Email,
-                model.ClientName,
-                model.BirthDate,
-                model.DriverLicenseDate,
-                model.Password
-                );
+            var registerResult = false;
+
+            try
+            {
+                registerResult = _authService.RegistrationAccount
+                    (
+                    model.Email,
+                    model.Name,
+                    model.BirthDate,
+                    model.DriverLicenseDate,
+                    model.Password
+                    );
+            }
+            catch
+            {
+                registerResult = false;
+            }
 
             if (!registerResult)
             {
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(registerResult);
         }
     }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Car } from 'src/app/models/cardata';
 
 @Component({
   selector: 'app-buypolicy',
@@ -9,7 +10,14 @@ export class BuypolicyComponent implements OnInit {
 
   constructor() { }
 
+  car: Car = new Car();
+
   ngOnInit() {
+  }
+
+  calculatePolicy(car: Car)
+  {
+    
   }
 
 }

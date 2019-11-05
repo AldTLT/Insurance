@@ -50,7 +50,7 @@ namespace WebApi.Models
 
         [Required]
         [Display(Name = "Полное имя")]
-        public string ClientName { get; set; }
+        public string Name { get; set; }
 
         [Required]
         [DataType(DataType.DateTime)]
@@ -68,10 +68,10 @@ namespace WebApi.Models
         [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Подтверждение пароля")]
-        [Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
-        public string ConfirmPassword { get; set; }
+        //[DataType(DataType.Password)]
+        //[Display(Name = "Подтверждение пароля")]
+        //[Compare("Password", ErrorMessage = "Пароль и его подтверждение не совпадают.")]
+        //public string ConfirmPassword { get; set; }
     }
 
     public class RemoveLoginBindingModel
