@@ -29,6 +29,7 @@ namespace Insurance.WebApi.Controllers
         /// <returns></returns>
         [ResponseType(typeof(Policy))]
         [Authorize]
+        [HttpGet]
         [Route("Policy")]
         public IHttpActionResult GetPolicy()
         {
@@ -61,6 +62,7 @@ namespace Insurance.WebApi.Controllers
 
         // Регистрация нового полиса.
         [Authorize]
+        [HttpPost]
         [Route("PolicyRegister")]
         public IHttpActionResult PolicyRegister(PolicyRegistrationBindingModel model)
         {
@@ -107,8 +109,9 @@ namespace Insurance.WebApi.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [Authorize]
+        [HttpPost]
         [Route("PolicyCost")]
-        public IHttpActionResult GetPolicyCost(PolicyRegistrationBindingModel model)
+        public IHttpActionResult PolicyCost(PolicyRegistrationBindingModel model)
         {
             DateTime birthDate;
             DateTime driverLicenseDate;
