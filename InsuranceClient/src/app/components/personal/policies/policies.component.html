@@ -1,7 +1,8 @@
 <div class="container">
     <div class="list-group">
         <app-policy
-            *ngFor="let policy of [1, 2, 3]"
+        [policy] = "p"
+            *ngFor="let p of serialisePolicies"
         ></app-policy>
     </div>
 </div>

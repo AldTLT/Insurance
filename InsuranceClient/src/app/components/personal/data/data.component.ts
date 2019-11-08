@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/userdata';
+import { User } from 'src/app/models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -13,13 +13,15 @@ export class DataComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   email: string;
-  user: any;
+  user: User = new User;
 
   ngOnInit() {
     this.email = localStorage.getItem('email');
     this.authService.getUser(this.email).subscribe((data: any) => {
-      this.user = data;
-      console.log(this.user);
+      this.user.EMail = data.EMail;
+      this.user.Name = data.Name;
+      this.user.BirthDate = data._birthDate;
+      this.user.DriverLicenseDate = data._driverLicenseDate;
     },    
     (err: HttpErrorResponse) => {
       //Обработать ошибку

@@ -4,12 +4,14 @@
     <router-outlet></router-outlet> 
     
     <div *ngIf='!registerResult'>
-     <p>E-mail<input type="text" [(ngModel)]="userData.email"></p>
-       <p>Полное имя<input type="text" [(ngModel)]="userData.name"></p>
-      <p>Дата рождения<input type="date" [(ngModel)]="userData.birthDate"></p>
-       <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.driverLicenseDate"></p>
-      <p>Пароль<input type="password" [(ngModel)]="userData.password"></p>
+      <p>E-mail<input type="text" [(ngModel)]="userData.EMail"></p>
+      <p>Фамилия<input type="text" [(ngModel)]="clientName.surname"></p>
+      <p>Имя<input type="text" [(ngModel)]="clientName.name"></p>
+      <p>Отчество<input type="text" [(ngModel)]="clientName.patronymic"></p>
+      <p>Дата рождения<input type="date" [(ngModel)]="userData.BirthDate"></p>
+      <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.DriverLicenseDate"></p>
+      <p>Пароль<input type="password" [(ngModel)]="userData.Password"></p>
       <p>Подтверждение пароля<input type="password"></p>
-        <p><button (click)="userRegistration(userData)">Зарегистрироваться</button></p>
+      <p><button (click)="userRegistration()">Зарегистрироваться</button></p>
     </div>
 </div>

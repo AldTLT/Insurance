@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
-import { User } from 'src/app/models/userdata';
+import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import { ClientName } from 'src/app/models/clientname';
 
 @Component({
   selector: 'app-registr',
@@ -13,16 +14,19 @@ export class RegistrComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
 
-    this.userData.email = "test2@mail.ru";
-    this.userData.name = "Vasya";
-    this.userData.birthDate = new Date(1980, 1, 1, 0, 0, 0, 0);
-    this.userData.driverLicenseDate = new Date(2010, 2, 2, 0, 0, 0, 0);
-    this.userData.password = "qwerty123456";
+    this.userData.EMail = "test2@mail.ru";
+    this.clientName.name = "Vasiliy";
+    this.clientName.surname = "Pupkin";
+    this.clientName.patronymic = "Ivanovich";
+    this.userData.BirthDate = new Date(1980, 1, 1, 0, 0, 0, 0);
+    this.userData.DriverLicenseDate = new Date(2010, 2, 2, 0, 0, 0, 0);
+    this.userData.Password = "qwerty123456";
   }
 
   userData: User = new User();
   isRegisterError: boolean = false;
   registerResult: boolean = false;
+  clientName: ClientName = new ClientName(); 
 
   ngOnInit() {
   }
@@ -32,8 +36,10 @@ export class RegistrComponent implements OnInit {
 
   }
 
-  userRegistration(user: User){
-    this.authService.register(user).subscribe((data: any) => {
+  userRegistration(){
+    this.userData.Name = this.clientName.getFullName();
+    console.log(this.userData.Name);
+    this.authService.register(this.userData).subscribe((data: any) => {
       this.registerResult = data;
       console.log(data);
       if (data == true)

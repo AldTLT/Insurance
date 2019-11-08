@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { Car } from '../models/cardata';
+import { Car } from '../models/car';
 
 @Injectable({
   providedIn: 'root'

@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core";
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpUserEvent } from '@angular/common/http';
 import { Router } from '@angular/router';
-// import 'rxjs/add/operator/do';
 import { Observable } from 'rxjs';
 
 
@@ -12,7 +11,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         //Если запрос не авторизован, пропуск запроса
-        if (req.headers.get('No-Auth') == "True")
+        if (req.headers.get('No-Auth'))
         return next.handle(req.clone());
 
         if (localStorage.getItem('token') != null) {
@@ -20,13 +19,6 @@ export class AuthInterceptor implements HttpInterceptor {
                 headers: req.headers.set("Authorization", "Bearer " + localStorage.getItem('token'))
             })
             return next.handle(clonedreq);
-            // .do(
-            //     success => { },
-            //     error => {
-            //         if (error.status === 401)
-            //         this.router.navigateByUrl('/authorization');
-            //     }
-            // );
         }
     }
 }

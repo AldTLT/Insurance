@@ -1,11 +1,13 @@
 <div class="list-group-item">
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Номер полиса: </h5>
-      <small>04.11.2019</small>
+      <h5 class="mb-1">Номер полиса:</h5>
+      <small>Дата заключения полиса: {{ policy.PolicyDate }}</small>
     </div>
-    <p class="mb-1">Номер автомобиля: </p>
-    <p class="mb-1">Модель автомобиля: </p>
-    <p class="mb-1">Страховая премия: </p>
+    <p class="mb-1">Номер автомобиля: {{ policy.Car.CarNumber }}</p>
+    <p class="mb-1">Модель автомобиля: {{ policy.Car.CarModel }}</p>
+    <p class="mb-1">Год выпуска автомобиля: {{ policy.Car.ManufacturedYear }} г.</p>
+    <p class="mb-1">Мощность двигателя автомобиля: {{ policy.Car.EnginePower }} л.с.</p>
+    <p class="mb-1">Страховая премия: {{ policy.Cost }}</p>
     <div class="row">
         <div class="col-xs-12">
             <button type="button" class="btn btn-primary">Primary</button>
