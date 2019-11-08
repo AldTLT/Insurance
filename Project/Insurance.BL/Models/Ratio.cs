@@ -1,32 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
-    [Serializable]
+    [DataContract]
     public class Ratio
     {
         /// <summary>
         /// Коэффициент возраста автомобиля.
         /// </summary>
+        [DataMember]
         public double CarAge { get; }
 
         /// <summary>
         /// Коэффициент стажа вождения.
         /// </summary>
+        [DataMember]
         public double DrivingExperience { get; }
 
         /// <summary>
         /// Коэффициент возраста водителя.
         /// </summary>
+        [DataMember]
         public double DriverAge { get; }
 
         /// <summary>
         /// Коэффициент мощности двигателя.
         /// </summary>
+        [DataMember]
         public double EnginePower { get; }
 
         public Ratio(double carAge, double drivingExperience, double driverAge, double enginePower)

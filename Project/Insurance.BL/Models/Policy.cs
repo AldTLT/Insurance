@@ -1,17 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
-    [Serializable]
+    [DataContract]
     public class Policy
     {
         /// <summary>
         /// Стоимость полиса.
         /// </summary>
+        [DataMember]
         private int _cost;
         public int Cost
         {
@@ -31,11 +33,13 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Клиент - владелец полиса.
         /// </summary>
+        [DataMember]
         public string UsersEmail { get; }
 
         /// <summary>
         /// Дата заключения полиса.
         /// </summary>
+        [DataMember]
         private DateTime _policyDate;
         public DateTime PolicyDate
         {
@@ -57,11 +61,13 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Экземпляр класса Insurance.BL.Model.Car который привязан к полису.
         /// </summary>
+        [DataMember]
         public Car Car { get; }
 
         /// <summary>
         /// Экземпляр класса Insurance.BL.Model.Coefficient который привязан к полису.
         /// </summary>
+        [DataMember]
         public Ratio Ratio { get; }
 
         public Policy(int cost, string usersEmail, DateTime policyDate, Car car, Ratio ratio)

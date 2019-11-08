@@ -1,24 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
-    [Serializable]
+    [DataContract]
     public class Car
     {
+        /// <summary>
+        /// Номер автомобиля.
+        /// </summary>
+        [DataMember]
         public string CarNumber { get; }
 
         /// <summary>
         /// Название модели автомобиля.
         /// </summary>
+        [DataMember]
         public string Model { get; }
 
         /// <summary>
         /// Год выпуска автомобиля.
         /// </summary>
+        [DataMember]
         private int _manufacturedYear;
         public int ManufacturedYear
         {
@@ -40,6 +47,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Стоимость автомобиля.
         /// </summary>
+        [DataMember]
         private int _cost;
         public int Cost
         {
@@ -59,6 +67,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Мощность двигателя автомобиля в лошадиных силах.
         /// </summary>
+        [DataMember]
         private int _enginePower;
         public int EnginePower
         {
@@ -74,11 +83,6 @@ namespace Insurance.BL.Models
                 _enginePower = value;
             }
         }
-
-        ///// <summary>
-        ///// Идентификатор полиса, которому принадлежит автомобиль.
-        ///// </summary>
-        //public Policy Policy { get; set; }
 
         public Car(string carNumber, string model, int manufacturedYear, int cost, int enginePower)
         {

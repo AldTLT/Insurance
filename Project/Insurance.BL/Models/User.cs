@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace Insurance.BL.Models
     /// <summary>
     /// Представляет класс User для BL.
     /// </summary>
-    [Serializable]
+    [DataContract]
     public class User
     {
         /// <summary>
@@ -35,16 +36,19 @@ namespace Insurance.BL.Models
         /// <summary>
         /// E-mail клиента.
         /// </summary>
+        [DataMember]
         public string EMail { get; }
 
         /// <summary>
         /// Полное имя клиента.
         /// </summary>
+        [DataMember]
         public string Name { get; }
 
         /// <summary>
         /// Дата рождения клиента.
         /// </summary>
+        [DataMember]
         private DateTime _birthDate;
         public DateTime BirthDate
         {
@@ -73,6 +77,7 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Дата выдачи водительских прав клиента.
         /// </summary>
+        [DataMember]
         private DateTime _driverLicenseDate;
         public DateTime DriverLicenseDate
         {
@@ -101,11 +106,13 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Хэш-код пароля пользователя.
         /// </summary>
+        [DataMember]
         public string PasswordHash { get; }
 
         /// <summary>
         /// Коллекция ролей пользователя.
         /// </summary>
+        [DataMember]
         public List<string> Role { get; private set; }
 
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
