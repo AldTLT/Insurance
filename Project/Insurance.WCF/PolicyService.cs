@@ -44,7 +44,7 @@ namespace Insurance.WCF
         /// <returns>ICollection<Policy> принадлежащих пользователяю.</returns>
         public ICollection<Policy> GetPolicy(string email)
         {
-            return _policyRepository.GetPolicy(email);
+            return _policyRepository.GetPolicys(email);
         }
 
         /// <summary>

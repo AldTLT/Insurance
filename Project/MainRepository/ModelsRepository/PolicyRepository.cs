@@ -37,7 +37,9 @@ namespace MainRepository
 
             //Если пользователь с таким e-mail не зарегистрирован, вернуть false.
             if (client == null)
+            {
                 return false;
+            }
 
             //Создание PolicyModel из Policy.
             var policyModel = PolicyToPolicyModel(policy);
@@ -61,12 +63,21 @@ namespace MainRepository
         /// </summary>
         /// <param name="email">Email по которому осуществляется поиск.</param>
         /// <returns>List<Policy> соответствующих email.</returns>
-        public ICollection<Policy> GetPolicy(string email)
+        public ICollection<Policy> GetPolicys(string email)
         {
-            var policyModelList = _context.Policy
-                .Where(p => p.Client.EMail.Equals(email))
-                .Select(p => p)
-                .ToList();
+            List<PolicyModel> policyModelList;
+
+            try
+            {
+                policyModelList = _context.Policy
+                    .Where(p => p.Client.EMail.Equals(email))
+                    .Select(p => p)
+                    .ToList();
+            }
+            catch
+            {
+                return null;
+            }
 
             var policysList = new List<Policy>();
 
@@ -81,6 +92,29 @@ namespace MainRepository
             }
 
             return policysList;
+        }
+
+        /// <summary>
+        /// Метод возвращает экземпляр Insurance.BL.Models.Policy по номеру автомобиля.
+        /// </summary>
+        /// <param name="carNumber">Номер автомобиля, по которому производится поиск полиса.</param>
+        /// <returns>Insurance.BL.Models.Policy, если номер существует в базе данных, иначе - null.</returns>
+        public Policy GetPolicy(string carNumber)
+        {
+            PolicyModel policyModel;
+
+            try
+            {
+                policyModel = _context.Policy.FirstOrDefault(p => p.Car.CarNumber.Equals(carNumber));
+            }
+            catch
+            {
+                return null;
+            }
+
+            var policy = PolicyModelToPolicy(policyModel);
+
+            return policy;
         }
 
         /// <summary>

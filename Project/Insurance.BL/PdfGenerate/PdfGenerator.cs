@@ -27,7 +27,7 @@ namespace Insurance.BL
         /// <param name="policy">Экземпляр Insurance.BL.Models.Policy</param>
         /// <param name="user">Экземпляр Insurance.BL.Models.User</param>
         /// <returns>Имя сгенерированного полиса.</returns>
-        public string GeneratePolicy(Policy policy, User user)
+        public string GeneratePolicy(User user, Policy policy)
         {
             var p = new PdfGenerator();
             Document document = new Document();
@@ -147,11 +147,15 @@ namespace Insurance.BL
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
+
+            var path = "C:\\";
             var fileName = policy.PolicyId.ToString() + ".pdf";
-            pdfRenderer.PdfDocument.Save(fileName);
+            var fullPath = path + fileName;
+
+            pdfRenderer.PdfDocument.Save(fullPath);
             //Process.Start(fileName);
 
-            return fileName;
+            return fullPath;
         }
 
         /// <summary>

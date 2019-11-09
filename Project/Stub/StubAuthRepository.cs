@@ -16,7 +16,7 @@ namespace Stub
         public User GetUser(string mail)
         {
             var user = new User(
-                "test@mail.ru",
+                "vr0rtex@mail.ru",
                 "Vasily Pupkin",
                 new DateTime(1980, 10, 13),
                 new DateTime(2010, 02, 05),

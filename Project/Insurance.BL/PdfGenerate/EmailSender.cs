@@ -9,17 +9,25 @@ using System.Threading.Tasks;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Класс представляет методы отправки сообщения на почту.
+    /// </summary>
     public class EmailSender
     {
-        public void SendMail(string email)
+        /// <summary>
+        /// Метод отправляет сообщение на почту.
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="policy"></param>
+        public void SendMail(User user, Policy policy)
         {
             var mail = new MailMessage();
             var smtpServer = new SmtpClient("smtp.mail.ru");
 
-            var fileName = GeneratePdfPolicy(email);
+            var fileName = GeneratePdfPolicy(user, policy);
 
             mail.From = new MailAddress("vr0rtex@mail.ru");
-            mail.To.Add(email);
+            mail.To.Add(user.EMail);
             mail.Subject = "Полис КАСКО";
             mail.Body = 
                 "Благодарим вас за выбор нашей компании." +
@@ -34,16 +42,12 @@ namespace Insurance.BL
             smtpServer.Send(mail);
         }
 
-        private string GeneratePdfPolicy(string email)
+        private string GeneratePdfPolicy(User user, Policy policy)
         {
-            //var generator = new PdfGenerator();
-            //var policyManager
-            //var policy = PolicyManager
+            var generator = new PdfGenerator();
+            var fileName = generator.GeneratePolicy(user, policy);
 
-            //var fileName = generator.GeneratePolicy();
-
-            //return fileName;
-            return null;
+            return fileName;
         }
     }
 }

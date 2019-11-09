@@ -26,7 +26,7 @@ namespace Insurance.BL
         /// <returns>ICollection<Policy> соответствующих email.</returns>
         public ICollection<Policy> GetPolicys(string email)
         {
-            return _policyRepository.GetPolicy(email);
+            return _policyRepository.GetPolicys(email);
         }
 
         /// <summary>
@@ -37,6 +37,16 @@ namespace Insurance.BL
         public bool PolicyRegistration(Policy policy)
         {
             return _policyRepository.PolicyRegistration(policy);
+        }
+
+        /// <summary>
+        /// Метод возвращает экземпляр Insurance.BL.Models.Policy по номеру автомобиля.
+        /// </summary>
+        /// <param name="carNumber">Номер автомобиля, по которому производится поиск полиса.</param>
+        /// <returns>Insurance.BL.Models.Policy, если номер существует в базе данных, иначе - null.</returns>
+        public Policy GetPolicy(string carNumber)
+        {
+            return _policyRepository.GetPolicy(carNumber);
         }
     }
 }
