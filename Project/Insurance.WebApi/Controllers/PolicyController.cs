@@ -100,7 +100,7 @@ namespace Insurance.WebApi.Controllers
                 return NotFound();
             }
 
-            return Ok();
+            return Ok(registerResult);
         }
 
         /// <summary>

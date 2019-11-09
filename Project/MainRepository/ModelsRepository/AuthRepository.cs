@@ -11,6 +11,9 @@ using MainRepository.ModelsRepository;
 
 namespace MainRepository
 {
+    /// <summary>
+    /// Класс представляет методы управления ClientModel.
+    /// </summary>
     public class AuthRepository : IAuthRepository
     {
         /// <summary>

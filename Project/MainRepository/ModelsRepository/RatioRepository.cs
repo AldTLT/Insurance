@@ -11,6 +11,9 @@ using Insurance.BL.Intefaces;
 
 namespace MainRepository.ModelsRepository
 {
+    /// <summary>
+    /// Класс представляет методы управления RatioModel.
+    /// </summary>
     public class RatioRepository : IRatioRepository
     {
         private readonly DataContext _context;

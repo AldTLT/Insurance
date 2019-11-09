@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Stub
 {
+    /// <summary>
+    /// Заглушка для тестирования и настройки фронтенда.
+    /// </summary>
     public class StubAuthRepository : IAuthRepository
     {
         public User GetUser(string mail)

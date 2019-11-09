@@ -13,6 +13,9 @@ using Insurance.BL.Intefaces;
 
 namespace Insurance.WCF
 {
+    /// <summary>
+    /// Класс представляет сервис управления полисом.
+    /// </summary>
     public class PolicyService : IPolicyService
     {
         private readonly DataContext _context = new DataContext();

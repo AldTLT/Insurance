@@ -11,6 +11,9 @@ using MainRepository.ModelsRepository;
 
 namespace MainRepository
 {
+    /// <summary>
+    /// Класс представляет методы управления PolicyModel.
+    /// </summary>
     public class PolicyRepository : IPolicyRepository
     {
         private readonly DataContext _context;
@@ -114,6 +117,8 @@ namespace MainRepository
                 car,
                 ratio
                 );
+
+            policy.PolicyId = policyModel.PolicyID;
 
             return policy;
         }

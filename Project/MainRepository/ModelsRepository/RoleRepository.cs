@@ -9,6 +9,9 @@ using MainRepository.Models;
 
 namespace MainRepository.ModelsRepository
 {
+    /// <summary>
+    /// Класс представляет методы управления RoleModel.
+    /// </summary>
     public class RoleRepository : IRoleRepository
     {
         /// <summary>

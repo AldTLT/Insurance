@@ -9,6 +9,9 @@ using MainRepository.Models;
 
 namespace MainRepository.ModelsRepository
 {
+    /// <summary>
+    /// Класс представляет методы управления CarModel.
+    /// </summary>
     public class CarRepository : ICarRepository
     {
         private readonly DataContext _context;

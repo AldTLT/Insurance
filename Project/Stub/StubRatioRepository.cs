@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace Stub
 {
+    /// <summary>
+    /// Заглушка для тестирования и настройки фронтенда.
+    /// </summary>
     public class StubRatioRepository : IRatioRepository
     {
         public Ratio GetRatio(string carNumber)

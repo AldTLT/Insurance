@@ -11,6 +11,12 @@ namespace Insurance.BL.Models
     public class Policy
     {
         /// <summary>
+        /// Уникальный идентификатор полиса.
+        /// </summary>
+        [DataMember]
+        public Guid PolicyId { get; set; }
+
+        /// <summary>
         /// Стоимость полиса.
         /// </summary>
         [DataMember]
@@ -49,10 +55,10 @@ namespace Insurance.BL.Models
             }
             private set
             {
-                //if (value < DateTime.Today)
-                //{
-                //    throw new ArgumentOutOfRangeException("Дата заключения полиса не может быть раньше сегодняшней даты!");
-                //}
+                if (value < DateTime.Today)
+                {
+                    throw new ArgumentOutOfRangeException("Дата заключения полиса не может быть раньше сегодняшней даты!");
+                }
 
                 _policyDate = value;
             }
