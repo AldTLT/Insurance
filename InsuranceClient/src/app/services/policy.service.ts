@@ -30,7 +30,7 @@ export class PolicyService {
     registerPolicy(car: Car, email: string)
     {
       const body: Car = car;
-      var reqHeader = new HttpHeaders({'No-Auth':'True', 'email': email});
+      var reqHeader = new HttpHeaders({'email': email});
       return this.http.post(this.rootUrl + '/api/policy/policyregister', body, { headers: reqHeader });
     }
 }

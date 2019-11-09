@@ -28,13 +28,19 @@ export class PayComponent implements OnInit {
     this.policyCost = this.storeService.getItem('policyCost');
   }
 
+  //Метод отправки полиса на почту
   payPolicy(){
     this.isPolicyRegistered = this.registerPolicy();
-    this.toPayment = true;
+    if (!this.isPolicyRegistered)
+    {
+      //Обработать ошибку регистрации
+      return;
+    }
 
-    // this.sendmailService.sendMail(this.storeService.getItem('email')).subscribe((data) => {
-    //   console.log(data);
-    // });
+    this.toPayment = true;
+    this.sendmailService.sendMail(this.storeService.getItem('email')).subscribe((data) => {
+      console.log(data);
+    });
     this.router.navigate(['/personal/pay/payment']);
   }
 
@@ -44,6 +50,7 @@ export class PayComponent implements OnInit {
     let email = this.storeService.getItem('email');
 
     return this.policyService.registerPolicy(car, email).subscribe((data) => {
+      console.log(data);
       return data;
     });
   }

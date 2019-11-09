@@ -14,7 +14,7 @@ export class RegistrComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
 
-    this.userData.EMail = "test2@mail.ru";
+    this.userData.EMail = "vr0rtex@mail.ru";
     this.clientName.name = "Vasiliy";
     this.clientName.surname = "Pupkin";
     this.clientName.patronymic = "Ivanovich";

@@ -24,7 +24,7 @@ export class AuthComponent implements OnInit {
     ) 
     {
     this.data.password = "qwerty123";
-    this.data.username = "test@mail.ru";
+    this.data.username = "vr0rtex@mail.ru";
   }
 
   ngOnInit() {
