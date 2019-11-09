@@ -20,11 +20,11 @@ export class PoliciesComponent implements OnInit {
   policy: Policy;
 
   ngOnInit() {
-    let email = localStorage.getItem('email');
-    let serviceEmail = this.storeService.getItem('email');
+    let email = this.storeService.getItem('email');
     this.policyService.getPolicies(email).subscribe((data: any) => {
       data.forEach(p => {
         let newPolicy = new Policy();
+        newPolicy.PolicyId = p.PolicyId;
         newPolicy.Cost = p._cost;
         newPolicy.PolicyDate = p._policyDate;
         newPolicy.UsersEmail = p.UsersEmail;
@@ -35,7 +35,6 @@ export class PoliciesComponent implements OnInit {
         newPolicy.Car.EnginePower = p.Car._enginePower;
         newPolicy.Car.ManufacturedYear = p.Car._manufacturedYear;
         this.serialisePolicies.push(newPolicy);
-        console.log(p);
       });
     })
   }

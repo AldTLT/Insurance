@@ -19,6 +19,7 @@ import { DataComponent } from './components/personal/data/data.component';
 import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.component';
 import { PolicyComponent } from './components/personal/policies/policy/policy.component';
 import { PayComponent } from './components/personal/pay/pay.component';
+import { PaymentComponent } from './components/personal/pay/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PayComponent } from './components/personal/pay/pay.component';
     DataComponent,
     BuypolicyComponent,
     PolicyComponent,
-    PayComponent
+    PayComponent,
+    PaymentComponent
 
   ],
   imports: [

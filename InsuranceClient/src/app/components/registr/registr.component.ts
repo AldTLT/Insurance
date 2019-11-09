@@ -38,16 +38,13 @@ export class RegistrComponent implements OnInit {
 
   userRegistration(){
     this.userData.Name = this.clientName.getFullName();
-    console.log(this.userData.Name);
     this.authService.register(this.userData).subscribe((data: any) => {
       this.registerResult = data;
-      console.log(data);
       if (data == true)
       this.router.navigate(['/registration/success']),
 
       (err: HttpErrorResponse) => {
       this.isRegisterError = true;
-      console.log(this.isRegisterError);
       }})
   }
 }

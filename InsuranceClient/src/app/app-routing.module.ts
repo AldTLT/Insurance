@@ -11,12 +11,16 @@ import { DataComponent } from './components/personal/data/data.component';
 import { PoliciesComponent } from './components/personal/policies/policies.component';
 import { PayComponent } from './components/personal/pay/pay.component';
 import { CalcGuard } from './auth/calc.guard';
+import { PaymentComponent } from './components/personal/pay/payment/payment.component';
 
 export const routes: Routes = [
   { path: 'personal', component: PersonalComponent, canActivate: [AuthGuard], 
     children: [
       { path: 'buypolicy', component: BuypolicyComponent},
-      { path: 'pay', component: PayComponent, canActivate: [CalcGuard] },
+      { path: 'pay', component: PayComponent, canActivate: [CalcGuard],
+        children: [
+          { path: 'payment', component: PaymentComponent }
+        ]},
       { path: 'data', component: DataComponent},
       { path: 'policies', component: PoliciesComponent}
     ]},

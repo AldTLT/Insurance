@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Car } from '../models/car';
+import { User } from '../models/user';
 
 @Injectable({
   providedIn: 'root'
@@ -24,5 +25,12 @@ export class PolicyService {
       const body: Car = car;
       var reqHeader = new HttpHeaders({'email' : email});
       return this.http.post(this.rootUrl + '/api/policy/policycost', body, { headers: reqHeader } );
+    }
+
+    registerPolicy(car: Car, email: string)
+    {
+      const body: Car = car;
+      var reqHeader = new HttpHeaders({'No-Auth':'True', 'email': email});
+      return this.http.post(this.rootUrl + '/api/policy/policyregister', body, { headers: reqHeader });
     }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { StoreService } from './services/store.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private router: Router){}
+  constructor(private router: Router, private storeService: StoreService){}
 
   ngOnInit(){
   }
@@ -17,6 +18,7 @@ export class AppComponent implements OnInit{
   title = 'InsuranceClient';
 
   logOut(){
+    this.storeService.clear();
     localStorage.clear();
     this.router.navigate(['/authorization']);
   }
