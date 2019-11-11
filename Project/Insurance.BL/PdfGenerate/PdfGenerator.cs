@@ -150,17 +150,7 @@ namespace Insurance.BL
             PdfDocumentRenderer pdfRenderer = new PdfDocumentRenderer(true, PdfFontEmbedding.Always);
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
-
-            //using (MemoryStream ms = new MemoryStream())
-            //{
             pdfRenderer.PdfDocument.Save(stream);
-            //    var fileName = policy.PolicyId + ".pdf";
-            //    Attachment attachment = new Attachment(ms, fileName);
-
-            //    var sender = new EmailSender();
-            //    sender.Send(user, policy, attachment);
-            //}
-            //Process.Start(fileName);
 
             return document;
         }

@@ -4,14 +4,112 @@
     <router-outlet></router-outlet> 
     
     <div *ngIf='!registerResult'>
-      <p>E-mail<input type="text" [(ngModel)]="userData.EMail"></p>
-      <p>Фамилия<input type="text" [(ngModel)]="clientName.surname"></p>
-      <p>Имя<input type="text" [(ngModel)]="clientName.name"></p>
-      <p>Отчество<input type="text" [(ngModel)]="clientName.patronymic"></p>
-      <p>Дата рождения<input type="date" [(ngModel)]="userData.BirthDate"></p>
-      <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.DriverLicenseDate"></p>
-      <p>Пароль<input type="password" [(ngModel)]="userData.Password"></p>
-      <p>Подтверждение пароля<input type="password"></p>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1"></span>
+            </div>
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="E-mail" 
+            aria-label="E-mail" 
+            aria-describedby="basic-addon1" 
+            [(ngModel)]="userData.EMail">
+          </div>
+      <!-- <p>E-mail<input type="text" [(ngModel)]="userData.EMail"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Фамилия" 
+          aria-label="Фамилия" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="clientName.surname">
+        </div>
+      <!-- <p>Фамилия<input type="text" [(ngModel)]="clientName.surname"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Имя" 
+          aria-label="Имя" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="clientName.name">
+        </div>
+      <!-- <p>Имя<input type="text" [(ngModel)]="clientName.name"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="text" 
+          class="form-control" 
+          placeholder="Отчество" 
+          aria-label="Отчество" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="clientName.patronymic">
+        </div>
+      <!-- <p>Отчество<input type="text" [(ngModel)]="clientName.patronymic"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="date" 
+          class="form-control" 
+          placeholder="Дата рождения" 
+          aria-label="Дата рождения" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="userData.BirthDate">
+        </div>
+      <!-- <p>Дата рождения<input type="date" [(ngModel)]="userData.BirthDate"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="date" 
+          class="form-control" 
+          placeholder="Дата выдачи прав" 
+          aria-label="Дата выдачи прав" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="userData.DriverLicenseDate">
+        </div>
+      <!-- <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.DriverLicenseDate"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="password" 
+          class="form-control" 
+          placeholder="Пароль" 
+          aria-label="Пароль" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="userData.Password">
+        </div>
+      <!-- <p>Пароль<input type="text" [(ngModel)]="userData.Password"  [ngStyle]="{
+        color: userData.Password == confirmPassword ? 'green' : 'red' 
+      }"></p> -->
+      <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="basic-addon1"></span>
+          </div>
+          <input 
+          type="password" 
+          class="form-control" 
+          placeholder="Подтверждение пароля" 
+          aria-label="Подтверждение пароля" 
+          aria-describedby="basic-addon1" 
+          [(ngModel)]="confirmPassword">
+        </div>
+      <!-- <p>Подтверждение пароля<input type="text" [(ngModel)]="confirmPassword"></p> -->
       <p><button (click)="userRegistration()">Зарегистрироваться</button></p>
     </div>
 </div>

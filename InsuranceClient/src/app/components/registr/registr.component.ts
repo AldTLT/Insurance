@@ -21,22 +21,30 @@ export class RegistrComponent implements OnInit {
     this.userData.BirthDate = new Date(1980, 1, 1, 0, 0, 0, 0);
     this.userData.DriverLicenseDate = new Date(2010, 2, 2, 0, 0, 0, 0);
     this.userData.Password = "qwerty123456";
+    this.confirmPassword = "qwerty123456";
   }
 
   userData: User = new User();
   isRegisterError: boolean = false;
   registerResult: boolean = false;
   clientName: ClientName = new ClientName(); 
+  confirmPassword: string;
 
   ngOnInit() {
   }
 
   //Проверка коректности введенных данных
   checkData(){
-
+    return this.userData.Password == this.confirmPassword ? true : false;
   }
 
   userRegistration(){
+    if (!this.checkData())
+    {
+      return;
+    }
+    else
+    {
     this.userData.Name = this.clientName.getFullName();
     this.authService.register(this.userData).subscribe((data: any) => {
       this.registerResult = data;
@@ -46,5 +54,6 @@ export class RegistrComponent implements OnInit {
       (err: HttpErrorResponse) => {
       this.isRegisterError = true;
       }})
+    }
   }
 }
