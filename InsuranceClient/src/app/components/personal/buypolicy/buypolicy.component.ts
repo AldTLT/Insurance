@@ -31,6 +31,7 @@ export class BuypolicyComponent implements OnInit {
     this.email = this.storeService.getItem('email');
     this.policyService.calculatePolicyCost(car, this.email).subscribe((data: any) => {
       this.storeService.setItem('policyCost', data);
+      this.storeService.setItem('carNumber', car.CarNumber);
       this.router.navigate(['personal/pay']);
     })
   }

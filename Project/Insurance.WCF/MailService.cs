@@ -14,7 +14,7 @@ namespace Insurance.WCF
     /// <summary>
     /// Класс представляет сервис отправки сообщения на почту.
     /// </summary>
-    public class SmtpService : ISmtpService
+    public class MailService : IMailService
     {
         private readonly DataContext _context = new DataContext();
         private readonly IPolicyRepository _policyRepository;
@@ -22,7 +22,7 @@ namespace Insurance.WCF
         private readonly ICarRepository _carRepository;
         private readonly IAuthRepository _authRepository;
 
-        public SmtpService()
+        public MailService()
         {
             //_policyRepository = new PolicyRepository(_context);
             //_ratioRepository = new RatioRepository(_context);
@@ -35,11 +35,16 @@ namespace Insurance.WCF
             _carRepository = new StubCarRepository();
         }
 
-        public void SendPdf(string email)
+        /// <summary>
+        /// Метод отправляет сообщение с вложением полиса в формате pdf на почту.
+        /// </summary>
+        /// <param name="carNumber">Номер автомобиля.</param>
+        /// <param name="email">E-mail пользователя.</param>
+        public void SendPdf(string carNumber, string email)
         {
             var sender = new EmailSender();
             var user = _authRepository.GetUser(email);
-            var policy = _policyRepository.GetPolicy(email);
+            var policy = _policyRepository.GetPolicy(carNumber);
             sender.SendMail(user, policy);
         }
     }

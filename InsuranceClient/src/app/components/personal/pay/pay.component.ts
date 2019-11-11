@@ -38,7 +38,9 @@ export class PayComponent implements OnInit {
     }
 
     this.toPayment = true;
-    this.sendmailService.sendMail(this.storeService.getItem('email')).subscribe((data) => {
+    const email = this.storeService.getItem('email');
+    const carNumber = this.storeService.getItem('carNumber');
+    this.sendmailService.sendMail(carNumber, email).subscribe((data) => {
       console.log(data);
     });
     this.router.navigate(['/personal/pay/payment']);

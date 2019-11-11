@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Container;
+using Insurance.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -13,6 +15,10 @@ namespace Insurance.WebApi
     {
         protected void Application_Start()
         {
+            var container = new RepositoryContainer();
+            var useStub = true;
+            container.SetDependency(useStub);
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

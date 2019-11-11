@@ -13,6 +13,9 @@ using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using MigraDoc.DocumentObjectModel.Tables;
 using Insurance.BL.Models;
+using System.IO;
+using System.Net.Mail;
+using System.Net;
 
 namespace Insurance.BL
 {
@@ -27,7 +30,7 @@ namespace Insurance.BL
         /// <param name="policy">Экземпляр Insurance.BL.Models.Policy</param>
         /// <param name="user">Экземпляр Insurance.BL.Models.User</param>
         /// <returns>Имя сгенерированного полиса.</returns>
-        public string GeneratePolicy(User user, Policy policy)
+        public Document GeneratePolicy(User user, Policy policy, Stream stream)
         {
             var p = new PdfGenerator();
             Document document = new Document();
@@ -148,14 +151,18 @@ namespace Insurance.BL
             pdfRenderer.Document = document;
             pdfRenderer.RenderDocument();
 
-            var path = "C:\\";
-            var fileName = policy.PolicyId.ToString() + ".pdf";
-            var fullPath = path + fileName;
+            //using (MemoryStream ms = new MemoryStream())
+            //{
+            pdfRenderer.PdfDocument.Save(stream);
+            //    var fileName = policy.PolicyId + ".pdf";
+            //    Attachment attachment = new Attachment(ms, fileName);
 
-            pdfRenderer.PdfDocument.Save(fullPath);
+            //    var sender = new EmailSender();
+            //    sender.Send(user, policy, attachment);
+            //}
             //Process.Start(fileName);
 
-            return fullPath;
+            return document;
         }
 
         /// <summary>

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Insurance.WebApi", "Insuran
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stub", "Stub\Stub.csproj", "{B061BBBF-D2BA-4DDE-BB81-52A6BF240252}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Container", "Container\Container.csproj", "{88D92601-5B1F-447C-BF75-D17F79DAF360}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{B061BBBF-D2BA-4DDE-BB81-52A6BF240252}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B061BBBF-D2BA-4DDE-BB81-52A6BF240252}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B061BBBF-D2BA-4DDE-BB81-52A6BF240252}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88D92601-5B1F-447C-BF75-D17F79DAF360}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88D92601-5B1F-447C-BF75-D17F79DAF360}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88D92601-5B1F-447C-BF75-D17F79DAF360}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88D92601-5B1F-447C-BF75-D17F79DAF360}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

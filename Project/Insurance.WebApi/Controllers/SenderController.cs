@@ -12,11 +12,11 @@ namespace Insurance.WebApi.Controllers
     [RoutePrefix("api/Sender")]
     public class SenderController : ApiController
     {
-        private readonly ISmtpService _smtpService;
+        private readonly IMailService _smtpService;
 
         public SenderController()
         {
-            _smtpService = new SmtpService();
+            _smtpService = new MailService();
         }
 
         /// <summary>
@@ -30,6 +30,7 @@ namespace Insurance.WebApi.Controllers
         {
             //Получение email из headers запроса.
             var email = string.Empty;
+            var carNumber = string.Empty;
 
             try
             {
@@ -38,16 +39,24 @@ namespace Insurance.WebApi.Controllers
                     .FirstOrDefault(c => c.Key.Equals("email"))
                     .Value
                     .FirstOrDefault();
+
+                carNumber = Request
+                    .Headers
+                    .FirstOrDefault(n => n.Key.Equals("carNumber"))
+                    .Value
+                    .FirstOrDefault();
             }
             catch
             {
                 return NotFound();
             }
 
-            if (string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(carNumber))
+            {
                 return NotFound();
+            }
 
-            _smtpService.SendPdf(email);
+            _smtpService.SendPdf(carNumber, email);
 
             return Ok();
         }

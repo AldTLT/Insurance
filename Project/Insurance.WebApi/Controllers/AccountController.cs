@@ -72,13 +72,15 @@ namespace Insurance.WebApi.Controllers
 
             try
             {
+                var hash = model.Password.GetHash();
+
                 registerResult = _authService.RegistrationAccount
                     (
                     model.Email,
                     model.Name,
                     model.BirthDate,
                     model.DriverLicenseDate,
-                    model.Password
+                    hash
                     );
             }
             catch

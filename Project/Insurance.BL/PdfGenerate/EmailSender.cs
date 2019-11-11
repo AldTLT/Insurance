@@ -1,6 +1,8 @@
 ﻿using Insurance.BL.Models;
+using MigraDoc.DocumentObjectModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Mail;
@@ -14,40 +16,44 @@ namespace Insurance.BL
     /// </summary>
     public class EmailSender
     {
+        public void SendMail(User user, Policy policy)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var pdfGenerator = new PdfGenerator();
+                pdfGenerator.GeneratePolicy(user, policy, ms);
+                var fileName = policy.PolicyId.ToString() + ".pdf";
+                var attachment = new Attachment(ms, fileName);
+
+                Send(user, policy, attachment);
+            }
+        }
+
         /// <summary>
         /// Метод отправляет сообщение на почту.
         /// </summary>
         /// <param name="user"></param>
         /// <param name="policy"></param>
-        public void SendMail(User user, Policy policy)
+        private void Send(User user, Policy policy, Attachment attachment)
         {
             var mail = new MailMessage();
             var smtpServer = new SmtpClient("smtp.mail.ru");
 
-            var fileName = GeneratePdfPolicy(user, policy);
-
-            mail.From = new MailAddress("vr0rtex@mail.ru");
+            mail.From = new MailAddress("insuranceproduct@mail.ru");
             mail.To.Add(user.EMail);
             mail.Subject = "Полис КАСКО";
             mail.Body = 
                 "Благодарим вас за выбор нашей компании." +
                 "\nПожалуйста распечатайте данный полис и обратитесь в наш офис что бы оплатить его.";
+            //var fileName = policy.PolicyId.ToString() + ".pdf";
 
-            var attachment = new Attachment(fileName); // файл (путь)
+            //var attachment = new Attachment(stream, fileName); // файл (путь)
             mail.Attachments.Add(attachment);
 
             smtpServer.Port = 587;
-            smtpServer.Credentials = new NetworkCredential("vr0rtex@mail.ru", "H3y1d3r3a7lisk");
+            smtpServer.Credentials = new NetworkCredential("insuranceproduct@mail.ru", "Insurance123");
             smtpServer.EnableSsl = true;
             smtpServer.Send(mail);
-        }
-
-        private string GeneratePdfPolicy(User user, Policy policy)
-        {
-            var generator = new PdfGenerator();
-            var fileName = generator.GeneratePolicy(user, policy);
-
-            return fileName;
         }
     }
 }
