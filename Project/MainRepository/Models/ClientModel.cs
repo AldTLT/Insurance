@@ -40,7 +40,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Коллекция ролей клиента.
         /// </summary>
-        public virtual ICollection<RoleModel> Role { get; set; }
+        public virtual ICollection<RoleModel> Roles { get; set; }
 
         /// <summary>
         /// Коллекция полисов клиента.

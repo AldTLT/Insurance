@@ -90,14 +90,14 @@ namespace MainRepository
         /// <returns>true, если e-mail уже есть в БД, иначе - false.</returns>
         public bool IsMailExist(string mail)
         {
-            try
-            {
+            //try
+            //{
                 return _context.Client.Any(c => c.EMail.Equals(mail));
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
         }
 
         /// <summary>
@@ -127,7 +127,7 @@ namespace MainRepository
                 BirthDate = user.BirthDate,
                 DriverLicenseDate = user.DriverLicenseDate,
                 PasswordHash = user.PasswordHash,
-                Role = roleModelList
+                Roles = roleModelList
                 
             };
 

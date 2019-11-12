@@ -57,7 +57,7 @@ namespace MainRepository.ModelsRepository
                 carModel.CarNumber,
                 carModel.Model,
                 carModel.ManufacturedYear,
-                carModel.Cost,
+                carModel.CarCost,
                 carModel.EnginePower
                 );
         }
@@ -79,7 +79,7 @@ namespace MainRepository.ModelsRepository
                 CarNumber = car.CarNumber,
                 Model = car.Model,
                 ManufacturedYear = car.ManufacturedYear,
-                Cost = car.Cost,
+                CarCost = car.Cost,
                 EnginePower = car.EnginePower,
                 Policy = null
             };

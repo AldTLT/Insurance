@@ -24,6 +24,7 @@ export class RegistrComponent implements OnInit {
     this.confirmPassword = "qwerty123456";
   }
 
+  defaultDate: Date = new Date();
   userData: User = new User();
   isRegisterError: boolean = false;
   registerResult: boolean = false;

@@ -30,12 +30,13 @@ export class PayComponent implements OnInit {
 
   //Метод отправки полиса на почту
   payPolicy(){
-    this.isPolicyRegistered = this.registerPolicy();
-    if (!this.isPolicyRegistered)
-    {
-      //Обработать ошибку регистрации
-      return;
-    }
+    debugger;
+    // this.isPolicyRegistered = this.registerPolicy();
+    // if (!this.isPolicyRegistered)
+    // {
+    //   //Обработать ошибку регистрации
+    //   return;
+    // }
 
     this.toPayment = true;
     const email = this.storeService.getItem('email');
@@ -48,12 +49,20 @@ export class PayComponent implements OnInit {
 
   //Регистрация нового полиса.
   registerPolicy(): any{
+    debugger;
     let car = this.storeService.getItem('car');
     let email = this.storeService.getItem('email');
 
-    return this.policyService.registerPolicy(car, email).subscribe((data) => {
-      console.log(data);
-      return data;
+    let registerResult = this.policyService.registerPolicy(car, email).subscribe((data) => {
+    if (registerResult)
+    {
+      this.payPolicy();
+      return true;
+    }
+    else
+    {
+      return false;
+    }
     });
   }
 }

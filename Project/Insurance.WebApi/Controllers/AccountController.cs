@@ -26,7 +26,7 @@ namespace Insurance.WebApi.Controllers
         /// </summary>
         /// <returns></returns>
         [ResponseType(typeof(User))]
-        [Authorize(Roles = "admin")]
+        [Authorize]
         [Route("User")]
         public IHttpActionResult GetUser()
         {
@@ -70,8 +70,8 @@ namespace Insurance.WebApi.Controllers
 
             var registerResult = false;
 
-            try
-            {
+            //try
+            //{
                 var hash = model.Password.GetHash();
 
                 registerResult = _authService.RegistrationAccount
@@ -82,11 +82,11 @@ namespace Insurance.WebApi.Controllers
                     model.DriverLicenseDate,
                     hash
                     );
-            }
-            catch
-            {
-                registerResult = false;
-            }
+            //}
+            //catch
+            //{
+            //    registerResult = false;
+            //}
 
             if (!registerResult)
             {

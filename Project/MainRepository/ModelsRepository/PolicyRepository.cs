@@ -145,7 +145,7 @@ namespace MainRepository
 
             var policy = new Policy
                 (
-                policyModel.Cost, 
+                policyModel.policyCost, 
                 clientEmail, 
                 policyModel.PolicyDate, 
                 car,
@@ -184,7 +184,7 @@ namespace MainRepository
 
             var policyModel = new PolicyModel()
             {
-                Cost = policy.Cost,
+                policyCost = policy.Cost,
                 Client = null,
                 ClientEmail = policy.UsersEmail,
                 PolicyDate = policy.PolicyDate,

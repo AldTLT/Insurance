@@ -22,8 +22,8 @@ namespace Insurance.WCF
 
         public AuthService()
         {
-            //_authRepository = new AuthRepository(_context);
-            _authRepository = new StubAuthRepository();
+            _authRepository = new AuthRepository(_context);            
+            //_authRepository = new StubAuthRepository();
         }
 
         public User GetUser(string email)
@@ -40,10 +40,9 @@ namespace Insurance.WCF
         /// <param name="driverLicenseDate">Дата выдачи прав пользователя.</param>
         /// <param name="password">Пароль пользователя.</param>
         /// <returns>true, если асккаунт успешно создан, иначе - false.</returns>
-        public bool RegistrationAccount(string mail, string fullName, DateTime birthDate, DateTime driverLicenseDate, string password)
+        public bool RegistrationAccount(string mail, string fullName, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
             var accountManager = new AccountManager(_authRepository);
-            var passwordHash = GetPasswordHash(password);
             var account = new User(mail, fullName, birthDate, driverLicenseDate, passwordHash);
 
             return accountManager.Registration(account);
@@ -53,24 +52,13 @@ namespace Insurance.WCF
         /// Сервис возвращает результат авторизации пользователя.
         /// </summary>
         /// <param name="email">E-mail пользователя.</param>
-        /// <param name="password">Пароль пользователя.</param>
+        /// <param name="passwordHash">Пароль пользователя.</param>
         /// <returns>true, если пользователь успешно авторизован, иначе - false.</returns>
-        public bool SignIn(string email, string password)
+        public bool SignIn(string email, string passwordHash)
         {
             var accountManager = new AccountManager(_authRepository);
-            var passwordHash = GetPasswordHash(password);
 
-            return accountManager.SignIn(email, password);
-        }
-        
-        /// <summary>
-        /// Метод возвращает хэш-код пароля.
-        /// </summary>
-        /// <param name="password">Пароль.</param>
-        /// <returns>Хэш-код.</returns>
-        private string GetPasswordHash(string password)
-        {
-            return password.GetHashCode().ToString();
+            return accountManager.SignIn(email, passwordHash);
         }
     }
 }

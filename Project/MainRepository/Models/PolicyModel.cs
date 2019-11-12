@@ -21,7 +21,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Стоимость полиса.
         /// </summary>
-        public int Cost { get; set; }
+        public int policyCost { get; set; }
 
         /// <summary>
         /// Дата заключения полиса.
@@ -83,7 +83,7 @@ namespace MainRepository.Models
 
             return
                 PolicyID.Equals(policyModel.PolicyID)
-                && Cost.Equals(policyModel.Cost)
+                && policyCost.Equals(policyModel.policyCost)
                 && PolicyDate.Equals(policyModel.PolicyDate);         
         }
 
@@ -95,7 +95,7 @@ namespace MainRepository.Models
         {
             return
                 PolicyID.GetHashCode()
-                + Cost.GetHashCode()
+                + policyCost.GetHashCode()
                 + PolicyDate.GetHashCode();
         }
     }

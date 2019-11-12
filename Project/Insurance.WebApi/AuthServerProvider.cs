@@ -33,14 +33,13 @@ namespace Insurance.WebApi
 
                 //Вычисление хэша пароля.
                 var hash = context.Password.GetHash();
-                var h = context.Password.GetHashCode();
 
                 //Если пароль пользователя не совпадает с введеным паролем
-                //if (user.PasswordHash != hash)
-                //{
-                //    context.SetError("invalid_grant", "Пароль пользователя неверный");
-                //    return;
-                //}
+                if (!user.PasswordHash.Equals(hash))
+                {
+                    context.SetError("invalid_grant", "Пароль пользователя неверный");
+                    return;
+                }
 
                 //Создание утверждений. 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);

@@ -28,7 +28,7 @@ namespace MainRepository.Models
         /// <summary>
         /// Стоимость автомобиля.
         /// </summary>
-        public int Cost { get; set; }
+        public int CarCost { get; set; }
 
         /// <summary>
         /// Мощность двигателя автомобиля в лошадиных силах.
@@ -77,7 +77,7 @@ namespace MainRepository.Models
                 CarNumber.Equals(carModel.CarNumber)
                 && Model.Equals(carModel.Model)
                 && ManufacturedYear.Equals(carModel.ManufacturedYear)
-                && Cost.Equals(carModel.Cost)
+                && CarCost.Equals(carModel.CarCost)
                 && EnginePower.Equals(carModel.EnginePower);
         }
 
@@ -91,7 +91,7 @@ namespace MainRepository.Models
                 CarNumber.GetHashCode()
                 + Model.GetHashCode()
                 + ManufacturedYear.GetHashCode()
-                + Cost.GetHashCode()
+                + CarCost.GetHashCode()
                 + EnginePower.GetHashCode();
         }
     }

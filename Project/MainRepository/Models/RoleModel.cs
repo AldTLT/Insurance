@@ -28,11 +28,11 @@ namespace MainRepository.Models
         /// <summary>
         /// Коллекция клиентов, соответствующих роли.
         /// </summary>
-        public virtual ICollection<ClientModel> Client { get; set; }
+        public virtual ICollection<ClientModel> Clients { get; set; }
 
         public RoleModel()
         {
-            Client = new HashSet<ClientModel>();
+            Clients = new HashSet<ClientModel>();
         }
 
         public class RoleConfiguration : EntityTypeConfiguration<RoleModel>

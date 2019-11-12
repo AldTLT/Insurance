@@ -3,6 +3,7 @@ using Microsoft.Owin;
 using Owin;
 using Microsoft.Owin.Security.OAuth;
 using System.Web.Http;
+using Container;
 
 [assembly: OwinStartup(typeof(Insurance.WebApi.Startup))]
 
@@ -13,6 +14,12 @@ namespace Insurance.WebApi
     {
         public void Configuration(IAppBuilder app)
         {
+            var container = new RepositoryContainer();
+            var useStub = true;
+            container.SetDependency(useStub);
+
+
+
             // Enable CORS (cross origin resource sharing) for making request using browser from different domains
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 

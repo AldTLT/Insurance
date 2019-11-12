@@ -51,97 +51,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Migrations\201910071525165_t.cs" />
-    <Compile Include="Migrations\201910071525165_t.designer.cs">
-      <DependentUpon>201910071525165_t.cs</DependentUpon>
+    <Compile Include="InitializeDb.cs" />
+    <Compile Include="Migrations\201911121821595_db1.cs" />
+    <Compile Include="Migrations\201911121821595_db1.designer.cs">
+      <DependentUpon>201911121821595_db1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201910071530353_car_dependent.cs" />
-    <Compile Include="Migrations\201910071530353_car_dependent.designer.cs">
-      <DependentUpon>201910071530353_car_dependent.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071535088_car_dependent1.cs" />
-    <Compile Include="Migrations\201910071535088_car_dependent1.designer.cs">
-      <DependentUpon>201910071535088_car_dependent1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071601458_carId.cs" />
-    <Compile Include="Migrations\201910071601458_carId.designer.cs">
-      <DependentUpon>201910071601458_carId.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071616296_carId1.cs" />
-    <Compile Include="Migrations\201910071616296_carId1.designer.cs">
-      <DependentUpon>201910071616296_carId1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071618235_carId2.cs" />
-    <Compile Include="Migrations\201910071618235_carId2.designer.cs">
-      <DependentUpon>201910071618235_carId2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071746172_carId3.cs" />
-    <Compile Include="Migrations\201910071746172_carId3.designer.cs">
-      <DependentUpon>201910071746172_carId3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071803460_carId4.cs" />
-    <Compile Include="Migrations\201910071803460_carId4.designer.cs">
-      <DependentUpon>201910071803460_carId4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071809176_carId5.cs" />
-    <Compile Include="Migrations\201910071809176_carId5.designer.cs">
-      <DependentUpon>201910071809176_carId5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071813385_carId6.cs" />
-    <Compile Include="Migrations\201910071813385_carId6.designer.cs">
-      <DependentUpon>201910071813385_carId6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071820308_carId7.cs" />
-    <Compile Include="Migrations\201910071820308_carId7.designer.cs">
-      <DependentUpon>201910071820308_carId7.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071822259_carId8.cs" />
-    <Compile Include="Migrations\201910071822259_carId8.designer.cs">
-      <DependentUpon>201910071822259_carId8.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071824517_carId9.cs" />
-    <Compile Include="Migrations\201910071824517_carId9.designer.cs">
-      <DependentUpon>201910071824517_carId9.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071837207_carId10.cs" />
-    <Compile Include="Migrations\201910071837207_carId10.designer.cs">
-      <DependentUpon>201910071837207_carId10.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071838483_carId11.cs" />
-    <Compile Include="Migrations\201910071838483_carId11.designer.cs">
-      <DependentUpon>201910071838483_carId11.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071843357_carId12.cs" />
-    <Compile Include="Migrations\201910071843357_carId12.designer.cs">
-      <DependentUpon>201910071843357_carId12.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071844247_carId13.cs" />
-    <Compile Include="Migrations\201910071844247_carId13.designer.cs">
-      <DependentUpon>201910071844247_carId13.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910071859280_carId14.cs" />
-    <Compile Include="Migrations\201910071859280_carId14.designer.cs">
-      <DependentUpon>201910071859280_carId14.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910081400435_Coef.cs" />
-    <Compile Include="Migrations\201910081400435_Coef.designer.cs">
-      <DependentUpon>201910081400435_Coef.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910081747572_Coef1.cs" />
-    <Compile Include="Migrations\201910081747572_Coef1.designer.cs">
-      <DependentUpon>201910081747572_Coef1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910081853089_CarNumber.cs" />
-    <Compile Include="Migrations\201910081853089_CarNumber.designer.cs">
-      <DependentUpon>201910081853089_CarNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201910101759061_client-role.cs" />
-    <Compile Include="Migrations\201910101759061_client-role.designer.cs">
-      <DependentUpon>201910101759061_client-role.cs</DependentUpon>
-    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsRepository\AuthRepository.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsRepository\CarRepository.cs" />
     <Compile Include="ModelsRepository\RatioRepository.cs" />
     <Compile Include="ModelsRepository\RoleRepository.cs" />
@@ -173,71 +90,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201910071525165_t.resx">
-      <DependentUpon>201910071525165_t.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071530353_car_dependent.resx">
-      <DependentUpon>201910071530353_car_dependent.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071535088_car_dependent1.resx">
-      <DependentUpon>201910071535088_car_dependent1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071601458_carId.resx">
-      <DependentUpon>201910071601458_carId.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071616296_carId1.resx">
-      <DependentUpon>201910071616296_carId1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071618235_carId2.resx">
-      <DependentUpon>201910071618235_carId2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071746172_carId3.resx">
-      <DependentUpon>201910071746172_carId3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071803460_carId4.resx">
-      <DependentUpon>201910071803460_carId4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071809176_carId5.resx">
-      <DependentUpon>201910071809176_carId5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071813385_carId6.resx">
-      <DependentUpon>201910071813385_carId6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071820308_carId7.resx">
-      <DependentUpon>201910071820308_carId7.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071822259_carId8.resx">
-      <DependentUpon>201910071822259_carId8.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071824517_carId9.resx">
-      <DependentUpon>201910071824517_carId9.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071837207_carId10.resx">
-      <DependentUpon>201910071837207_carId10.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071838483_carId11.resx">
-      <DependentUpon>201910071838483_carId11.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071843357_carId12.resx">
-      <DependentUpon>201910071843357_carId12.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071844247_carId13.resx">
-      <DependentUpon>201910071844247_carId13.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910071859280_carId14.resx">
-      <DependentUpon>201910071859280_carId14.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910081400435_Coef.resx">
-      <DependentUpon>201910081400435_Coef.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910081747572_Coef1.resx">
-      <DependentUpon>201910081747572_Coef1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910081853089_CarNumber.resx">
-      <DependentUpon>201910081853089_CarNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201910101759061_client-role.resx">
-      <DependentUpon>201910101759061_client-role.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911121821595_db1.resx">
+      <DependentUpon>201911121821595_db1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

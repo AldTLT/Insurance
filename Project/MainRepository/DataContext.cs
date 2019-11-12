@@ -12,6 +12,10 @@ namespace MainRepository
     {
         public DataContext() : base(nameOrConnectionString: "InsuranceDbConnection")
         {
+            //Database.SetInitializer<DataContext>(new InitializeDb());
+
+            var initialise = new InitializeDb();
+            initialise.InitializeDatabase(this);
         }
 
         public DbSet<ClientModel> Client { get; set; }

@@ -56,7 +56,7 @@ namespace MainRepositoryTest
 
             var policyModel = new PolicyModel()
             {
-                Cost = 1000,
+                policyCost = 1000,
                 ClientEmail = "test@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01)
             };
@@ -74,7 +74,7 @@ namespace MainRepositoryTest
         {
             var expectedPolicyModel = new PolicyModel()
             {
-                Cost = 1000,
+                policyCost = 1000,
                 ClientEmail = "test@yandex.ru",
                 PolicyDate = new DateTime(2019, 12, 01),
                 Car = null

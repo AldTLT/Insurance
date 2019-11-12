@@ -33,7 +33,7 @@ namespace MainRepositoryTest
                 CarNumber = "TEST99963",
                 Model = "Kalina",
                 ManufacturedYear = 2017,
-                Cost = 500000,
+                CarCost = 500000,
                 EnginePower = 88
             };
 
@@ -71,7 +71,7 @@ namespace MainRepositoryTest
                 CarNumber = "999TEST63",
                 Model = "FIAT",
                 ManufacturedYear = 2019,
-                Cost = 600000,
+                CarCost = 600000,
                 EnginePower = 102
             };
 

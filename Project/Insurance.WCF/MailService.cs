@@ -1,6 +1,7 @@
 ﻿using Insurance.BL;
 using Insurance.BL.Intefaces;
 using MainRepository;
+using MainRepository.ModelsRepository;
 using Stub;
 using System;
 using System.Collections.Generic;
@@ -24,15 +25,15 @@ namespace Insurance.WCF
 
         public MailService()
         {
-            //_policyRepository = new PolicyRepository(_context);
-            //_ratioRepository = new RatioRepository(_context);
-            //_carRepository = new CarRepository(_context);
-            //_authRepository = new AuthRepository(_context);
+            _policyRepository = new PolicyRepository(_context);
+            _ratioRepository = new RatioRepository(_context);
+            _carRepository = new CarRepository(_context);
+            _authRepository = new AuthRepository(_context);
 
-            _policyRepository = new StubPolicyRepository();
-            _authRepository = new StubAuthRepository();
-            _ratioRepository = new StubRatioRepository();
-            _carRepository = new StubCarRepository();
+            //_policyRepository = new StubPolicyRepository();
+            //_authRepository = new StubAuthRepository();
+            //_ratioRepository = new StubRatioRepository();
+            //_carRepository = new StubCarRepository();
         }
 
         /// <summary>

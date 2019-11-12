@@ -35,7 +35,7 @@ namespace MainRepository.ModelsRepository
             {
                 var roleModel = _context.Client
                     .Where(c => c.EMail.Equals(email))
-                    .Select(c => c.Role)
+                    .Select(c => c.Roles)
                     .First();
 
                 return roleModel.Select(r => r.RoleName).ToList();
@@ -58,7 +58,7 @@ namespace MainRepository.ModelsRepository
             {
                 var client = _context.Client.FirstOrDefault(c => c.EMail.Equals(email));
                 var roleModel = _context.Role.First(r => r.RoleName.Equals(role));
-                client.Role.Add(roleModel);
+                client.Roles.Add(roleModel);
                 _context.SaveChanges();
                 return true;
             }
