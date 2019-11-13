@@ -1,30 +1,44 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using Insurance.WCF;
 using Insurance.BL.Models;
 using System.Web.Http.Description;
 using WebApi.Models;
+using NLog;
 
 namespace Insurance.WebApi.Controllers
 {
+    /// <summary>
+    /// Контроллер управления полисом.
+    /// </summary>
     [RoutePrefix("api/Policy")]
     public class PolicyController : ApiController
     {
+        /// <summary>
+        /// Сервис управления полисом.
+        /// </summary>
         private readonly IPolicyService _policyService;
+
+        /// <summary>
+        /// Сервис управления аккаунтом.
+        /// </summary>
         private readonly IAuthService _authService;
+
+        /// <summary>
+        /// Экземпляр логгера.
+        /// </summary>
+        private Logger _logger;
 
         public PolicyController()
         {
             _policyService = new PolicyService();
             _authService = new AuthService();
+            _logger = LogManager.GetCurrentClassLogger();
         }
 
         /// <summary>
-        /// Запрос: получение коллекции Policy.
+        /// Запрос получение коллекции полисов.
         /// </summary>
         /// <returns></returns>
         [ResponseType(typeof(Policy))]
@@ -33,6 +47,9 @@ namespace Insurance.WebApi.Controllers
         [Route("Policy")]
         public IHttpActionResult GetPolicy()
         {
+            //Логгирование: запрос на получение полисов.
+            _logger.Trace($"Запрос полисов пользователя.");
+
             //Получение email из headers запроса.
             var email = string.Empty;
 
@@ -46,28 +63,57 @@ namespace Insurance.WebApi.Controllers
             }
             catch
             {
+                //Логгирование: ошибка получения email.
+                _logger.Error($"Ошибка, заголовок не содержит email.");
+
                 return NotFound();
             }
 
             if (string.IsNullOrEmpty(email))
+            {
+                //Логгирование: e-mail пустой.
+                _logger.Error($"E-mail пустой.");
+
                 return NotFound();
+            }
 
             var policyCollection = _policyService.GetPolicy(email);
 
             if (policyCollection.Count() == 0)
+            {
+                //Логгирование: полисы отсутствуют.
+                _logger.Trace($"Полисы пользователя с адресом <{email}> не найдены.");
+
                 return NotFound();
+            }
+
+            //Логгирование: запрос выполнен.
+            _logger.Trace(
+                $"Запрос на получение полисов пользователя <{email}> выполнен. " +
+                $"Найдено полисов: <{policyCollection.Count}>."
+                );
 
             return Ok(policyCollection);
         }
 
-        // Регистрация нового полиса.
+        /// <summary>
+        /// Запрос регистрация нового полиса.
+        /// </summary>
+        /// <param name="model">Модель данных регистрации полиса.</param>
+        /// <returns></returns>
         [Authorize]
         [HttpPost]
         [Route("PolicyRegister")]
         public IHttpActionResult PolicyRegister(PolicyRegistrationBindingModel model)
         {
+            //Логгирование: запрос регистрации полиса.
+            _logger.Trace($"Запрос регистрации полиса.");
+
             if (!ModelState.IsValid)
             {
+                //Логгирование: ошибка модели данных.
+                _logger.Error($"Модель данных регистрации полиса не валидна.");
+
                 return BadRequest(ModelState);
             }
 
@@ -83,10 +129,13 @@ namespace Insurance.WebApi.Controllers
             }
             catch
             {
+                //Логгирование: ошибка получения email.
+                _logger.Error($"Ошибка, заголовок не содержит email.");
+
                 return NotFound();
             }
 
-                var registerResult = _policyService.PolicyRegistration(
+            var registerResult = _policyService.PolicyRegistration(
                 email,
                 model.CarCost,
                 model.CarNumber,
@@ -97,22 +146,33 @@ namespace Insurance.WebApi.Controllers
 
             if (!registerResult)
             {
+                //Логгирование: ошибка регистрации полиса.
+                _logger.Error($"Ошибка регистрации полиса на автомобиль <{model.CarNumber}>.");
+
                 return NotFound();
             }
+            else
+            {
+                //Логгирование: запрос регистрации выполнен.
+                _logger.Trace($"Запрос регистрации полиса на автомобиль <{model.CarNumber}> выполнен.");
 
-            return Ok(registerResult);
+                return Ok(registerResult);
+            }
         }
 
         /// <summary>
-        /// Получение стоимости полиса.
+        /// Запрос получение стоимости полиса.
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="model">Модель данных регистрации полиса.</param>
         /// <returns></returns>
         [Authorize]
         [HttpPost]
         [Route("PolicyCost")]
         public IHttpActionResult PolicyCost(PolicyRegistrationBindingModel model)
         {
+            //Логгирование: запрос рассчета полиса.
+            _logger.Trace($"Запрос рассчета полиса.");
+
             DateTime birthDate;
             DateTime driverLicenseDate;
             var email = string.Empty;
@@ -124,27 +184,53 @@ namespace Insurance.WebApi.Controllers
                     .FirstOrDefault(c => c.Key.Equals("email"))
                     .Value
                     .FirstOrDefault();
-
-                var user = _authService.GetUser(email);
-                birthDate = user.BirthDate;
-                driverLicenseDate = user.DriverLicenseDate;
-
-
-                var policyCost = _policyService.PolicyCalculate(
-                    email,
-                    model.CarCost,
-                    model.ManufacturedYear,
-                    driverLicenseDate,
-                    birthDate,
-                    model.EnginePower);
-
-                return Ok(policyCost);
             }
             catch
             {
+                //Логгирование: ошибка получения email.
+                _logger.Error($"Ошибка, заголовок не содержит email.");
+
                 return NotFound();
             }
+
+            var user = _authService.GetUser(email);
+
+            if (user == null)
+            {
+                //Логгирование: пустой пользователь.
+                _logger.Error($"Ошибка пользователь <{email}> пустой.");
+
+                return NotFound();
+            }
+
+            if (user.BirthDate == null || user.DriverLicenseDate == null)
+            {
+                //Логгирование: ошибка даты.
+                _logger.Error(
+                    $"Ошибка дата рождения <{user.BirthDate}>, " +
+                    $"или дата выдачи прав <{user.DriverLicenseDate}> " +
+                    $"пользователя <{email}> некорректна.");
+            }
+
+            birthDate = user.BirthDate;
+            driverLicenseDate = user.DriverLicenseDate;
+
+            var policyCost = _policyService.PolicyCalculate(
+                email,
+                model.CarCost,
+                model.ManufacturedYear,
+                driverLicenseDate,
+                birthDate,
+                model.EnginePower);
+
+            //Логгирование: запрос регистрации выполнен.
+            _logger.Trace(
+                $"Запрос регистрации полиса на автомобиль <{model.CarNumber}> выполнен." +
+                $" Стоимость полиса <{policyCost}> рублей.");
+
+            return Ok(policyCost);
         }
+
 
         // PUT api/values/5
         public void Put(int id, [FromBody]string value)
