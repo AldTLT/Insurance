@@ -37,9 +37,21 @@ namespace Insurance.BL
         /// </summary>
         /// <param name="carCost">Базовая стоимость полиса.</param>
         /// <returns>Итоговая стоимость полиса.</returns>
-        public int CostCalculate(int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
+        public int CostCalculate(
+            int carCost, 
+            int manufacturedYear, 
+            DateTime driverLicenseDate, 
+            DateTime birthDate, 
+            int enginePower)
         {
-            
+            if (!carCost.IsCarCostCorrect() 
+                || !manufacturedYear.IsManufacturedYearCorrect()
+                || !driverLicenseDate.IsDriverLicenseDateCorrect()
+                || !birthDate.IsBirthDateCorrect()
+                || !enginePower.IsEnginePowerCorrect())
+            {
+                return 0;
+            }
 
             var coefficients = CalculateRatio(manufacturedYear, driverLicenseDate, birthDate, enginePower);
             var baseCost = carCost * baseRate;
@@ -65,8 +77,18 @@ namespace Insurance.BL
         /// <returns>Insurance.BL.Models.Ratio</returns>
         public Ratio GetRatio(Car car, User user)
         {
-            var coefficients = CalculateRatio(car.ManufacturedYear, user.DriverLicenseDate, user.BirthDate, car.EnginePower);
-            var ratio = new Ratio(coefficients.Item1, coefficients.Item2, coefficients.Item3, coefficients.Item4);
+            var coefficients = 
+                CalculateRatio(
+                    car.ManufacturedYear, 
+                    user.DriverLicenseDate, 
+                    user.BirthDate, 
+                    car.EnginePower);
+
+            var ratio = new Ratio(
+                coefficients.Item1, 
+                coefficients.Item2, 
+                coefficients.Item3, 
+                coefficients.Item4);
 
             return ratio;
         }
@@ -83,7 +105,11 @@ namespace Insurance.BL
         /// Item2 - Дата выдачи прав вождения.
         /// Item3 - Дата рождения водителя.
         /// Item4 - Мощность двигателя автомобиля.</returns>
-        private Tuple<double, double, double, double> CalculateRatio(int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
+        private Tuple<double, double, double, double> CalculateRatio(
+            int manufacturedYear, 
+            DateTime driverLicenseDate, 
+            DateTime birthDate, 
+            int enginePower)
         {
             //Рассчет коэффициента, основанного на возрасте автомобиля.
             var carAgeRatio = GetCarAgeRatio(manufacturedYear);

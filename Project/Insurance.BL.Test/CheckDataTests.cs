@@ -128,5 +128,21 @@ namespace Insurance.BL.Test
         {
             Assert.AreEqual(expectedResult, carCost.IsCarCostCorrect());
         }
+
+        /// <summary>
+        /// Тест проверяет корректность роль пользователя.
+        /// </summary>
+        [TestMethod]
+        public void IsRoleCorrectTest()
+        {
+            var role = "user";
+            Assert.IsTrue(role.IsRoleCorrect());
+
+            role = "administrator";
+            Assert.IsTrue(role.IsRoleCorrect());
+
+            role = "superadmin";
+            Assert.IsFalse(role.IsRoleCorrect());
+        }
     }
 }

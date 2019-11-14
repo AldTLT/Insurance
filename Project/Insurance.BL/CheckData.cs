@@ -34,6 +34,18 @@ namespace Insurance.BL
         }
 
         /// <summary>
+        /// Метод возвращает результат проверки роли пользователя на корректность.
+        /// </summary>
+        /// <param name="role">Роль пользователя.</param>
+        /// <returns>true, если роль есть в списке ролей, иначе - false.</returns>
+        public static bool IsRoleCorrect(this string role)
+        {
+            return role.ToLower().Equals(RoleList.user.ToString()) 
+                || role.ToLower().Equals(RoleList.administrator.ToString()) 
+                ? true : false;
+        }
+
+        /// <summary>
         /// Метод возвращает результат проверки номера автомобиля на корректность.
         /// </summary>
         /// <param name="carNumber">Номер автомобиля для проверки.</param>

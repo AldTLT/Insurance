@@ -27,10 +27,11 @@ namespace Insurance.BL
         /// Метод возвращает список идентификаторов роли пользователя по e-mail.
         /// </summary>
         /// <param name="email">E-mail пользователя, по которому производится поиск.</param>
-        /// <returns>Список идентификаторов роли.</returns>
+        /// <returns>Список идентификаторов роли если email корректен, иначе - null.</returns>
         public List<string> GetUserRole(string email)
         {
-            return _roleRepository.GetUserRole(email.ToLower());
+            var lowerEmail = email.ToLower();
+            return lowerEmail.IsEmailCorrect() ? _roleRepository.GetUserRole(lowerEmail) : null;
         }
 
         /// <summary>
@@ -40,8 +41,8 @@ namespace Insurance.BL
         /// <param name="role">Идентификатор роли пользователя, которую необходимо установить.</param>
         /// <returns>true, если роль успешно установлена, иначе - false.</returns>
         public bool SetUserRole(string email, string role)
-        {
-            return _roleRepository.SetUserRole(email.ToLower(), role.ToLower());
+        {            
+            return email.IsEmailCorrect() ? _roleRepository.SetUserRole(email.ToLower(), role.ToLower()) : false;
         }
     }
 }
