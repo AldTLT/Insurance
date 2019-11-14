@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
+    /// <summary>
+    /// Класс представляет объект Policy.
+    /// </summary>
     [DataContract]
     public class Policy
     {
@@ -46,23 +46,7 @@ namespace Insurance.BL.Models
         /// Дата заключения полиса.
         /// </summary>
         [DataMember]
-        private DateTime _policyDate;
-        public DateTime PolicyDate
-        {
-            get
-            {
-                return _policyDate;
-            }
-            private set
-            {
-                if (value < DateTime.Today)
-                {
-                    throw new ArgumentOutOfRangeException("Дата заключения полиса не может быть раньше сегодняшней даты!");
-                }
-
-                _policyDate = value;
-            }
-        }
+        public DateTime PolicyDate { get; }
 
         /// <summary>
         /// Экземпляр класса Insurance.BL.Model.Car который привязан к полису.

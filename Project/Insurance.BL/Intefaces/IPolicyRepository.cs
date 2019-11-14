@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Insurance.BL.Models;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Интерфейс представляет методы управления полисом.
+    /// </summary>
     public interface IPolicyRepository
     {
         /// <summary>

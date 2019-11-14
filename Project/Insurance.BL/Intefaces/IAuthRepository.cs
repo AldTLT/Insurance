@@ -1,12 +1,10 @@
 ﻿using Insurance.BL.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Insurance.BL
 {
+    /// <summary>
+    /// Интерфейс представляет методы управления классом авторизации.
+    /// </summary>
     public interface IAuthRepository
     {
         /// <summary>

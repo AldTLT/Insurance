@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
 
 namespace Insurance.BL.Models
 {
+    /// <summary>
+    /// Класс представляет объект Role.
+    /// </summary>
+    [DataContract]
     public class Role
     {
         /// <summary>
@@ -14,13 +14,14 @@ namespace Insurance.BL.Models
         public static readonly Role User = new Role("user");
 
         /// <summary>
-        /// Поле представляет экземпляр Role типа user.
+        /// Поле представляет экземпляр Role типа administrator.
         /// </summary>
         public static readonly Role Administrator = new Role("administrator");
 
         /// <summary>
         /// Наименование роли.
         /// </summary>
+        [DataMember]
         public string RoleName { get; }
 
         public Role(string roleName)

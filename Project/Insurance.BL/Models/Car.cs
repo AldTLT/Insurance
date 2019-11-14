@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
 {
+    /// <summary>
+    /// Класс представляет объект Car.
+    /// </summary>
     [DataContract]
     public class Car
     {

@@ -1,9 +1,5 @@
 ﻿using Insurance.BL.Intefaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Insurance.BL.Models;
 
 namespace Insurance.BL

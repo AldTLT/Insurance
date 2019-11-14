@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Insurance.BL.Models;
+﻿using Insurance.BL.Models;
 
 namespace Insurance.BL.Intefaces
 {
+    /// <summary>
+    /// Интерфейс представляет методы управления рассчетом коэффициентов.
+    /// </summary>
     public interface IRatioRepository
     {
         /// <summary>

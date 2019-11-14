@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Insurance.BL.Models
-{    
+{
     /// <summary>
-    /// Представляет класс User для BL.
+    /// Класс представляет объект User.
     /// </summary>
     [DataContract]
     public class User
