@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
+using System.Text;
+using System.Linq;
 
 namespace Insurance.BL.Models
 {
@@ -115,7 +117,7 @@ namespace Insurance.BL.Models
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
             EMail = eMail.ToLower();
-            Name = name;
+            Name = ToUpperFirstLetter(name);
             BirthDate = birthDate;
             DriverLicenseDate = driverLicenseDate;
             PasswordHash = passwordHash;
@@ -169,6 +171,30 @@ namespace Insurance.BL.Models
                 + BirthDate.GetHashCode()
                 + DriverLicenseDate.GetHashCode()
                 + PasswordHash.GetHashCode();
+        }
+
+        /// <summary>
+        /// Метод форматирует полное имя пользователя: имя с заглавной буквы (Иванов Иван Иванович).
+        /// </summary>
+        /// <param name="userFullName">Полное имя пользователя.</param>
+        /// <returns>Форматированное имя пользователя.</returns>
+        private string ToUpperFirstLetter(string userFullName)
+        {
+            var nameArray = userFullName.Split(' ');
+            var upperFirstLetterName = new StringBuilder();
+
+            foreach (var name in nameArray)
+            {
+                var firstLetter = Char.ToUpper(name[0]);
+                var formattedName = firstLetter + name.ToLower().Substring(1, name.Length - 1);
+
+                upperFirstLetterName.Append(formattedName + " ");
+            }
+
+            //Удаление последнего пробела.
+            upperFirstLetterName.Remove(upperFirstLetterName.Length - 1, 1);
+
+            return upperFirstLetterName.ToString();
         }
     }
 }
