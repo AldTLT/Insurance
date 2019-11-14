@@ -23,23 +23,6 @@ namespace Insurance.BL.Test
             Assert.AreEqual(expectedResult, manager.SignIn(email, passwordHash));
         }
 
-        /// <summary>
-        /// Тест проверяет корректность формата e-mail.
-        /// </summary>
-        [DataTestMethod]
-        [DataRow(true, "123@mail.ru")]
-        [DataRow(false, "124@mail")]
-        [DataRow(false, "@mail.ru")]
-        [DataRow(false, "Test@mail.ru#")]
-        [DataRow(true, "vasiliy123_pupkin!@home.room.bed")]
-        public void IsMailCorrectTest(bool expectedResult, string email)
-        {
-            var repository = new AuthRepository(new DataContext());
-            var manager = new AccountManager(repository);
-
-            Assert.AreEqual(expectedResult, manager.IsEmailCorrect(email));
-        }
-
         [TestMethod]
         public void CreateNewClientTest()
         {

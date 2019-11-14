@@ -8,6 +8,7 @@ namespace Insurance.Auth.Test
     [TestClass]
     public class EmailSenderTest
     {
+        //Не тест, просто проверка генерации pdf и отправка на почту.
         [TestMethod]
         public void SendEmailTest()
         {

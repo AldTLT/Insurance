@@ -12,15 +12,16 @@ namespace Insurance.WebApi
     // Класс конфигурации сервера авторизации OAuthAuthorizationServer.
     public class Startup
     {
+        /// <summary>
+        /// Метод конфигурации сервера авторизации.
+        /// </summary>
+        /// <param name="app"></param>
         public void Configuration(IAppBuilder app)
         {
             var container = new RepositoryContainer();
             var useStub = true;
             container.SetDependency(useStub);
 
-
-
-            // Enable CORS (cross origin resource sharing) for making request using browser from different domains
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
 
             OAuthAuthorizationServerOptions options = new OAuthAuthorizationServerOptions

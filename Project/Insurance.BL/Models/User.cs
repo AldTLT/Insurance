@@ -117,7 +117,7 @@ namespace Insurance.BL.Models
 
         public User(string eMail, string name, DateTime birthDate, DateTime driverLicenseDate, string passwordHash)
         {
-            EMail = eMail;
+            EMail = eMail.ToLower();
             Name = name;
             BirthDate = birthDate;
             DriverLicenseDate = driverLicenseDate;

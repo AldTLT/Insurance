@@ -11,8 +11,13 @@ namespace Insurance.BL
     /// </summary>
     public class RoleManager
     {
+        //Экземпляр класса, реализующего интерфейс IRoleRepository.
         private readonly IRoleRepository _roleRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="roleRipository">Репозиторий, реализующий интерфейс IRoleRepository.</param>
         public RoleManager(IRoleRepository roleRipository)
         {
             _roleRepository = roleRipository;
@@ -25,7 +30,7 @@ namespace Insurance.BL
         /// <returns>Список идентификаторов роли.</returns>
         public List<string> GetUserRole(string email)
         {
-            return _roleRepository.GetUserRole(email);
+            return _roleRepository.GetUserRole(email.ToLower());
         }
 
         /// <summary>
@@ -36,7 +41,7 @@ namespace Insurance.BL
         /// <returns>true, если роль успешно установлена, иначе - false.</returns>
         public bool SetUserRole(string email, string role)
         {
-            return _roleRepository.SetUserRole(email, role);
+            return _roleRepository.SetUserRole(email.ToLower(), role.ToLower());
         }
     }
 }

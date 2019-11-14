@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Insurance.BL.Models;
+﻿using Insurance.BL.Models;
 
 namespace Insurance.BL
 {
@@ -13,8 +7,15 @@ namespace Insurance.BL
     /// </summary>
     public class AccountManager
     {
+        /// <summary>
+        /// Экземпляр класса, реализующего интерфейс IAuthRepository.
+        /// </summary>
         private readonly IAuthRepository _authRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="authRepository">Репозиторий, реализующий интерфейс IAuthRepository.</param>
         public AccountManager(IAuthRepository authRepository)
         {
             _authRepository = authRepository;
@@ -25,10 +26,11 @@ namespace Insurance.BL
         /// </summary>
         /// <param name="email">E-mail пользователя.</param>
         /// <param name="passwordHash">Хэш-код пароля.</param>
-        /// <returns>true - если пользователь успешно авторизовался, иначе - false.</returns>
+        /// <returns>true - если пользователь успешно авторизовался и формат e-mail валидный, иначе - false.</returns>
         public bool SignIn(string email, string passwordHash)
         {
-            return _authRepository.SignIn(email, passwordHash);
+            var lowerEmail = email.ToLower();
+            return lowerEmail.IsEmailCorrect() ? _authRepository.SignIn(lowerEmail, passwordHash) : false;
         }
 
         /// <summary>
@@ -42,23 +44,14 @@ namespace Insurance.BL
         }
 
         /// <summary>
-        /// Метод возвращает результат проверки ввода E-mail на корректность.
-        /// </summary>
-        /// <param name="mail">E-mail для проверки.</param>
-        /// <returns>true, если e-mail в правильном формате, иначе - false.</returns>
-        public bool IsEmailCorrect(string email)
-        {
-            return new EmailAddressAttribute().IsValid(email);
-        }
-
-        /// <summary>
         /// Метод возвращает Insurance.BL.Models.User по email.
         /// </summary>
-        /// <param name="mail">E-mail пользователя для идентификации.</param>
+        /// <param name="email">E-mail пользователя для идентификации.</param>
         /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
-        User GetUser(string mail)
+        public User GetUser(string email)
         {
-            return _authRepository.GetUser(mail);
+            var lowerEmail = email.ToLower();
+            return lowerEmail.IsEmailCorrect() ? _authRepository.GetUser(lowerEmail) : null;
         }
     }
 }

@@ -12,21 +12,29 @@ namespace Insurance.BL
     /// </summary>
     public class CarManager
     {
+        /// <summary>
+        /// Экземпляр класса, реализующего интерфейс ICarRepository.
+        /// </summary>
         private readonly ICarRepository _carRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="carRepository">Репозиторий, реализующий интерфейс ICarRepository.</param>
         public CarManager(ICarRepository carRepository)
         {
             _carRepository = carRepository;
         }
 
         /// <summary>
-        /// Метод возвращает Insurance.BL.Models.Car по id.
+        /// Метод возвращает Insurance.BL.Models.Car по номеру автомобиля.
         /// </summary>
-        /// <param name="carNumber">Id по которому производится возврат.</param>
+        /// <param name="carNumber">Номер автомобиля по которому производится возврат.</param>
         /// <returns>Insurance.BL.Models.Car.</returns>
         public Car GetCar(string carNumber)
         {
-            return _carRepository.GetCar(carNumber);
+            var carNumberUpperLetters = carNumber.ToUpper();
+            return carNumberUpperLetters.IsCarNumberCorrect() ? _carRepository.GetCar(carNumberUpperLetters) : null;
         }
     }
 }

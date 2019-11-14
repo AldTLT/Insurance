@@ -12,8 +12,15 @@ namespace Insurance.BL
     /// </summary>
     public class PolicyManager
     {
+        /// <summary>
+        /// Экземпляр класса, реализующего интерфейс IPolicyRepository.
+        /// </summary>
         private readonly IPolicyRepository _policyRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="policyRepository">Репозиторий, реализующий интерфейс IPolicyRepository.</param>
         public PolicyManager(IPolicyRepository policyRepository)
         {
             _policyRepository = policyRepository;
@@ -26,7 +33,8 @@ namespace Insurance.BL
         /// <returns>ICollection<Policy> соответствующих email.</returns>
         public ICollection<Policy> GetPolicys(string email)
         {
-            return _policyRepository.GetPolicys(email);
+            var lowerEmail = email.ToLower();
+            return lowerEmail.IsEmailCorrect() ? _policyRepository.GetPolicys(lowerEmail) : null;
         }
 
         /// <summary>
@@ -46,7 +54,8 @@ namespace Insurance.BL
         /// <returns>Insurance.BL.Models.Policy, если номер существует в базе данных, иначе - null.</returns>
         public Policy GetPolicy(string carNumber)
         {
-            return _policyRepository.GetPolicy(carNumber);
+            var carNumberUpperLetters = carNumber.ToUpper();
+            return carNumberUpperLetters.IsCarNumberCorrect() ? _policyRepository.GetPolicy(carNumberUpperLetters) : null;
         }
     }
 }

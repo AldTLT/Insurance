@@ -26,20 +26,20 @@ namespace Insurance.WebApi
         }
 
         /// <summary>
-        /// 
+        /// Метод проверяет источник запроса и валидирует данные запроса.
         /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <param name="context">Контекст, содержащий данные и результаты.</param>
+        /// <returns>Task to enable asynchronous execution</returns>
         public override async Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
             context.Validated();
         }
 
         /// <summary>
-        /// 
+        /// Метод авторизации пользователя. Вызывается при запросе токена grant_type=password.
         /// </summary>
-        /// <param name="context"></param>
-        /// <returns></returns>
+        /// <param name="context">Контекст, содержащий данные и результаты.</param>
+        /// <returns>Task to enable asynchronous execution</returns>
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
             //Создание экземпляра логгера.

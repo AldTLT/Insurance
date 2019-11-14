@@ -9,17 +9,24 @@ using Insurance.BL.Models;
 namespace Insurance.BL
 {
     /// <summary>
-    /// Класс представляет методы обработки коэффициентов расчета стоимости полиса.
+    /// Класс представляет методы коэффициентов расчета и стоимости полиса.
     /// </summary>
     public class RatioManager
     {
         /// <summary>
-        /// Константа базовая ставка, составляет 5% от стоимости автомобиля.
+        /// Константа базовая ставка, составляет 4% от стоимости автомобиля.
         /// </summary>
-        const double baseRate = 0.05;
+        const double baseRate = 0.04;
 
+        /// <summary>
+        /// Экземпляр класса, реализующего интерфейс IRatioRepository.
+        /// </summary>
         private readonly IRatioRepository _ratioRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="ratioRepository">Репозиторий, реализующий интерфейс IRatioRepository.</param>
         public RatioManager(IRatioRepository ratioRepository)
         {
             _ratioRepository = ratioRepository;
@@ -32,6 +39,8 @@ namespace Insurance.BL
         /// <returns>Итоговая стоимость полиса.</returns>
         public int CostCalculate(int carCost, int manufacturedYear, DateTime driverLicenseDate, DateTime birthDate, int enginePower)
         {
+            
+
             var coefficients = CalculateRatio(manufacturedYear, driverLicenseDate, birthDate, enginePower);
             var baseCost = carCost * baseRate;
 
@@ -45,7 +54,7 @@ namespace Insurance.BL
         /// <returns>Insurance.BL.Models.Ratio</returns>
         public Ratio GetRatio(string carNumber)
         {
-            return _ratioRepository.GetRatio(carNumber);
+            return _ratioRepository.GetRatio(carNumber.ToUpper());
         }
 
         /// <summary>
@@ -104,15 +113,30 @@ namespace Insurance.BL
         /// </returns>
         private double GetCarAgeRatio(int manufacturedYear)
         {
+            //Возраст автомобиля, полных лет.
             var carAge = DateTime.Today.Year - manufacturedYear;
+        
+            if (carAge == 0)
+            {
+                return 1.0;
+            }
+            
+            if (carAge > 0 && carAge <= 3)
+            {
+                return 1.1;
+            }
 
-            var carAgeRatio = carAge == 0 ? 1.0
-                : carAge > 0 && carAge <= 3 ? 1.1
-                : carAge > 3 && carAge <= 5 ? 1.3
-                : carAge > 5 && carAge <= 7 ? 1.6
-                : 2.0;
+            if (carAge > 3 && carAge <= 5)
+            {
+                return 1.3;
+            }
 
-            return carAgeRatio;
+            if (carAge > 5 && carAge <= 7)
+            {
+                return 1.6;
+            }
+
+            return 2.0;
         }
 
         /// <summary>
@@ -126,14 +150,25 @@ namespace Insurance.BL
         /// Свыше 10, коэффициент = 0.8</returns>
         private double GetDrivingExperienceRatio(DateTime driverLicenseDate)
         {
+            //Стаж вождения, полных лет.
             var drivingExpInYear = GetPeriodInYears(driverLicenseDate);
 
-            var ratio = drivingExpInYear < 3 ? 1.8
-                : drivingExpInYear >= 3 && drivingExpInYear <= 5 ? 1.2
-                : drivingExpInYear >= 6 && drivingExpInYear <= 10 ? 1
-                : 0.8;
+            if (drivingExpInYear < 3)
+            {
+                return 1.8;
+            }
 
-            return ratio;
+            if (drivingExpInYear >= 3 && drivingExpInYear <= 5)
+            {
+                return 1.2;
+            }
+
+            if (drivingExpInYear >= 6 && drivingExpInYear <= 10)
+            {
+                return 1;
+            }
+
+            return 0.8;
         }
 
         /// <summary>
@@ -147,14 +182,25 @@ namespace Insurance.BL
         /// От 65, коэффициент = 1.4</returns>
         private double GetDriverAgeRatio(DateTime birthDate)
         {
+            //Возраст водителя, полных лет.
             var driverAge = GetPeriodInYears(birthDate);
 
-            var ratio = driverAge <= 22 ? 1.8
-                : driverAge >= 23 && driverAge <= 30 ? 1.5
-                : driverAge >= 31 && driverAge <= 64 ? 1
-                : 1.4;
+            if (driverAge <= 22)
+            {
+                return 1.8;
+            }
 
-            return ratio;
+            if (driverAge >= 23 && driverAge <= 30)
+            {
+                return 1.5;
+            }
+
+            if (driverAge >= 31 && driverAge <= 64)
+            {
+                return 1;
+            }
+
+            return 1.4;
         }
 
         /// <summary>
@@ -169,13 +215,28 @@ namespace Insurance.BL
         /// Свыше 150, коэффициент = 1.6</returns>
         private double GetEnginePowerRatio(int enginePower)
         {
-            var ratio = enginePower <= 50 ? 0.6
-                : enginePower >= 51 && enginePower <= 80 ? 0.9
-                : enginePower >= 81 && enginePower <= 110 ? 1.2
-                : enginePower >= 111 && enginePower <= 150 ? 1.4
-                : 1.6;
+            //Мощность двигателя, л.с.
+            if (enginePower <= 50)
+            {
+                return 0.6;
+            }
+            
+            if (enginePower >= 51 && enginePower <= 80)
+            {
+                return 0.9;
+            }
 
-            return ratio;
+            if (enginePower >= 81 && enginePower <= 110)
+            {
+                return 1.2;
+            }
+
+            if (enginePower >= 111 && enginePower <= 150)
+            {
+                return 1.4;
+            }
+
+            return 1.6;
         }
 
         /// <summary>
