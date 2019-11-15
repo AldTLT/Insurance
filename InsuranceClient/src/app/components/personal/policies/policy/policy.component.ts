@@ -3,6 +3,7 @@ import { Policy } from 'src/app/models/policy';
 import { SendmailService } from 'src/app/services/sendmail.service';
 import { StoreService } from 'src/app/services/store.service';
 import { EmailValidator } from '@angular/forms';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-policy',
@@ -11,20 +12,31 @@ import { EmailValidator } from '@angular/forms';
 })
 export class PolicyComponent implements OnInit{
 
-  constructor(private storeService: StoreService, private sendmailService: SendmailService){}
+  constructor(
+    private storeService: StoreService, 
+    private sendmailService: SendmailService,
+    private fileService: FileService
+    ){}
 
   ngOnInit(){
+    this.email = this.storeService.getItem('email');
+    this.carNumber = this.policy.Car.CarNumber;
   }
 
+  email: string;
+  carNumber: string;
   endPolicyDate: Date = new Date();
 
     @Input() policy: Policy;
 
     sendPdf(){
-      const email = this.storeService.getItem('email');
-      const carNumber = this.policy.Car.CarNumber;
-      this.sendmailService.sendMail(carNumber, email).subscribe((data) => {
-        // debugger;
+      this.sendmailService.sendMail(this.carNumber, this.email).subscribe((data) => {
+      });
+    }
+
+    savePdf(){
+      this.fileService.getPdfFile(this.carNumber, this.email).subscribe((data) => {
+        console.log(data);
       });
     }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { Authorization } from 'src/app/models/authorization';
 import { BinaryOperatorExpr } from '@angular/compiler';
@@ -14,8 +14,12 @@ import { StoreService } from 'src/app/services/store.service';
 })
 export class AuthComponent implements OnInit {
 
+  //Маркер
   isLoginError: boolean = false;
+  //Экземпляр класса Authorization с данными авторизации.
   data: Authorization = new Authorization();
+  //Маркер показывающий что пользователь залогинен
+  @Output() logged: boolean;
 
   constructor(
     private authService: AuthService, 
@@ -23,7 +27,7 @@ export class AuthComponent implements OnInit {
     private router: Router
     ) 
     {
-    this.data.password = "qwerty123";
+    this.data.password = "mypassword";
     this.data.username = "vr0rtex@mail.ru";
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { StoreService } from './services/store.service';
 
@@ -16,10 +16,16 @@ export class AppComponent implements OnInit{
   }
 
   title = 'InsuranceClient';
+  @Output() isLogged: boolean;
+
+  logIn(){
+    this.router.navigate(['/authorization']);
+  }
 
   logOut(){
     this.storeService.clear();
     localStorage.clear();
     this.router.navigate(['/authorization']);
+    this.isLogged = false;
   }
 }

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { StoreService } from 'src/app/services/store.service';
 import { Router } from '@angular/router';
-import { SendmailService } from 'src/app/services/sendmail.service';
 import { PolicyService } from 'src/app/services/policy.service';
-import { dashCaseToCamelCase } from '@angular/compiler/src/util';
 
 @Component({
   selector: 'app-pay',
@@ -15,54 +13,38 @@ export class PayComponent implements OnInit {
   constructor(
     private router: Router, 
     private storeService: StoreService, 
-    private sendmailService: SendmailService,
     private policyService: PolicyService
     ) { }
 
   toPayment: boolean;
   policyCost: any;
   isPolicyRegistered: boolean;
+  @Output() policyNumber: string;
 
   ngOnInit() {
     this.toPayment = false;
     this.policyCost = this.storeService.getItem('policyCost');
   }
 
-  //Метод отправки полиса на почту
-  payPolicy(){
-    debugger;
-    // this.isPolicyRegistered = this.registerPolicy();
-    // if (!this.isPolicyRegistered)
-    // {
-    //   //Обработать ошибку регистрации
-    //   return;
-    // }
-
-    this.toPayment = true;
-    const email = this.storeService.getItem('email');
-    const carNumber = this.storeService.getItem('carNumber');
-    this.sendmailService.sendMail(carNumber, email).subscribe((data) => {
-      console.log(data);
-    });
-    this.router.navigate(['/personal/pay/payment']);
-  }
-
   //Регистрация нового полиса.
   registerPolicy(): any{
-    debugger;
     let car = this.storeService.getItem('car');
     let email = this.storeService.getItem('email');
 
-    let registerResult = this.policyService.registerPolicy(car, email).subscribe((data) => {
-    if (registerResult)
+    this.policyService.registerPolicy(car, email).subscribe((data: any) => {
+    if (data != null)
     {
-      this.payPolicy();
-      return true;
+      this.policyNumber = data;
+      this.toPayment = true;
+      console.log(this.policyNumber);
     }
     else
     {
-      return false;
+      //Сообщение об ошибке.
+      return;
     }
+
+    this.router.navigate(['/personal/pay/payment']);
     });
   }
 }

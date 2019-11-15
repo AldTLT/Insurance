@@ -2,6 +2,7 @@
 <div>
     <p>Email: {{ user.EMail }}</p>
     <p>Имя: {{ user.Name }}</p>
-    <p>Дата рождения: {{ user.BirthDate }}</p>
-    <p>Дата выдачи водительских прав: {{ user.DriverLicenseDate }}</p>
+    <p>Дата рождения: {{ user.BirthDate | date}}</p>
+    <p>Дата выдачи водительских прав: {{ user.DriverLicenseDate | date}}</p>
 </div>
+

@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { StoreService } from 'src/app/services/store.service';
+import { SendmailService } from 'src/app/services/sendmail.service';
+import { FileService } from 'src/app/services/file.service';
 
 @Component({
   selector: 'app-payment',
@@ -7,9 +11,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PaymentComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private router: Router, 
+    private storeService: StoreService, 
+    private sendmailService: SendmailService,
+    private fileService: FileService
+    ) { }
+
+    email: string; 
+    carNumber: string;
 
   ngOnInit() {
+    this.email = this.storeService.getItem('email');
+    this.carNumber = this.storeService.getItem('carNumber');
   }
+
+    //Метод отправки полиса на почту.
+    sendPolicy(){
+      this.sendmailService.sendMail(this.carNumber, this.email).subscribe((data) => {
+      });
+    }
+
+    //Метод сохранения полиса.
+    savePolicy(){
+      this.fileService.getPdfFile(this.carNumber, this.email).subscribe((data) => {
+        console.log(data);
+      })
+    }
 
 }

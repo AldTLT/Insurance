@@ -12,7 +12,6 @@ export class SendmailService {
 
     //Отправка сообщения на почту.
     sendMail(carNumber: string, email: string){    
-      debugger;  
       let reqHeader = new HttpHeaders({ 'carNumber' : carNumber, 'email' : email});
       return this.http.get(this.rootUrl + '/api/sender/sendmail', { headers: reqHeader } );
     }
