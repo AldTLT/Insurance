@@ -16,8 +16,15 @@ namespace MainRepository
     /// </summary>
     public class PolicyRepository : IPolicyRepository
     {
+        /// <summary>
+        /// Контекст подключения к БД.
+        /// </summary>
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="context">Контекст подключения к БД.</param>
         public PolicyRepository(DataContext context)
         {
             _context = context;
@@ -125,7 +132,10 @@ namespace MainRepository
         public Policy PolicyModelToPolicy(PolicyModel policyModel)
         {
             if (policyModel == null)
+            {
                 return null;
+            }
+
             Car car = null;
             Ratio ratio = null;
 
@@ -141,7 +151,10 @@ namespace MainRepository
                 ratio = ratioRepository.RatioModelToRatio(policyModel.Ratio);
             }
 
-            var clientEmail = policyModel.Client != null ? policyModel.Client.EMail : policyModel.ClientEmail != null ? policyModel.ClientEmail : null;
+            var clientEmail = 
+                policyModel.Client != null ? 
+                    policyModel.Client.EMail : policyModel.ClientEmail != null ? 
+                        policyModel.ClientEmail : null;
 
             var policy = new Policy
                 (
@@ -165,7 +178,9 @@ namespace MainRepository
         public PolicyModel PolicyToPolicyModel(Policy policy)
         {
             if (policy == null)
+            {
                 return null;
+            }
 
             CarModel carModel = null;
             RatioModel ratioModel = null;
@@ -193,10 +208,14 @@ namespace MainRepository
             };
 
             if (carModel != null)
+            {
                 carModel.Policy = policyModel;
+            }
 
             if (ratioModel != null)
+            {
                 ratioModel.Policy = policyModel;
+            }
 
             return policyModel;
         }

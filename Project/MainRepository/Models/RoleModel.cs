@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MainRepository.Models
 {
+    /// <summary>
+    /// Класс entity роль.
+    /// </summary>
     public class RoleModel
     {
         /// <summary>
@@ -30,11 +28,17 @@ namespace MainRepository.Models
         /// </summary>
         public virtual ICollection<ClientModel> Clients { get; set; }
 
+        /// <summary>
+        /// Конструктор класса Role.
+        /// </summary>
         public RoleModel()
         {
             Clients = new HashSet<ClientModel>();
         }
 
+        /// <summary>
+        /// Класс представляет метод конфигурирования RolesModel.
+        /// </summary>
         public class RoleConfiguration : EntityTypeConfiguration<RoleModel>
         {
             public RoleConfiguration()

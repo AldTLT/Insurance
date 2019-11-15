@@ -1,10 +1,6 @@
 ﻿using Insurance.BL.Models;
 using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MainRepository
 {
@@ -13,6 +9,36 @@ namespace MainRepository
     /// </summary>
     public class InitializeDb : CreateDatabaseIfNotExists<DataContext>
     {
+        /// <summary>
+        /// Хэш пароля.
+        /// </summary>
+        private const string passwordHash = "ᘺ孁래㮲건Ǒ몒莵閟螺"; //пароль: mypassword
+
+        /// <summary>
+        /// E-mail пользователя.
+        /// </summary>
+        private const string email = "vr0rtex@mail.ru";
+
+        /// <summary>
+        /// Имя пользователя.
+        /// </summary>
+        private const string name = "Юрий Уливанов Геннадьевич";
+
+        /// <summary>
+        /// Дата рождения пользователя.
+        /// </summary>
+        private readonly DateTime birthDate = new DateTime(1984, 4, 13);
+
+        /// <summary>
+        /// Дата выдачи водительских прав пользователя.
+        /// </summary>
+        private readonly DateTime driverLicenseDate = new DateTime(2003, 01, 15);
+
+        /// <summary>
+        /// Роль пользователя - полный доступ.
+        /// </summary>
+        private const string administratorRole = "administrator";
+
         /// <summary>
         /// Метод инициализации базы данных.
         /// </summary>
@@ -23,10 +49,17 @@ namespace MainRepository
             base.InitializeDatabase(context);
             AuthRepository repository = new AuthRepository(context);
 
-            //Инициализация пользователя.
-            var passwordHash = "ᘺ孁래㮲건Ǒ몒莵閟螺"; //пароль: mypassword
-            var user = new User("vr0rtex@mail.ru", "Юрий Уливанов Геннадьевич", new DateTime(1984, 4, 13), new DateTime(2003, 01, 15), passwordHash);
-            user.Role.Add("administrator");
+            //Инициализация пользователя.           
+            var user = new User(
+                email, 
+                name, 
+                birthDate, 
+                driverLicenseDate,
+                passwordHash
+                );
+
+            user.Role.Add(administratorRole);
+
             repository.Registration(user);
         }
     }

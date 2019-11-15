@@ -1,12 +1,11 @@
 ﻿using Insurance.BL;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Stub
 {
+    /// <summary>
+    /// Заглушка для тестирования и настройки фронтенда.
+    /// </summary>
     public class StubRoleRepository : IRoleRepository
     {
         public List<string> GetUserRole(string email)

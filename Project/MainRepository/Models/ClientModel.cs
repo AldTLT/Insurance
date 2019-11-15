@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.Entity.ModelConfiguration;;
 
 namespace MainRepository.Models
 {
     /// <summary>
-    /// Класс представляет сущность клиента.
+    /// Класс entity пользователь.
     /// </summary>
     public class ClientModel
     {
@@ -47,6 +44,9 @@ namespace MainRepository.Models
         /// </summary>
         public virtual ICollection<PolicyModel> Policys { get; set; }
 
+        /// <summary>
+        /// Конструктор класса ClientModel.
+        /// </summary>
         public ClientModel()
         {
             Policys = new HashSet<PolicyModel>();

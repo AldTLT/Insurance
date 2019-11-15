@@ -14,8 +14,15 @@ namespace MainRepository.ModelsRepository
     /// </summary>
     public class CarRepository : ICarRepository
     {
+        /// <summary>
+        /// Контекст подключения к БД.
+        /// </summary>
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="context">Контекст подключения к БД.</param>
         public CarRepository(DataContext context)
         {
             _context = context;
@@ -51,7 +58,9 @@ namespace MainRepository.ModelsRepository
         public Car CarModelToCar(CarModel carModel)
         {
             if (carModel == null)
+            {
                 return null;
+            }
 
             return new Car(
                 carModel.CarNumber,
@@ -72,7 +81,9 @@ namespace MainRepository.ModelsRepository
         public CarModel CarToCarModel(Car car)
         {
             if (car == null)
+            {
                 return null;
+            }
 
             return new CarModel()
             {

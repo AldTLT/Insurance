@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.Entity.ModelConfiguration;
 
 namespace MainRepository.Models
 {
+    /// <summary>
+    /// Класс entity коэффициенты.
+    /// </summary>
     public class RatioModel
     {
         /// <summary>
@@ -39,6 +38,9 @@ namespace MainRepository.Models
         /// </summary>
         public virtual PolicyModel Policy { get; set; }
 
+        /// <summary>
+        /// Класс представляет метод конфигурирования RatioModel.
+        /// </summary>
         public class RatioConfiguration : EntityTypeConfiguration<RatioModel>
         {
              public RatioConfiguration()

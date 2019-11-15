@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Insurance.BL;
 using Insurance.BL.Models;
 using MainRepository.Models;
@@ -17,10 +13,14 @@ namespace MainRepository
     public class AuthRepository : IAuthRepository
     {
         /// <summary>
-        /// Контекст для подключения к модели EDM.
+        /// Контекст подключения к БД.
         /// </summary>
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="context">Контекст подключения к БД.</param>
         public AuthRepository(DataContext context)
         {
             _context = context;
@@ -90,14 +90,14 @@ namespace MainRepository
         /// <returns>true, если e-mail уже есть в БД, иначе - false.</returns>
         public bool IsMailExist(string mail)
         {
-            //try
-            //{
+            try
+            {
                 return _context.Client.Any(c => c.EMail.Equals(mail));
-            //}
-            //catch
-            //{
-            //    return false;
-            //}
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         /// <summary>
@@ -108,7 +108,9 @@ namespace MainRepository
         public ClientModel UserToClientModel(User user)
         {
             if (user == null)
+            {
                 return null;
+            }
 
             var roleReposiory = new RoleRepository(_context);
             var roleModelList = new List<RoleModel>();
@@ -127,8 +129,7 @@ namespace MainRepository
                 BirthDate = user.BirthDate,
                 DriverLicenseDate = user.DriverLicenseDate,
                 PasswordHash = user.PasswordHash,
-                Roles = roleModelList
-                
+                Roles = roleModelList                
             };
 
             return client;
@@ -141,9 +142,10 @@ namespace MainRepository
         /// <returns>Insurance.BL.Models.User с данными из ClientModel.</returns>
         public User ClientModelToUser(ClientModel client)
         {
-
             if (client == null)
+            {
                 return null;
+            }
 
             var user = new User(
                 client.EMail,
@@ -155,7 +157,5 @@ namespace MainRepository
 
             return user;
         }
-
-
     }
 }

@@ -1,14 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using MainRepository;
 using Insurance.BL;
 using MainRepository.ModelsRepository;
 using Insurance.BL.Models;
-using Stub;
 using Insurance.BL.Intefaces;
 
 namespace Insurance.WCF

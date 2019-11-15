@@ -1,19 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using MainRepository.Models;
 
 namespace MainRepository
 {
+    /// <summary>
+    /// Класс представляет контекст подключения к БД.
+    /// </summary>
     public class DataContext : DbContext
     {
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
         public DataContext() : base(nameOrConnectionString: "InsuranceDbConnection")
         {
-            //Database.SetInitializer<DataContext>(new InitializeDb());
-
             var initialise = new InitializeDb();
             initialise.InitializeDatabase(this);
         }

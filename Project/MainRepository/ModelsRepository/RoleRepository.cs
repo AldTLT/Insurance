@@ -15,10 +15,14 @@ namespace MainRepository.ModelsRepository
     public class RoleRepository : IRoleRepository
     {
         /// <summary>
-        /// Контекст для подключения к модели EDM.
+        /// Контекст подключения к БД.
         /// </summary>
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="context">Контекст подключения к БД.</param>
         public RoleRepository(DataContext context)
         {
             _context = context;
@@ -60,6 +64,7 @@ namespace MainRepository.ModelsRepository
                 var roleModel = _context.Role.First(r => r.RoleName.Equals(role));
                 client.Roles.Add(roleModel);
                 _context.SaveChanges();
+
                 return true;
             }
             catch

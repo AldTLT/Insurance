@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Insurance.BL;
+﻿using System.Linq;
 using Insurance.BL.Models;
 using MainRepository.Models;
-using MainRepository.ModelsRepository;
 using Insurance.BL.Intefaces;
 
 namespace MainRepository.ModelsRepository
@@ -16,8 +10,15 @@ namespace MainRepository.ModelsRepository
     /// </summary>
     public class RatioRepository : IRatioRepository
     {
+        /// <summary>
+        /// Контекст подключения к БД.
+        /// </summary>
         private readonly DataContext _context;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        /// <param name="context">Контекст подключения к БД.</param>
         public RatioRepository(DataContext context)
         {
             _context = context;
@@ -44,7 +45,9 @@ namespace MainRepository.ModelsRepository
         public Ratio RatioModelToRatio(RatioModel ratioModel)
         {
             if (ratioModel == null)
+            {
                 return null;
+            }
 
             var ratio = new Ratio
                 (
@@ -66,7 +69,9 @@ namespace MainRepository.ModelsRepository
         public RatioModel RatioToRatioModel(Ratio ratio)
         {
             if (ratio == null)
+            {
                 return null;
+            }
 
             var ratioModel = new RatioModel()
             {

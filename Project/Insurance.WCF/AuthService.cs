@@ -1,14 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.Text;
 using MainRepository;
 using Insurance.BL;
-using MainRepository.ModelsRepository;
 using Insurance.BL.Models;
-using Stub;
 
 namespace Insurance.WCF
 {
@@ -17,15 +10,30 @@ namespace Insurance.WCF
     /// </summary>
     public class AuthService : IAuthService
     {
+        /// <summary>
+        /// Контекст соединения БД.
+        /// </summary>
         private readonly DataContext _context = new DataContext();
+
+        /// <summary>
+        /// Экземпляр репозитория управления аккаунтом.
+        /// </summary>
         private readonly IAuthRepository _authRepository;
 
+        /// <summary>
+        /// Конструктор сервиса управления аккаунтом.
+        /// </summary>
         public AuthService()
         {
             _authRepository = new AuthRepository(_context);            
             //_authRepository = new StubAuthRepository();
         }
 
+        /// <summary>
+        /// Метод возвращает Insurance.BL.Models.User по email.
+        /// </summary>
+        /// <param name="mail">E-mail пользователя для идентификации.</param>
+        /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
         public User GetUser(string email)
         {
             return _authRepository.GetUser(email);
