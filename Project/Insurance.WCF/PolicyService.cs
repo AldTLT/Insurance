@@ -13,10 +13,29 @@ namespace Insurance.WCF
     /// </summary>
     public class PolicyService : IPolicyService
     {
+        /// <summary>
+        /// Контекст соединения БД.
+        /// </summary>
         private readonly DataContext _context = new DataContext();
+
+        /// <summary>
+        /// Экземпляр репозитория управления полисом.
+        /// </summary>
         private readonly IPolicyRepository _policyRepository;
+
+        /// <summary>
+        /// Экземпляр репозитория управления коэффициентами.
+        /// </summary>
         private readonly IRatioRepository _ratioRepository;
+
+        /// <summary>
+        /// Экземпляр репозитория управления автомобилем.
+        /// </summary>
         private readonly ICarRepository _carRepository;
+
+        /// <summary>
+        /// Экземпляр репозитория управления аккаунтом.
+        /// </summary>
         private readonly IAuthRepository _authRepository; 
 
         public PolicyService()

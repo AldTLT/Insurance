@@ -5,7 +5,7 @@ using Insurance.BL.Models;
 namespace Insurance.WCF
 { 
     /// <summary>
-    /// Интерфейс представляет методы упарвления аккаунтом.
+    /// Интерфейс представляет методы управления аккаунтом.
     /// </summary>
     [ServiceContract]
     public interface IAuthService

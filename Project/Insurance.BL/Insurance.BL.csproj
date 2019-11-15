@@ -71,6 +71,7 @@
     <Compile Include="AccountManager.cs" />
     <Compile Include="CarManager.cs" />
     <Compile Include="CheckData.cs" />
+    <Compile Include="PdfGenerate\FileManager.cs" />
     <Compile Include="PdfGenerate\EmailSender.cs" />
     <Compile Include="Intefaces\IAuthRepository.cs" />
     <Compile Include="Intefaces\ICarRepository.cs" />

@@ -10,23 +10,31 @@ namespace Insurance.WCF
     /// </summary>
     public class MailService : IMailService
     {
+        /// <summary>
+        /// Контекст соединения БД.
+        /// </summary>
         private readonly DataContext _context = new DataContext();
+
+        /// <summary>
+        /// Экземпляр репозитория управления полисом.
+        /// </summary>
         private readonly IPolicyRepository _policyRepository;
-        private readonly IRatioRepository _ratioRepository;
-        private readonly ICarRepository _carRepository;
+
+        /// <summary>
+        /// Экземпляр репозитория управления аккаунтом.
+        /// </summary>
         private readonly IAuthRepository _authRepository;
 
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
         public MailService()
         {
             _policyRepository = new PolicyRepository(_context);
-            _ratioRepository = new RatioRepository(_context);
-            _carRepository = new CarRepository(_context);
             _authRepository = new AuthRepository(_context);
 
             //_policyRepository = new StubPolicyRepository();
             //_authRepository = new StubAuthRepository();
-            //_ratioRepository = new StubRatioRepository();
-            //_carRepository = new StubCarRepository();
         }
 
         /// <summary>

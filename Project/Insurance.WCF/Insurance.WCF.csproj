@@ -54,7 +54,9 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileService.cs" />
     <Compile Include="IAuthService.cs" />
+    <Compile Include="IFileService.cs" />
     <Compile Include="IPolicyService.cs" />
     <Compile Include="IMailService.cs" />
     <Compile Include="PolicyService.cs" />
