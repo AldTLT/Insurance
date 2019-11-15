@@ -2,6 +2,7 @@
 using Insurance.BL.Intefaces;
 using MainRepository;
 using MainRepository.ModelsRepository;
+using Stub;
 
 namespace Insurance.WCF
 {
@@ -30,11 +31,11 @@ namespace Insurance.WCF
         /// </summary>
         public MailService()
         {
-            _policyRepository = new PolicyRepository(_context);
-            _authRepository = new AuthRepository(_context);
+            //_policyRepository = new PolicyRepository(_context);
+            //_authRepository = new AuthRepository(_context);
 
-            //_policyRepository = new StubPolicyRepository();
-            //_authRepository = new StubAuthRepository();
+            _policyRepository = new StubPolicyRepository();
+            _authRepository = new StubAuthRepository();
         }
 
         /// <summary>

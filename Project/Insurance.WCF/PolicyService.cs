@@ -5,6 +5,7 @@ using Insurance.BL;
 using MainRepository.ModelsRepository;
 using Insurance.BL.Models;
 using Insurance.BL.Intefaces;
+using Stub;
 
 namespace Insurance.WCF
 {
@@ -40,15 +41,15 @@ namespace Insurance.WCF
 
         public PolicyService()
         {
-            _policyRepository = new PolicyRepository(_context);
-            _ratioRepository = new RatioRepository(_context);
-            _carRepository = new CarRepository(_context);
-            _authRepository = new AuthRepository(_context);
+            //_policyRepository = new PolicyRepository(_context);
+            //_ratioRepository = new RatioRepository(_context);
+            //_carRepository = new CarRepository(_context);
+            //_authRepository = new AuthRepository(_context);
 
-            //_policyRepository = new StubPolicyRepository();
-            //_authRepository = new StubAuthRepository();
-            //_ratioRepository = new StubRatioRepository();
-            //_carRepository = new StubCarRepository();
+            _policyRepository = new StubPolicyRepository();
+            _authRepository = new StubAuthRepository();
+            _ratioRepository = new StubRatioRepository();
+            _carRepository = new StubCarRepository();
         }
 
         /// <summary>
@@ -90,8 +91,8 @@ namespace Insurance.WCF
         /// <param name="manufacturedYear">Год выпуска автомобиля.</param>
         /// <param name="cost">Стоимость автомобиля.</param>
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
-        /// <returns>true, если полис успешно зарегистрирован, иначе - false.</returns>
-        public bool PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower)
+        /// <returns>Номер полиса, если полис успешно зарегистрирован, иначе - null.</returns>
+        public string PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower)
         {
             var accountManager = new AccountManager(_authRepository);
             var carManager = new CarManager(_carRepository);

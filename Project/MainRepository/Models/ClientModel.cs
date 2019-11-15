@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.ModelConfiguration;;
+using System.Data.Entity.ModelConfiguration;
 
 namespace MainRepository.Models
 {

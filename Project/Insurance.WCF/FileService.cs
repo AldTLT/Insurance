@@ -1,5 +1,6 @@
 ﻿using Insurance.BL;
 using MainRepository;
+using Stub;
 using System.IO;
 
 namespace Insurance.WCF
@@ -23,6 +24,18 @@ namespace Insurance.WCF
         /// Экземпляр репозитория управления полисом.
         /// </summary>
         private readonly IPolicyRepository _policyRepository;
+
+        /// <summary>
+        /// Конструктор класса.
+        /// </summary>
+        public FileService()
+        {
+            //_authRepository = new AuthRepository(_context);
+            //_policyRepository = new PolicyRepository(_context);
+
+            _authRepository = new StubAuthRepository();
+            _policyRepository = new StubPolicyRepository();
+        }
 
         /// <summary>
         /// Метод возвращает файл в виде потока.

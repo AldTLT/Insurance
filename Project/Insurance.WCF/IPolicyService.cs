@@ -31,9 +31,9 @@ namespace Insurance.WCF
         /// <param name="carModel">Модель автомобиля.</param>
         /// <param name="manufacturedYear">Год выпуска автомобиля.</param>
         /// <param name="enginePower">Мощность двигателя автомобиля.</param>
-        /// <returns>true, если полис успешно зарегистрирован, иначе - false.</returns>
+        /// <returns>Номер полиса, если полис успешно зарегистрирован, иначе - null.</returns>
         [OperationContract]
-        bool PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower);
+        string PolicyRegistration(string email, int carCost, string carNumber, string carModel, int manufacturedYear, int enginePower);
 
         /// <summary>
         /// Метод возвращает коллекцию Policy по email пользователя.

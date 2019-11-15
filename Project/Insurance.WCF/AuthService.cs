@@ -2,6 +2,7 @@
 using MainRepository;
 using Insurance.BL;
 using Insurance.BL.Models;
+using Stub;
 
 namespace Insurance.WCF
 {
@@ -25,8 +26,8 @@ namespace Insurance.WCF
         /// </summary>
         public AuthService()
         {
-            _authRepository = new AuthRepository(_context);            
-            //_authRepository = new StubAuthRepository();
+            //_authRepository = new AuthRepository(_context);            
+            _authRepository = new StubAuthRepository();
         }
 
         /// <summary>

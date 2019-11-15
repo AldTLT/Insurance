@@ -34,18 +34,18 @@ namespace MainRepository
         /// Метод возвращает результат добавления нового полиса и привязанного к нему автомобиля в систему.
         /// </summary>
         /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
-        /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
-        public bool PolicyRegistration(Policy policy)
+        /// <returns>Номер полиса, если полис успешно добавлен, иначе - null.</returns>
+        public string PolicyRegistration(Policy policy)
         {
             //Получение клиента по e-mail.
-            var client = _context.Client
-                .Where(c => c.EMail.Equals(policy.UsersEmail))
-                .FirstOrDefault();
+            var client = _context.Client.FirstOrDefault(c => c.EMail.Equals(policy.UsersEmail));
+            var carNumber = policy.Car.CarNumber;
+            var policyNumber = string.Empty;
 
             //Если пользователь с таким e-mail не зарегистрирован, вернуть false.
             if (client == null)
             {
-                return false;
+                return null;
             }
 
             //Создание PolicyModel из Policy.
@@ -59,10 +59,23 @@ namespace MainRepository
             }
             catch
             {
-                return false;
+                return null;
             }
 
-            return true;
+            try
+            {
+                policyNumber = _context.Policy
+                    .Where(c => c.Car.CarNumber.Equals(carNumber))
+                    .Select(p => p.PolicyID)
+                    .FirstOrDefault()
+                    .ToString();
+            }
+            catch
+            {
+                return null;
+            }
+
+            return policyNumber;
         }
 
         /// <summary>

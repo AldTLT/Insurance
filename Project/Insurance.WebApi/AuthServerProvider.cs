@@ -63,13 +63,13 @@ namespace Insurance.WebApi
                 var hash = context.Password.GetHash();
 
                 //Если пароль пользователя не совпадает с введеным паролем.
-                if (!user.PasswordHash.Equals(hash))
-                {
-                    context.SetError("invalid_grant", "Пароль пользователя неверный");
-                    //Логгирование: неверный пароль.
-                    logger.Error($"Неверный пароль пользователя <{context.UserName}>" );
-                    return;
-                }
+                //if (!user.PasswordHash.Equals(hash))
+                //{
+                //    context.SetError("invalid_grant", "Пароль пользователя неверный");
+                //    //Логгирование: неверный пароль.
+                //    logger.Error($"Неверный пароль пользователя <{context.UserName}>" );
+                //    return;
+                //}
 
                 //Создание утверждений. 
                 var identity = new ClaimsIdentity(context.Options.AuthenticationType);

@@ -67,9 +67,9 @@ namespace Stub
         /// </summary>
         /// <param name="policy">Полис для регистрации в системе.</param>
         /// <returns>true</returns>
-        public bool PolicyRegistration(Policy policy)
+        public string PolicyRegistration(Policy policy)
         {
-            return true;
+            return "12345678-1234-5678-9012-123456789012";
         }
     }
 }

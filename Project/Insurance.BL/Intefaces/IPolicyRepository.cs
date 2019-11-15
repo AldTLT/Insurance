@@ -19,8 +19,8 @@ namespace Insurance.BL
         /// Метод возвращает результат добавления нового полиса в систему.
         /// </summary>
         /// <param name="policy">Insurance.BL.Models.Policy для добавления в систему.</param>
-        /// <returns>true, если полис успешно добавлен, иначе - false.</returns>
-        bool PolicyRegistration(Policy policy);
+        /// <returns>Номер полиса, если полис успешно добавлен, иначе - null.</returns>
+        string PolicyRegistration(Policy policy);
 
         /// <summary>
         /// Метод возвращает экземпляр Insurance.BL.Models.Policy по номеру автомобиля.

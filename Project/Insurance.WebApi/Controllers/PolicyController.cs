@@ -135,7 +135,7 @@ namespace Insurance.WebApi.Controllers
                 return NotFound();
             }
 
-            var registerResult = _policyService.PolicyRegistration(
+            var policyNumber = _policyService.PolicyRegistration(
                 email,
                 model.CarCost,
                 model.CarNumber,
@@ -144,7 +144,7 @@ namespace Insurance.WebApi.Controllers
                 model.EnginePower
                 );
 
-            if (!registerResult)
+            if (string.IsNullOrEmpty(policyNumber))
             {
                 //Логгирование: ошибка регистрации полиса.
                 _logger.Error($"Ошибка регистрации полиса на автомобиль <{model.CarNumber}>.");
@@ -156,7 +156,7 @@ namespace Insurance.WebApi.Controllers
                 //Логгирование: запрос регистрации выполнен.
                 _logger.Trace($"Запрос регистрации полиса на автомобиль <{model.CarNumber}> выполнен.");
 
-                return Ok(registerResult);
+                return Ok(policyNumber);
             }
         }
 
