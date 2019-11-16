@@ -22,6 +22,7 @@ namespace Insurance.BL
         public byte[] GetPdfStream(User user, Policy policy)
         {
             byte[] fileByteArray;
+            var encoding = Encoding.ASCII;
 
             using (MemoryStream ms = new MemoryStream())
             {

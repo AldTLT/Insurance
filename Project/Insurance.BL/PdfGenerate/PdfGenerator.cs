@@ -5,6 +5,8 @@ using MigraDoc.Rendering;
 using MigraDoc.DocumentObjectModel.Tables;
 using Insurance.BL.Models;
 using System.IO;
+using System.Text;
+using PdfSharp.Drawing;
 
 namespace Insurance.BL
 {
@@ -21,6 +23,7 @@ namespace Insurance.BL
         /// <returns>Имя сгенерированного полиса.</returns>
         public Document GeneratePolicy(User user, Policy policy, Stream stream)
         {
+            var encoding = Encoding.UTF8;
             var p = new PdfGenerator();
             Document document = new Document();
             Section section = document.AddSection();

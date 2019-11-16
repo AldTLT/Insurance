@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApi.Models;
 
 namespace Insurance.WebApi.Controllers
 {
@@ -33,48 +34,52 @@ namespace Insurance.WebApi.Controllers
 
         [Authorize]
         [Route("saveFile")]
-        [HttpGet]
-        public IHttpActionResult SaveFile()
+        [HttpPost]
+        public IHttpActionResult SaveFile(PdfRequestDataModel model)
         {
+            
             //Логгирование: запрос сохранение полиса.
             _logger.Trace($"Запрос сохранение полиса.");
 
             //Получение email из headers запроса.
-            var email = string.Empty;
+            //            var email = string.Empty;
             //Получение номера автомобиля из headers запроса.
-            var carNumber = string.Empty;
+            //           var carNumber = string.Empty;
 
-            try
-            {
-                email = Request
-                    .Headers
-                    .FirstOrDefault(c => c.Key.Equals("email"))
-                    .Value
-                    .FirstOrDefault();
-            }
-            catch
-            {
-                //Логгирование: ошибка получения email.
-                _logger.Error($"Ошибка, заголовок не содержит email.");
+            var carNumber = model.carNumber;
+            var email = model.email;
 
-                return NotFound();
-            }
+            //try
+            //{
+            //    email = Request
+            //        .Headers
+            //        .FirstOrDefault(c => c.Key.Equals("email"))
+            //        .Value
+            //        .FirstOrDefault();
+            //}
+            //catch
+            //{
+            //    //Логгирование: ошибка получения email.
+            //    _logger.Error($"Ошибка, заголовок не содержит email.");
 
-            try
-            {
-                carNumber = Request
-                    .Headers
-                    .FirstOrDefault(n => n.Key.Equals("carNumber"))
-                    .Value
-                    .FirstOrDefault();
-            }
-            catch
-            {
-                //Логгирование: ошибка получения номера автомобиля.
-                _logger.Error($"Ошибка, заголовок не содержит carNumber.");
+            //    return NotFound();
+            //}
 
-                return NotFound();
-            }
+            //try
+            //{
+            //    carNumber = Request
+            //        .Headers
+            //        .FirstOrDefault(n => n.Key.Equals("carNumber"))
+            //        .Value
+            //        .FirstOrDefault();
+            //}
+            //catch
+            //{
+            //    //Логгирование: ошибка получения номера автомобиля.
+            //    _logger.Error($"Ошибка, заголовок не содержит carNumber.");
+
+            //    return NotFound();
+            //}
 
             var fileByteArray = _fileService.GetPdfFile(carNumber, email);
 

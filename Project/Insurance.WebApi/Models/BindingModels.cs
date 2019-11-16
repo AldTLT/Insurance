@@ -5,6 +5,20 @@ using Newtonsoft.Json;
 namespace WebApi.Models
 {
     // Модели, используемые в качестве параметров действий контроллеров.
+    
+    /// <summary>
+    /// Модель данных для запроса сохранения полиса.
+    /// </summary>
+    public class PdfRequestDataModel
+    {
+        [Required]
+        [Display(Name = "Номер автомобиля")]
+        public string carNumber { get; set; }
+
+        [Required]
+        [Display(Name = "e-mail")]
+        public string email { get; set; }
+    }
 
     /// <summary>
     /// Класс представляет модель данных для смены пароля.
