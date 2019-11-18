@@ -1,7 +1,7 @@
 <div *ngIf=(!toPayment)>
     <h4>Стоимость полиса:</h4>
     <h2>{{ policyCost }}р.</h2>
-    <button (click)="registerPolicy()">Оплатить</button>    
+    <button type="button" class="btn btn-primary" (click)="registerPolicy()">Оплатить</button>    
 </div>
 
 <!-- Отображение компонента payment -->

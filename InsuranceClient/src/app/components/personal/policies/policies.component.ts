@@ -17,12 +17,14 @@ export class PoliciesComponent implements OnInit {
 
   policies: Policy[] = [];
   policy: Policy;
+  policyNumber: number;
 
   ngOnInit() {
     let email = this.storeService.getItem('email');
     this.policyService.getPolicies(email).subscribe((data: any) => {
-      console.log(data);
+      this.policyNumber = 0;
       data.forEach(p => {
+        this.policyNumber ++;
         let newPolicy = new Policy();
         newPolicy.PolicyId = p.PolicyId;
         newPolicy.Cost = p._cost;
@@ -34,8 +36,8 @@ export class PoliciesComponent implements OnInit {
         newPolicy.Car.CarNumber = p.Car.CarNumber;
         newPolicy.Car.EnginePower = p.Car._enginePower;
         newPolicy.Car.ManufacturedYear = p.Car._manufacturedYear;
-        console.log(newPolicy);
         this.policies.push(newPolicy);
+
       });
     })
   }

@@ -18,7 +18,7 @@ export class PayComponent implements OnInit {
 
   toPayment: boolean;
   policyCost: any;
-  isPolicyRegistered: boolean;
+  registerError: boolean;
   @Output() policyNumber: string;
 
   ngOnInit() {
@@ -28,6 +28,7 @@ export class PayComponent implements OnInit {
 
   //Регистрация нового полиса.
   registerPolicy(): any{
+    this.registerError = false;
     let car = this.storeService.getItem('car');
     let email = this.storeService.getItem('email');
 
@@ -36,11 +37,10 @@ export class PayComponent implements OnInit {
     {
       this.policyNumber = data;
       this.toPayment = true;
-      console.log(this.policyNumber);
     }
     else
     {
-      //Сообщение об ошибке.
+      this.registerError = true;
       return;
     }
 

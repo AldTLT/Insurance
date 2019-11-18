@@ -20,7 +20,6 @@ import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.co
 import { PolicyComponent } from './components/personal/policies/policy/policy.component';
 import { PayComponent } from './components/personal/pay/pay.component';
 import { PaymentComponent } from './components/personal/pay/payment/payment.component';
-import { PdfComponent } from './components/personal/pay/payment/pdf/pdf.component';
 
 @NgModule({
   declarations: [
@@ -35,8 +34,7 @@ import { PdfComponent } from './components/personal/pay/payment/pdf/pdf.componen
     BuypolicyComponent,
     PolicyComponent,
     PayComponent,
-    PaymentComponent,
-    PdfComponent
+    PaymentComponent
 
   ],
   imports: [

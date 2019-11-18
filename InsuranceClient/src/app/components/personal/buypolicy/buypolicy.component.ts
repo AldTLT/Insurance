@@ -14,12 +14,12 @@ export class BuypolicyComponent implements OnInit {
 
   constructor(private router: Router, private policyService: PolicyService, private storeService: StoreService) { 
 
-    // this.car.CarNumber = "QWE999163RU";
-    // this.carModel.automaker = "Ford";
-    // this.carModel.model = "Focus";
-    // this.car.ManufacturedYear = 2018;
-    // this.car.EnginePower = 104;
-    // this.car.CarCost = 850000;
+    this.car.CarNumber = "QWE999163RU";
+    this.carModel.automaker = "Ford";
+    this.carModel.model = "Focus";
+    this.car.ManufacturedYear = 2018;
+    this.car.EnginePower = 104;
+    this.car.CarCost = 850000;
   }
 
   car: Car = new Car();

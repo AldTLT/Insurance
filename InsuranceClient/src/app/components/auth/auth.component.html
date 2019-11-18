@@ -26,7 +26,7 @@
             aria-describedby="basic-addon1" 
             [(ngModel)]="data.password">
         </div>
-    <!-- <p>Пароль<input type="password" [(ngModel)]="data.password" ></p> -->
-    <p><button (click)="signIn(data)">Войти</button></p>
-    <p>Новый пользователь?<button routerLink="/registration">Зарегистрироваться</button></p>
+        
+    <p><button type="button" class="btn btn-primary" (click)="signIn(data)">Войти</button></p>
+    <p>Новый пользователь?<button type="button" class="btn btn-link" routerLink="/registration">Зарегистрироваться</button></p>
 </div>
