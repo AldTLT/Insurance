@@ -19,7 +19,7 @@ namespace Insurance.BL
         /// <param name="user">Экземпляр класса User для данных полиса.</param>
         /// <param name="policy">Экземпляр класса Policy для данных полиса.</param>
         /// <returns>Массив байт со сгенерированным pdf файлом полиса.</returns>
-        public byte[] GetPdfStream(User user, Policy policy)
+        public byte[] GetPdfByByteArray(User user, Policy policy)
         {
             byte[] fileByteArray;
             var encoding = Encoding.ASCII;

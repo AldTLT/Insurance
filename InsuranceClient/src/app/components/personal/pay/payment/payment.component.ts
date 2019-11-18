@@ -45,9 +45,8 @@ export class PaymentComponent implements OnInit {
     savePolicy(){
       this.fileService.getPdfFile(this.pdf).subscribe((data) => {
         let blob = new Blob([data], { type: 'application/pdf'});
-        console.log(data.byteLength);
-        saveAs(blob, 'test.pdf');
-        console.log(data);
+        const fileName = this.pdf.carNumber + '.pdf';
+        saveAs(blob, fileName);
       })
     }
 

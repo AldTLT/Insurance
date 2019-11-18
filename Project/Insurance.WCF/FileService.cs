@@ -49,7 +49,7 @@ namespace Insurance.WCF
             var policy = _policyRepository.GetPolicy(carNumber);
 
             var fileManager = new FileManager();
-            return fileManager.GetPdfStream(user, policy);
+            return fileManager.GetPdfByByteArray(user, policy);
         }
     }
 }

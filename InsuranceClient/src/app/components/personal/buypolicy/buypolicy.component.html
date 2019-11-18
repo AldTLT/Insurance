@@ -1,9 +1,11 @@
-<h3>Данные по ТС</h3>
-
 <div>
+<h3>Данные по ТС</h3>
+<p *ngIf='!isDataCorrect'>Неверно указаны данные</p>
+<div>
+    <!-- Номер автомобиля -->
         <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">Номер автомобиля</span>
+                    <span class="input-group-text" id="basic-addon1"></span>
                 </div>
                 <input 
                 type="text" 
@@ -11,12 +13,31 @@
                 placeholder="Номер автомобиля" 
                 aria-label="Номер автомобиля" 
                 aria-describedby="basic-addon1" 
-                [(ngModel)]="car.CarNumber">
+                [ngStyle]="{ background: carNumberColor }"
+                [(ngModel)]="car.CarNumber"
+                (ngModelChange)='initializeCarNumber()'>
             </div>
-    <!-- <p>Номер автомобиля:<input type="text" [(ngModel)]="car.CarNumber"></p> -->
+
+    <!-- Марка автомобиля -->
     <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Модель автомобиля</span>
+                <span class="input-group-text" id="basic-addon1"></span>
+            </div>
+            <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Марка автомобиля" 
+            aria-label="Марка автомобиля" 
+            aria-describedby="basic-addon1"
+            [ngStyle]="{ background: carAutomakerColor }"
+            [(ngModel)]="carModel.automaker"
+            (ngModelChange)='initializeCarAutomaker()'>
+        </div>
+
+    <!-- Модель автомобиля -->
+    <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1"></span>
             </div>
             <input 
             type="text" 
@@ -24,12 +45,15 @@
             placeholder="Модель автомобиля" 
             aria-label="Модель автомобиля" 
             aria-describedby="basic-addon1" 
-            [(ngModel)]="car.CarModel">
+            [ngStyle]="{ background: carModelColor }"
+            [(ngModel)]="carModel.model"
+            (ngModelChange)='initializeCarModel()'>
         </div>
-    <!-- <p>Модель автомобиля:<input type="text" [(ngModel)]="car.CarModel"></p> -->
+
+    <!-- Год выпуска автомобиля -->
     <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Год выпуска автомобиля</span>
+                <span class="input-group-text" id="basic-addon1"></span>
             </div>
             <input 
             type="text" 
@@ -37,12 +61,15 @@
             placeholder="Год выпуска автомобиля" 
             aria-label="Год выпуска автомобиля" 
             aria-describedby="basic-addon1" 
-            [(ngModel)]="car.ManufacturedYear">
+            [ngStyle]="{ background: carManufacturingYearColor }"
+            [(ngModel)]="car.ManufacturedYear"
+            (ngModelChange)='initializeCarManufacturingYear()'>
         </div>
-    <!-- <p>Год выпуска автомобиля:<input type="text" [(ngModel)]="car.ManufacturedYear"></p> -->
+
+    <!-- Мощность двигателя автомобиля -->
     <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Мощность двигателя автомобиля</span>
+                <span class="input-group-text" id="basic-addon1"></span>
             </div>
             <input 
             type="text" 
@@ -50,12 +77,15 @@
             placeholder="Мощность двигателя автомобиля" 
             aria-label="Мощность двигателя автомобиля" 
             aria-describedby="basic-addon1" 
-            [(ngModel)]="car.EnginePower">
+            [ngStyle]="{ background: carEnginePowerColor }"
+            [(ngModel)]="car.EnginePower"
+            (ngModelChange)='initializeCarEnginePower()'>
         </div>
-    <!-- <p>Мощность двигателя автомобиля:<input type="text" [(ngModel)]="car.EnginePower"></p> -->
+
+    <!-- Стоимость автомобиля -->
     <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1">Стоимость автомобиля</span>
+                <span class="input-group-text" id="basic-addon1"></span>
             </div>
             <input 
             type="text" 
@@ -63,8 +93,11 @@
             placeholder="Стоимость автомобиля" 
             aria-label="Стоимость автомобиля" 
             aria-describedby="basic-addon1" 
-            [(ngModel)]="car.CarCost">
+            [ngStyle]="{ background: carCostColor }"
+            [(ngModel)]="car.CarCost"
+            (ngModelChange)='initializeCarCost()'>
         </div>
-    <!-- <p>Стоимость автомобиля:<input type="text" [(ngModel)]="car.CarCost"></p> -->
+
     <button (click)="calculatePolicy(car)">Расcчитать</button>
+</div>
 </div>

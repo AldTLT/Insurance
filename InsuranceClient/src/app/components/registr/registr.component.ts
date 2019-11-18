@@ -25,7 +25,7 @@ export class RegistrComponent implements OnInit {
   }
 
   userData: User = new User();
-  isRegisterError: boolean = false;
+  isDataCorrect: boolean = true;
   registerResult: boolean = false;
   clientName: ClientName = new ClientName(); 
   confirmPassword: string;
@@ -155,6 +155,8 @@ export class RegistrComponent implements OnInit {
   }
 
   userRegistration(){
+    this.isDataCorrect = true;
+
     this.checkEmail();
     this.checkName();
     this.checkSurname();
@@ -173,20 +175,16 @@ export class RegistrComponent implements OnInit {
       || !this.isPasswordCorrect
       )
     {
-      return;
+      this.isDataCorrect = false;
     }
     else
     {
       this.userData.Name = this.clientName.getFullName();
       this.authService.register(this.userData).subscribe((data: any) => {
         this.registerResult = data;
-        if (data == true)
+        if (this.registerResult)
         {
           this.router.navigate(['/registration/success']);          
-        }
-        else
-        {
-          
         }
       })
     }

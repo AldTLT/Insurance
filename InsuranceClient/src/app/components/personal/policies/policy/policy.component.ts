@@ -38,7 +38,9 @@ export class PolicyComponent implements OnInit{
 
     savePdf(){
       this.fileService.getPdfFile(this.pdf).subscribe((data) => {
-        console.log(data);
+        let blob = new Blob([data], { type: 'application/pdf'});
+        const fileName = this.pdf.carNumber + '.pdf';
+        saveAs(blob, fileName);
       });
     }
 }

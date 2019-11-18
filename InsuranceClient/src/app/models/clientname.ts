@@ -4,7 +4,7 @@ export class ClientName{
     surname: string;
     patronymic: string;
 
-    //Метод возвращает полное имя, составленное из данных полей, разделенных символом '_'
+    //Метод возвращает полное имя, составленное из данных полей, разделенных пробелом.
     getFullName(): string{
         return this.name + ' ' + this.surname + ' ' + this.patronymic;
     }

@@ -1,10 +1,12 @@
 <div class = "registration">
     <h2>Регистрация нового пользователя</h2>
+    <p *ngIf='!isDataCorrect'>Неверно указаны данные</p>
     <!-- Children роутинг -->
-    <router-outlet></router-outlet> 
-    
-    <!-- E-mail -->
+    <router-outlet></router-outlet>     
+
     <div *ngIf='!registerResult'>
+
+          <!-- E-mail -->
         <div class="input-group mb-3">
             <div class="input-group-prepend">
               <span class="input-group-text" id="basic-addon1"></span>
