@@ -4,6 +4,7 @@ import { SendmailService } from 'src/app/services/sendmail.service';
 import { StoreService } from 'src/app/services/store.service';
 import { EmailValidator } from '@angular/forms';
 import { FileService } from 'src/app/services/file.service';
+import { Pdf } from 'src/app/models/pdf';
 
 @Component({
   selector: 'app-policy',
@@ -19,13 +20,14 @@ export class PolicyComponent implements OnInit{
     ){}
 
   ngOnInit(){
-    this.email = this.storeService.getItem('email');
-    this.carNumber = this.policy.Car.CarNumber;
+    this.pdf.email = this.storeService.getItem('email');
+    this.pdf.carNumber = this.policy.Car.CarNumber;
   }
 
   email: string;
   carNumber: string;
   endPolicyDate: Date = new Date();
+  pdf: Pdf = new Pdf();
 
     @Input() policy: Policy;
 
@@ -35,7 +37,7 @@ export class PolicyComponent implements OnInit{
     }
 
     savePdf(){
-      this.fileService.getPdfFile(this.carNumber, this.email).subscribe((data) => {
+      this.fileService.getPdfFile(this.pdf).subscribe((data) => {
         console.log(data);
       });
     }

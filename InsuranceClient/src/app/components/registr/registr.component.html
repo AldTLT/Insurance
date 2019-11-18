@@ -3,6 +3,7 @@
     <!-- Children роутинг -->
     <router-outlet></router-outlet> 
     
+    <!-- E-mail -->
     <div *ngIf='!registerResult'>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -14,9 +15,12 @@
             placeholder="E-mail" 
             aria-label="E-mail" 
             aria-describedby="basic-addon1" 
-            [(ngModel)]="userData.EMail">
+            [ngStyle]= "{ background: emailColor }"
+            [(ngModel)]="userData.EMail"
+            (ngModelChange)='initializeEmail()'>
           </div>
-      <!-- <p>E-mail<input type="text" [(ngModel)]="userData.EMail"></p> -->
+
+      <!-- Фамилия -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
@@ -27,9 +31,12 @@
           placeholder="Фамилия" 
           aria-label="Фамилия" 
           aria-describedby="basic-addon1" 
-          [(ngModel)]="clientName.surname">
+          [ngStyle]="{ background: surnameColor }"
+          [(ngModel)]="clientName.surname"
+          (ngModelChange)='initializeSurname()'>
         </div>
-      <!-- <p>Фамилия<input type="text" [(ngModel)]="clientName.surname"></p> -->
+
+      <!-- Имя -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
@@ -40,9 +47,12 @@
           placeholder="Имя" 
           aria-label="Имя" 
           aria-describedby="basic-addon1" 
-          [(ngModel)]="clientName.name">
+          [ngStyle]="{ background: nameColor }"
+          [(ngModel)]="clientName.name"
+          (ngModelChange)='initializeName()'>
         </div>
-      <!-- <p>Имя<input type="text" [(ngModel)]="clientName.name"></p> -->
+
+      <!-- Отчество -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
@@ -53,22 +63,28 @@
           placeholder="Отчество" 
           aria-label="Отчество" 
           aria-describedby="basic-addon1" 
-          [(ngModel)]="clientName.patronymic">
+          [ngStyle]="{ background: patronimycColor }"
+          [(ngModel)]="clientName.patronymic"
+          (ngModelChange)='initializePatronimyc()'>
         </div>
-      <!-- <p>Отчество<input type="text" [(ngModel)]="clientName.patronymic"></p> -->
+
+      <!-- Дата рождения -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
           </div>
           <input 
-          type="date" 
-          class="form-control" 
-          placeholder="Дата рождения" 
-          aria-label="Дата рождения" 
-          aria-describedby="basic-addon1" 
-          [(ngModel)]="userData.BirthDate">
+            type="date" 
+            class="form-control" 
+            placeholder="Дата рождения" 
+            aria-label="Дата рождения" 
+            aria-describedby="basic-addon1" 
+            [ngStyle]="{ background: bithDateColor }"
+            [(ngModel)]="userData.BirthDate"
+            (ngModelChange)='initializeBirthDate()'>
         </div>
-      <!-- <p>Дата рождения<input type="date" [(ngModel)]="userData.BirthDate"></p> -->
+
+      <!-- Дата выдачи прав -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
@@ -78,10 +94,13 @@
           class="form-control" 
           placeholder="Дата выдачи прав" 
           aria-label="Дата выдачи прав" 
-          aria-describedby="basic-addon1"          
-          [(ngModel)]="userData.DriverLicenseDate">
+          aria-describedby="basic-addon1"  
+          [ngStyle]="{ background: driverLicenzeDateColor }"       
+          [(ngModel)]="userData.DriverLicenseDate"
+          (ngModelChange)='initializeDriverLicenseDate()'>
         </div>
-      <!-- <p>Дата выдачи прав<input type="date" [(ngModel)]="userData.DriverLicenseDate"></p> -->
+
+      <!-- Пароль -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
@@ -92,24 +111,28 @@
           placeholder="Пароль" 
           aria-label="Пароль" 
           aria-describedby="basic-addon1" 
-          [(ngModel)]="userData.Password">
+          [ngStyle]="{ background: passwordColor }"
+          [(ngModel)]="userData.Password"
+          (ngModelChange)='initializePassword()'>
         </div>
-      <!-- <p>Пароль<input type="text" [(ngModel)]="userData.Password"  [ngStyle]="{
-        color: userData.Password == confirmPassword ? 'green' : 'red' 
-      }"></p> -->
+
+      <!-- Подтверждение пароля -->
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1"></span>
           </div>
-          <input 
+          <input           
           type="password" 
           class="form-control" 
           placeholder="Подтверждение пароля" 
           aria-label="Подтверждение пароля" 
-          aria-describedby="basic-addon1" 
-          [(ngModel)]="confirmPassword">
+          aria-describedby="basic-addon1"
+          [ngStyle]="{ background: isPasswordCorrect ? 'rgb(168, 229, 160)' : 'rgb(216, 149, 149)'}"
+          [(ngModel)]="confirmPassword" 
+          (ngModelChange)='checkPassword()'>
         </div>
-      <!-- <p>Подтверждение пароля<input type="text" [(ngModel)]="confirmPassword"></p> -->
+
+        <!-- Регистрация -->
       <p><button (click)="userRegistration()">Зарегистрироваться</button></p>
     </div>
-</div>
+</div> 

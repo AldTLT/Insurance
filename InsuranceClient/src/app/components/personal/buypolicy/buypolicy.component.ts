@@ -22,11 +22,19 @@ export class BuypolicyComponent implements OnInit {
   car: Car = new Car();
   email: string;
 
+  isCarNumberCorrect: boolean;
+
   ngOnInit() {
+  }
+
+  checkCarNumber(): boolean{
+    return this.car.CarNumber.length > 2 && this.car.CarNumber.length < 15;
   }
 
   calculatePolicy(car: Car)
   {
+    this.checkCarNumber();
+    
     this.storeService.setItem('car', car);
     this.email = this.storeService.getItem('email');
     this.policyService.calculatePolicyCost(car, this.email).subscribe((data: any) => {
