@@ -38,5 +38,15 @@ namespace Insurance.WCF
         /// <returns>User, которому принадлежит email. Усли такого не существует, возвращается null.</returns>
         [OperationContract]
         User GetUser(string email);
+
+        /// <summary>
+        /// Метод возвращает результат смены пароля.
+        /// </summary>
+        /// <param name="email">E-mail пользователя для смены пароля.</param>
+        /// <param name="oldPasswordHash">Старый хэш пароля.</param>
+        /// <param name="newPasswordHash">Новый хэш пароля.</param>
+        /// <returns>true, если пароль сменен успешно, иначе - false.</returns>
+        [OperationContract]
+        bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash);
     }
 }

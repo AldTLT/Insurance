@@ -53,5 +53,18 @@ namespace Insurance.BL
             var lowerEmail = email.ToLower();
             return lowerEmail.IsEmailCorrect() ? _authRepository.GetUser(lowerEmail) : null;
         }
+
+        /// <summary>
+        /// Метод возвращает результат смены пароля.
+        /// </summary>
+        /// <param name="email">E-mail пользователя для смены пароля.</param>
+        /// <param name="oldPasswordHash">Старый хэш пароля.</param>
+        /// <param name="newPasswordHash">Новый хэш пароля.</param>
+        /// <returns>true, если пароль сменен успешно, иначе - false.</returns>
+        public bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash)
+        {
+            var lowerEmail = email.ToLower();
+            return lowerEmail.IsEmailCorrect() ? _authRepository.ChangePassword(email, oldPasswordHash, newPasswordHash) : false;
+        }
     }
 }

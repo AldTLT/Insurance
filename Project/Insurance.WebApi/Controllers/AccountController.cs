@@ -132,5 +132,59 @@ namespace Insurance.WebApi.Controllers
                 return Ok(registerResult);
             }
         }
+
+        [Authorize]
+        [Route("ChangePassword")]
+        [HttpPut]
+        public IHttpActionResult ChangePassword(ChangePasswordBindingModel model)
+        {
+            //Логгирование: запрос смены пароля.
+            _logger.Trace($"Запрос смены пароля.");
+
+            if (!ModelState.IsValid)
+            {
+                //Логгирование: ошибка модели данных.
+                _logger.Error($"Модель данных смены пароля не валидна.");
+
+                return BadRequest(ModelState);
+            }
+
+            var email = string.Empty;
+            try
+            {
+                email = Request
+                    .Headers
+                    .FirstOrDefault(e => e.Key.Equals("email"))
+                    .Value
+                    .FirstOrDefault();
+            }
+            catch
+            {
+                //Логгирование: ошибка получения email.
+                _logger.Error($"Ошибка. Заголовок не содержит email.");
+
+                return NotFound();
+            }
+
+            var oldPasswordHash = model.OldPassword.GetHash();
+            var newPasswordHash = model.NewPassword.GetHash();
+
+            var changePasswordResult = _authService.ChangePassword(email, oldPasswordHash, newPasswordHash);
+
+            if (!changePasswordResult)
+            {
+                //Логгирование: ошибка смены пароля пользователя.
+                _logger.Error($"Ошибка смены пароля пользователя <{email}>.");
+
+                return NotFound();
+            }
+            else
+            {
+                //Логгирование: запрос смены пароля выполнен.
+                _logger.Trace($"Запрос смены пароля пользователя <{email}> выполнен.");
+
+                return Ok(changePasswordResult);
+            }
+        }
     }
 }

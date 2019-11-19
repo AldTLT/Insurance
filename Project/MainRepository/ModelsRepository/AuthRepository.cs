@@ -84,6 +84,40 @@ namespace MainRepository
         }
 
         /// <summary>
+        /// Метод возвращает результат смены пароля.
+        /// </summary>
+        /// <param name="email">E-mail пользователя для смены пароля.</param>
+        /// <param name="oldPasswordHash">Старый хэш пароля.</param>
+        /// <param name="newPasswordHash">Новый хэш пароля.</param>
+        /// <returns>true, если пароль сменен успешно, иначе - false.</returns>
+        public bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash)
+        {
+            try
+            {
+                var userPasswordHash = _context.Client.FirstOrDefault(c => c.EMail.Equals(email)).PasswordHash;
+                if (!userPasswordHash.Equals(oldPasswordHash))
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+
+            try
+            {
+                _context.Client.FirstOrDefault(c => c.EMail.Equals(email)).PasswordHash = newPasswordHash;
+                _context.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Метод возвращает результат проверки существует ли e-mail в БД.
         /// </summary>
         /// <param name="mail">E-mail Для проверки.</param>

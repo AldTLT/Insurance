@@ -8,6 +8,11 @@ namespace Stub
     /// </summary>
     public class StubAuthRepository : IAuthRepository
     {
+        public bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash)
+        {
+            return true;
+        }
+
         public User GetUser(string mail)
         {
             var user = new User(

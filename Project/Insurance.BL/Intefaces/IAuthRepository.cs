@@ -28,5 +28,14 @@ namespace Insurance.BL
         /// <param name="mail">E-mail пользователя для идентификации.</param>
         /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
         User GetUser(string mail);
+
+        /// <summary>
+        /// Метод возвращает результат смены пароля.
+        /// </summary>
+        /// <param name="email">E-mail пользователя для смены пароля.</param>
+        /// <param name="oldPasswordHash">Старый хэш пароля.</param>
+        /// <param name="newPasswordHash">Новый хэш пароля.</param>
+        /// <returns>true, если пароль сменен успешно, иначе - false.</returns>
+        bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash);
     }
 }

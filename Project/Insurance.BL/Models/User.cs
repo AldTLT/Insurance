@@ -132,8 +132,8 @@ namespace Insurance.BL.Models
         /// <param name="role">Роль для добавления в список.</param>
         public void AddRole(Role role)
         {
-            if (!Role.Contains(role.RoleName))
-                Role.Add(role.RoleName);
+            if (!Role.Contains(role.RoleName.ToLower()))
+                Role.Add(role.RoleName.ToLower());
         }
 
         /// <summary>
