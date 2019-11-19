@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { FormsModule} from '@angular/forms';
+import { registerLocaleData } from '@angular/common'
+import localeRu from '@angular/common/locales/ru'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +22,8 @@ import { BuypolicyComponent } from './components/personal/buypolicy/buypolicy.co
 import { PolicyComponent } from './components/personal/policies/policy/policy.component';
 import { PayComponent } from './components/personal/pay/pay.component';
 import { PaymentComponent } from './components/personal/pay/payment/payment.component';
+
+registerLocaleData(localeRu, 'ru')
 
 @NgModule({
   declarations: [

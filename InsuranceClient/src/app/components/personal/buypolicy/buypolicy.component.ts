@@ -4,6 +4,7 @@ import { PolicyService } from 'src/app/services/policy.service';
 import { Router } from '@angular/router';
 import { StoreService } from 'src/app/services/store.service';
 import { CarModel } from 'src/app/models/carmodel';
+import { CarService } from 'src/app/services/car.service';
 
 @Component({
   selector: 'app-buypolicy',
@@ -12,20 +13,27 @@ import { CarModel } from 'src/app/models/carmodel';
 })
 export class BuypolicyComponent implements OnInit {
 
-  constructor(private router: Router, private policyService: PolicyService, private storeService: StoreService) { 
+  constructor(
+    private router: Router, 
+    private policyService: PolicyService, 
+    private storeService: StoreService,
+    private carService: CarService
+    ) { 
 
-    this.car.CarNumber = "QWE999163RU";
-    this.carModel.automaker = "Ford";
-    this.carModel.model = "Focus";
-    this.car.ManufacturedYear = 2018;
-    this.car.EnginePower = 104;
-    this.car.CarCost = 850000;
+    // this.car.CarNumber = "QWE999163RU";
+    // this.carModel.automaker = "Ford";
+    // this.carModel.model = "Focus";
+    // this.car.ManufacturedYear = 2018;
+    // this.car.EnginePower = 104;
+    // this.car.CarCost = 850000;
   }
 
   car: Car = new Car();
   carModel: CarModel = new CarModel();
   email: string;
   isDataCorrect: boolean;
+  carsAutomakerMenu: string[];
+  carModelsMenu: string[];
 
   isCarNumberCorrect: boolean;
   isCarAutomakerCorrect: boolean;
@@ -43,6 +51,12 @@ export class BuypolicyComponent implements OnInit {
 
   ngOnInit() {
     this.isDataCorrect = true;
+    this.carsAutomakerMenu = ["LADA", "KIA" ];
+  }
+
+  //Метод возвращает список моделей производителя.
+  getCar(automaker: string){
+    this.carModelsMenu = this.carService.getCarModel(automaker);
   }
 
   //Метод возвращает true если строка пустая, иначе - false.
@@ -134,17 +148,16 @@ export class BuypolicyComponent implements OnInit {
 
   calculatePolicy(car: Car)
   {
+    console.log(this.carModel.automaker);
+    console.log(this.carModel.model);
+
     this.checkCarNumber();
-    this.checkCarAutomaker();
-    this.checkCarModel();
     this.checkCarManufacturingYear();
     this.checkCarEnginePower();
     this.checkCarCost();
     
     if (
       !this.isCarNumberCorrect
-      || !this.isCarAutomakerCorrect
-      || !this.isCarModelCorrect
       || !this.isCarManufacturingYearCorrect
       || !this.isCarEnginePowerCorrect
       || !this.isCarCostCorrect

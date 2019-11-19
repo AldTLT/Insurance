@@ -2,8 +2,8 @@
 <div>
     <p>Email: {{ user.EMail }}</p>
     <p>Имя: {{ user.Name }}</p>
-    <p>Дата рождения: {{ user.BirthDate | date}}</p>
-    <p>Дата выдачи водительских прав: {{ user.DriverLicenseDate | date}}</p>
+    <p>Дата рождения: {{ user.BirthDate | date: 'longDate':null:'ru' }}</p>
+    <p>Дата выдачи водительских прав: {{ user.DriverLicenseDate | date: 'longDate':null:'ru' }}</p>
 </div>
 
 <div *ngIf='!toChange'>

@@ -1,7 +1,7 @@
 <div class="list-group-item">
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1">Номер полиса: {{ policy.PolicyId }}</h5>
-      <small>Дата заключения полиса: {{ policy.PolicyDate | date }}</small>
+      <small>Дата заключения полиса: {{ policy.PolicyDate | date: 'longDate':null:'ru' }}</small>
     </div>
     <p class="mb-1">Номер автомобиля: {{ policy.Car.CarNumber }}</p>
     <p class="mb-1">Модель автомобиля: {{ policy.Car.CarModel }}</p>
