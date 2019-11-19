@@ -30,11 +30,11 @@ namespace Insurance.WCF
         /// </summary>
         public FileService()
         {
-            //_authRepository = new AuthRepository(_context);
-            //_policyRepository = new PolicyRepository(_context);
+            _authRepository = new AuthRepository(_context);
+            _policyRepository = new PolicyRepository(_context);
 
-            _authRepository = new StubAuthRepository();
-            _policyRepository = new StubPolicyRepository();
+            //_authRepository = new StubAuthRepository();
+            //_policyRepository = new StubPolicyRepository();
         }
 
         /// <summary>
