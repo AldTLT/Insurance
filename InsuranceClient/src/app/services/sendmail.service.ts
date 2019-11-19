@@ -4,15 +4,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class SendmailService {
 
-  private rootUrl = "http://localhost:63943";
+//Сервис отправки сообщений на почту.
+export class SendmailService {
 
   constructor(private http: HttpClient) { }
 
-    //Отправка сообщения на почту.
-    sendMail(carNumber: string, email: string){    
-      let reqHeader = new HttpHeaders({ 'carNumber' : carNumber, 'email' : email});
-      return this.http.get(this.rootUrl + '/api/sender/sendmail', { headers: reqHeader } );
-    }
+  private rootUrl = "http://localhost:63943";
+
+  //Отправка полиса на почту.
+  sendMail(carNumber: string, email: string){    
+    let reqHeader = new HttpHeaders({ 'carNumber' : carNumber, 'email' : email});
+    return this.http.get(this.rootUrl + '/api/sender/sendmail', { headers: reqHeader } );
+  }
 }

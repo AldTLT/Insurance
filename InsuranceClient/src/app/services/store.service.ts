@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-//Класс представляет сервис сохранения данных, и получения сохраненных данных.
+//Сервис сохранения и получения сохраненных данных.
 export class StoreService {
 
   //string - ключ, any - значение

@@ -6,3 +6,60 @@
     <p>Дата выдачи водительских прав: {{ user.DriverLicenseDate | date}}</p>
 </div>
 
+<div *ngIf='!toChange'>
+    <button class="btn btn-primary" (click)='toChange = true; success = false'>Сменить пароль</button>
+</div>
+
+<p *ngIf='success'>Пароль успешно изменен.</p>
+<p *ngIf='ChangePasswordError'>Неверный пароль.</p>
+<p *ngIf='GetItemError'>Не удается загрузить данные.</p>
+
+<div *ngIf='toChange'>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"></span>
+        </div>
+        <input           
+        type="password" 
+        class="form-control" 
+        placeholder="Старый пароль" 
+        aria-label="Старый пароль" 
+        aria-describedby="basic-addon1"
+        [ngStyle]="{ background: oldPasswordColor}"
+        [(ngModel)]="changePasswordModel.OldPassword" 
+        (ngModelChange)='initializeOldPassword()'>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"></span>
+        </div>
+        <input           
+        type="password" 
+        class="form-control" 
+        placeholder="Новый пароль" 
+        aria-label="Новый пароль" 
+        aria-describedby="basic-addon1"
+        [ngStyle]="{ background: newPasswordColor }"
+        [(ngModel)]="changePasswordModel.NewPassword" 
+        (ngModelChange)='initializeNewPassword()'>
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="basic-addon1"></span>
+        </div>
+        <input           
+        type="password" 
+        class="form-control" 
+        placeholder="Подтверждение пароля" 
+        aria-label="Подтверждение пароля" 
+        aria-describedby="basic-addon1"
+        [ngStyle]="{ background: isConfirmPasswordCorrect ? 'rgb(168, 229, 160)' : 'rgb(216, 149, 149)'}"
+        [(ngModel)]="changePasswordModel.ConfirmPassword" 
+        (ngModelChange)='checkConfirmPassword()'>
+      </div>
+
+      <button type="button" class="btn btn-primary" (click)="changePassword()">Сменить</button>
+</div>
+

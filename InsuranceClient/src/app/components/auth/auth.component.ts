@@ -5,6 +5,7 @@ import { BinaryOperatorExpr } from '@angular/compiler';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { StoreService } from 'src/app/services/store.service';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
   selector: 'app-auth',
@@ -19,11 +20,12 @@ export class AuthComponent implements OnInit {
   //Экземпляр класса Authorization с данными авторизации.
   data: Authorization = new Authorization();
   //Маркер показывающий что пользователь залогинен
-  @Output() logged: boolean;
+  logged: boolean;
 
   constructor(
     private authService: AuthService, 
     private storeService: StoreService, 
+    private dataService: DataService,
     private router: Router
     ) 
     {
@@ -31,19 +33,17 @@ export class AuthComponent implements OnInit {
     this.data.username = "vr0rtex@mail.ru";
   }
 
-  ngOnInit() {
-  }
-
-  onSubmit(email: string, password: string){
-
+  ngOnInit() {    
   }
 
   signIn(authData: Authorization){
     this.authService.authorization(authData).subscribe((data:any) => {
-      //Сохранение e-mail
+      //Сохранение e-mail.
       this.storeService.setItem('email', authData.username);
-      //Сохранение токена
+      //Сохранение токена.
       localStorage.setItem('token', data.access_token);
+      //Сохранение статуса логгирования для обмена с другими компонентами.
+      this.dataService.changeLogStatus(true);
       this.router.navigate(['/personal'])
     },
     (err: HttpErrorResponse) => {

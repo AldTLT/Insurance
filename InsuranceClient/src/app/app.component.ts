@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { StoreService } from './services/store.service';
+import { DataService } from './services/data.service';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +11,18 @@ import { StoreService } from './services/store.service';
 })
 export class AppComponent implements OnInit{
 
-  constructor(private router: Router, private storeService: StoreService){}
+  constructor(
+    private router: Router, 
+    private storeService: StoreService,
+    private dataService: DataService
+    ){}
 
   ngOnInit(){
+    this.dataService.currentMessage.subscribe(status => this.isLogged = status)
   }
 
   title = 'InsuranceClient';
-  @Output() isLogged: boolean;
+  isLogged: boolean;
 
   logIn(){
     this.router.navigate(['/authorization']);
