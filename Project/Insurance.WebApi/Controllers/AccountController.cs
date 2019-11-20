@@ -106,7 +106,7 @@ namespace Insurance.WebApi.Controllers
                 return BadRequest(ModelState);
             }
 
-            var hash = model.Password.GetHash();
+            var hash = model.Password.GetHashCode().ToString();
 
             var registerResult = _authService.RegistrationAccount
                     (
@@ -166,8 +166,8 @@ namespace Insurance.WebApi.Controllers
                 return NotFound();
             }
 
-            var oldPasswordHash = model.OldPassword.GetHash();
-            var newPasswordHash = model.NewPassword.GetHash();
+            var oldPasswordHash = model.OldPassword.GetHashCode().ToString();
+            var newPasswordHash = model.NewPassword.GetHashCode().ToString();
 
             var changePasswordResult = _authService.ChangePassword(email, oldPasswordHash, newPasswordHash);
 

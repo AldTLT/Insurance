@@ -37,7 +37,6 @@ export class PaymentComponent implements OnInit {
     //Метод отправки полиса на почту.
     sendPolicy(){
       this.sendmailService.sendMail(this.carNumber, this.email).subscribe((data) => {
-        console.log(data);
       });
     }
 

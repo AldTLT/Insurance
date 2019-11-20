@@ -33,9 +33,6 @@ namespace Insurance.WCF
         {
             _policyRepository = new PolicyRepository(_context);
             _authRepository = new AuthRepository(_context);
-
-            //_policyRepository = new StubPolicyRepository();
-            //_authRepository = new StubAuthRepository();
         }
 
         /// <summary>

@@ -63,7 +63,7 @@ namespace Insurance.BL.Models
         public Policy(int cost, string usersEmail, DateTime policyDate, Car car, Ratio ratio)
         {
             Cost = cost;
-            UsersEmail = usersEmail;
+            UsersEmail = usersEmail.ToLower();
             PolicyDate = policyDate;
             Car = car;
             Ratio = ratio;

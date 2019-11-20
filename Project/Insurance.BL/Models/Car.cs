@@ -85,8 +85,8 @@ namespace Insurance.BL.Models
 
         public Car(string carNumber, string model, int manufacturedYear, int cost, int enginePower)
         {
-            CarNumber = carNumber;
-            Model = model;
+            CarNumber = carNumber.ToUpper();
+            Model = model.ToUpper();
             ManufacturedYear = manufacturedYear;
             Cost = cost;
             EnginePower = enginePower;

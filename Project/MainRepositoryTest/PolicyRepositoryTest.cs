@@ -121,7 +121,7 @@ namespace MainRepositoryTest
                 ratio
                 );
 
-            Assert.IsTrue(_policyRepository.PolicyRegistration(policy));
+            Assert.IsTrue(_policyRepository.PolicyRegistration(policy).Equals("XX777O163RU"));
         }
     }
 }

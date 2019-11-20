@@ -3,7 +3,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StoreService } from 'src/app/services/store.service';
-import { ChangePassword } from 'src/app/models/changepass';
+import { ChangePass } from 'src/app/models/changepass';
 
 @Component({
   selector: 'app-data',
@@ -19,7 +19,7 @@ export class DataComponent implements OnInit {
   user: User = new User;
   GetItemError: boolean = false;
   ChangePasswordError: boolean = false;  
-  changePasswordModel: ChangePassword = new ChangePassword();
+  changePasswordModel: ChangePass = new ChangePass();
   toChange: boolean = false;
   success: boolean;
 
@@ -99,7 +99,7 @@ export class DataComponent implements OnInit {
       && this.changePasswordModel.NewPassword == this.changePasswordModel.ConfirmPassword
       )
     {
-      this.authService.changePassword(this.email, this.changePasswordModel).subscribe((data: any) => {
+      this.authService.changePassword(this.email, this.changePasswordModel).subscribe((data: boolean) => {
         this.ChangePasswordError = !data;
         this.success = data;        
         this.toChange = data ? false : this.toChange;

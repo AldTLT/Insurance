@@ -19,20 +19,6 @@
             </div>
 
     <!-- Марка автомобиля -->
-    <!-- <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"></span>
-            </div>
-            <input 
-            type="text" 
-            class="form-control" 
-            placeholder="Марка автомобиля" 
-            aria-label="Марка автомобиля" 
-            aria-describedby="basic-addon1"
-            [ngStyle]="{ background: carAutomakerColor }"
-            [(ngModel)]="carModel.automaker"
-            (ngModelChange)='initializeCarAutomaker()'>
-        </div> -->
 
     <div class="input-group mb-3">
         <label for="carAutomaker">
@@ -42,6 +28,7 @@
         </select>
     </div>  
     
+    <!-- Модель автомобиля -->
     <div class="input-group mb-3">
             <label for="carAutomaker">
             </label>
@@ -49,27 +36,10 @@
                 id="carModels" 
                 name="carModels" 
                 [(ngModel)]="carModel.model" 
-                class="form-control" 
-                >
+                class="form-control">
                 <option *ngFor="let model of carModelsMenu" >{{ model }}</option>
             </select>
         </div> 
-
-    <!-- Модель автомобиля -->
-    <!-- <div class="input-group mb-3">
-            <div class="input-group-prepend">
-                <span class="input-group-text" id="basic-addon1"></span>
-            </div>
-            <input 
-            type="text" 
-            class="form-control" 
-            placeholder="Модель автомобиля" 
-            aria-label="Модель автомобиля" 
-            aria-describedby="basic-addon1" 
-            [ngStyle]="{ background: carModelColor }"
-            [(ngModel)]="carModel.model"
-            (ngModelChange)='initializeCarModel()'>
-        </div> -->
 
     <!-- Год выпуска автомобиля -->
     <div class="input-group mb-3">

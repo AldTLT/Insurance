@@ -49,7 +49,7 @@ namespace Insurance.WebApi
 
             //Получить пользователя по email (UserName на самом деле - email).
             var user = _authService.GetUser(context.UserName);
-{
+            {
                 //Если пользователь с данным email не найден.
                 if (user == null)
                 {
@@ -60,7 +60,7 @@ namespace Insurance.WebApi
                 }
 
                 //Вычисление хэша пароля.
-                var hash = context.Password.GetHash();
+                var hash = context.Password.GetHashCode().ToString();
 
                 //Если пароль пользователя не совпадает с введеным паролем.
                 if (!user.PasswordHash.Equals(hash))
@@ -76,7 +76,7 @@ namespace Insurance.WebApi
                 identity.AddClaim(new Claim(ClaimTypes.Email, user.EMail));
 
                 var claimList = new List<Claim>();
-                foreach(var role in user.Role)
+                foreach (var role in user.Role)
                 {
                     claimList.Add(new Claim(ClaimTypes.Role, role));
                 }

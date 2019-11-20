@@ -107,8 +107,8 @@ export class RegistrComponent implements OnInit {
   checkBirthDate(){
     let birthDate = new Date(this.userData.BirthDate);
     let today = new Date();
-    //Минимальный возраст для регистрации в системе - 10 лет.
-    const age = 10;
+    //Минимальный возраст для регистрации в системе - 12 лет.
+    const age = 12;
     this.isBirthDateCorrect = this.getYears(today, birthDate) > age;
     this.bithDateColor = this.isBirthDateCorrect ? 'rgb(240, 240, 240)' : 'rgb(216, 149, 149)';
   }

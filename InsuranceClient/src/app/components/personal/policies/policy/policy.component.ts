@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Policy } from 'src/app/models/policy';
 import { SendmailService } from 'src/app/services/sendmail.service';
 import { StoreService } from 'src/app/services/store.service';
-import { EmailValidator } from '@angular/forms';
 import { FileService } from 'src/app/services/file.service';
 import { Pdf } from 'src/app/models/pdf';
 
@@ -24,18 +23,21 @@ export class PolicyComponent implements OnInit{
     this.pdf.carNumber = this.policy.Car.CarNumber;
   }
 
-  email: string;
-  carNumber: string;
   endPolicyDate: Date = new Date();
   pdf: Pdf = new Pdf();
+  sendPolicyError: boolean = false;
 
     @Input() policy: Policy;
 
+    //Метод отправки сообщения на почту.
     sendPdf(){
-      this.sendmailService.sendMail(this.carNumber, this.email).subscribe((data) => {
+      this.sendPolicyError = false;
+      this.sendmailService.sendMail(this.pdf.carNumber, this.pdf.email).subscribe((data: boolean) => {
+        this.sendPolicyError = data;
       });
     }
 
+    //Метод сохранения полиса на диск.
     savePdf(){
       this.fileService.getPdfFile(this.pdf).subscribe((data) => {
         let blob = new Blob([data], { type: 'application/pdf'});

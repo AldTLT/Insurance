@@ -1,5 +1,5 @@
 //Класс представляет модель смены пароля.
-export class ChangePassword{
+export class ChangePass{
     OldPassword: string;
     NewPassword: string;
     ConfirmPassword: string;

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Authorization } from '../models/authorization';
 import { User } from '../models/user';
-import { ChangePassword } from '../models/changepass';
+import { ChangePass } from '../models/changepass';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +38,8 @@ export class AuthService {
   }
 
   //Запрос смены пароля.
-  changePassword(email: string, changePassword: ChangePassword){
-    const body: ChangePassword = changePassword;
+  changePassword(email: string, changePassword: ChangePass){
+    const body: ChangePass = changePassword;
     this.httpOptions.headers = new HttpHeaders({'email' : email });
     return this.http.put(this.rootUrl + '/api/account/changepassword', body, this.httpOptions );
   }

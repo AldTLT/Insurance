@@ -10,9 +10,9 @@ namespace MainRepository
     public class InitializeDb : CreateDatabaseIfNotExists<DataContext>
     {
         /// <summary>
-        /// Хэш пароля.
+        /// Пароль.
         /// </summary>
-        private const string passwordHash = "ᘺ孁래㮲건Ǒ몒莵閟螺"; //пароль: mypassword
+        private const string password = "mypassword";
 
         /// <summary>
         /// E-mail пользователя.
@@ -22,7 +22,7 @@ namespace MainRepository
         /// <summary>
         /// Имя пользователя.
         /// </summary>
-        private const string name = "Юрий Уливанов Геннадьевич";
+        private const string name = "Уливанов Юрий Геннадьевич";
 
         /// <summary>
         /// Дата рождения пользователя.
@@ -51,11 +51,11 @@ namespace MainRepository
 
             //Инициализация пользователя.           
             var user = new User(
-                email, 
-                name, 
-                birthDate, 
+                email,
+                name,
+                birthDate,
                 driverLicenseDate,
-                passwordHash
+                password.GetHashCode().ToString()
                 );
 
             user.Role.Add(administratorRole);

@@ -15,11 +15,11 @@ namespace Insurance.WebApi
         /// <returns>Хэш пароля.</returns>
         public static string GetHash(this string password)
         {
-            var algoritm = HashAlgorithm.Create();
-            var byteArray = Encoding.Unicode.GetBytes(password);
-            var hashByteArray = algoritm.ComputeHash(byteArray);
-            var passwordHash = Encoding.Unicode.GetString(hashByteArray);
-
+            //var algoritm = HashAlgorithm.Create();
+            //var byteArray = Encoding.Unicode.GetBytes(password);
+            //var hashByteArray = algoritm.ComputeHash(byteArray);
+            //var passwordHash = Encoding.Unicode.GetString(hashByteArray);
+            var passwordHash = password.GetHashCode().ToString();
             return passwordHash;
         }
     }

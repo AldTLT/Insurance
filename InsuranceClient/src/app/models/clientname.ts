@@ -6,6 +6,6 @@ export class ClientName{
 
     //Метод возвращает полное имя, составленное из данных полей, разделенных пробелом.
     getFullName(): string{
-        return this.name + ' ' + this.surname + ' ' + this.patronymic;
+        return this.surname + ' ' + this.name + ' ' + this.patronymic;
     }
 }

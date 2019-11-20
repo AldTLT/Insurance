@@ -51,12 +51,16 @@ export class BuypolicyComponent implements OnInit {
 
   ngOnInit() {
     this.isDataCorrect = true;
-    this.carsAutomakerMenu = ["LADA", "KIA" ];
+    this.carsAutomakerMenu = ["LADA", "KIA", "TOYOTA", "FORD" ];
   }
 
   //Метод возвращает список моделей производителя.
   getCar(automaker: string){
     this.carModelsMenu = this.carService.getCarModel(automaker);
+    if (this.carModelsMenu != null)
+    {
+      this.carModel.model = this.carModelsMenu[0];
+    }
   }
 
   //Метод возвращает true если строка пустая, иначе - false.

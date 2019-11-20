@@ -17,15 +17,15 @@ export class PoliciesComponent implements OnInit {
 
   policies: Policy[] = [];
   policy: Policy;
-  policyNumber: number;
+  policyNumber: number = 0;
 
   ngOnInit() {
     let email = this.storeService.getItem('email');
     this.policyService.getPolicies(email).subscribe((data: any) => {
-      this.policyNumber = 0;
-      
+     
       data.forEach(p => {
         this.policyNumber ++;
+        console.log(this.policyNumber);
 
         let newPolicy = new Policy();
         newPolicy.PolicyId = p.PolicyId;

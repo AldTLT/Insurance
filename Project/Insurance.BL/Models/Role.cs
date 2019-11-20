@@ -26,7 +26,7 @@ namespace Insurance.BL.Models
 
         public Role(string roleName)
         {
-            RoleName = roleName;
+            RoleName = roleName.ToLower();
         }
 
         /// <summary>

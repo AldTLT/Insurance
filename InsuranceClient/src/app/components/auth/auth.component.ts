@@ -27,11 +27,7 @@ export class AuthComponent implements OnInit {
     private storeService: StoreService, 
     private dataService: DataService,
     private router: Router
-    ) 
-    {
-    this.data.password = "mypassword";
-    this.data.username = "vr0rtex@mail.ru";
-  }
+    ){}
 
   ngOnInit() {    
   }
