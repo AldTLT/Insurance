@@ -13,19 +13,20 @@ namespace Insurance.BL.Models
         /// Номер автомобиля.
         /// </summary>
         [DataMember]
-        public string CarNumber { get; }
+        public string CarNumber { get; private set; }
 
         /// <summary>
         /// Название модели автомобиля.
         /// </summary>
         [DataMember]
-        public string Model { get; }
+        public string Model { get; private set; }
 
         /// <summary>
         /// Год выпуска автомобиля.
         /// </summary>
-        [DataMember]
         private int _manufacturedYear;
+
+        [DataMember]
         public int ManufacturedYear
         {
             get
@@ -46,8 +47,9 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Стоимость автомобиля.
         /// </summary>
-        [DataMember]
         private int _cost;
+
+        [DataMember]
         public int Cost
         {
             get
@@ -68,6 +70,8 @@ namespace Insurance.BL.Models
         /// </summary>
         [DataMember]
         private int _enginePower;
+
+        [DataMember]
         public int EnginePower
         {
             get

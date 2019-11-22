@@ -11,11 +11,6 @@ namespace Insurance.WCF
     public class FileService : IFileService
     {
         /// <summary>
-        /// Контекст соединения БД.
-        /// </summary>
-        private readonly DataContext _context = new DataContext();
-
-        /// <summary>
         /// Экземпляр репозитория управления аккаунтом.
         /// </summary>
         private readonly IAuthRepository _authRepository;
@@ -30,8 +25,8 @@ namespace Insurance.WCF
         /// </summary>
         public FileService()
         {
-            _authRepository = new AuthRepository(_context);
-            _policyRepository = new PolicyRepository(_context);
+            _authRepository = new AuthRepository();
+            _policyRepository = new PolicyRepository();
         }
 
         /// <summary>

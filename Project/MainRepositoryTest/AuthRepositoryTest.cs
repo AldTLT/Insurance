@@ -21,7 +21,7 @@ namespace MainRepositoryTest
         [TestInitialize]
         public void Initialize()
         {
-            _authRepository = new AuthRepository(_dataContext);
+            _authRepository = new AuthRepository();
         }
 
         /// <summary>

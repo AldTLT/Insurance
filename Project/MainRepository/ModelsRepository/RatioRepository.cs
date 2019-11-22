@@ -15,10 +15,11 @@ namespace MainRepository.ModelsRepository
         /// </summary>
         private readonly DataContext _context;
 
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="context">Контекст подключения к БД.</param>
+        public RatioRepository()
+        {
+            _context = new DataContext();
+        }
+
         public RatioRepository(DataContext context)
         {
             _context = context;
@@ -32,8 +33,7 @@ namespace MainRepository.ModelsRepository
         public Ratio GetRatio(string carNumber)
         {
             var ratioModel = _context.Coefficients.FirstOrDefault(r => r.Policy.Car.CarNumber.Equals(carNumber));
-            var ratioRepository = new RatioRepository(_context);
-            return ratioRepository.RatioModelToRatio(ratioModel);
+            return RatioModelToRatio(ratioModel);
         }
 
         /// <summary>

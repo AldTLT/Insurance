@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Insurance.BL.Models" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Insurance.BL.Models" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfPolicy">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Policy" nillable="true" type="tns:Policy" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolicy" nillable="true" type="tns:ArrayOfPolicy" />
+  <xs:complexType name="Policy">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Car" nillable="true" type="tns:Car" />
+      <xs:element minOccurs="0" name="PolicyDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="PolicyId" type="ser:guid" />
+      <xs:element minOccurs="0" name="Ratio" nillable="true" type="tns:Ratio" />
+      <xs:element minOccurs="0" name="UsersEmail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_cost" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Policy" nillable="true" type="tns:Policy" />
+  <xs:complexType name="Car">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarNumber" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_cost" type="xs:int" />
+      <xs:element minOccurs="0" name="_enginePower" type="xs:int" />
+      <xs:element minOccurs="0" name="_manufacturedYear" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Car" nillable="true" type="tns:Car" />
+  <xs:complexType name="Ratio">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarAge" type="xs:double" />
+      <xs:element minOccurs="0" name="DriverAge" type="xs:double" />
+      <xs:element minOccurs="0" name="DrivingExperience" type="xs:double" />
+      <xs:element minOccurs="0" name="EnginePower" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Ratio" nillable="true" type="tns:Ratio" />
+</xs:schema>

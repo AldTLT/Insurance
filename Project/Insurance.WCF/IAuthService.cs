@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using System.ServiceModel;
 using Insurance.BL.Models;
 
@@ -48,5 +49,12 @@ namespace Insurance.WCF
         /// <returns>true, если пароль сменен успешно, иначе - false.</returns>
         [OperationContract]
         bool ChangePassword(string email, string oldPasswordHash, string newPasswordHash);
+    }
+
+    [DataContract]
+    public class Test
+    {
+        [DataMember]
+        public string name = "test";
     }
 }

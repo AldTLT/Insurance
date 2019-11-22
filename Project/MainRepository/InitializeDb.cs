@@ -1,5 +1,7 @@
 ﻿using Insurance.BL.Models;
+using MainRepository.Models;
 using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 
 namespace MainRepository
@@ -9,6 +11,16 @@ namespace MainRepository
     /// </summary>
     public class InitializeDb : CreateDatabaseIfNotExists<DataContext>
     {
+        /// <summary>
+        /// Роль пользователя - полный доступ.
+        /// </summary>
+        private const string administrator = "administrator";
+
+        /// <summary>
+        /// Роль пользователя - ограниченный доступ.
+        /// </summary>
+        private const string user = "user";
+
         /// <summary>
         /// Пароль.
         /// </summary>
@@ -47,20 +59,32 @@ namespace MainRepository
         {
             //Создание базы данных.
             base.InitializeDatabase(context);
-            AuthRepository repository = new AuthRepository(context);
+                       
+            //Создание роли пользователя.
+            var userRole = new RoleModel() { RoleName = user };
+            var administartorRole = new RoleModel() { RoleName = administrator };
+            var roleList = new List<RoleModel>() { userRole, administartorRole };
 
             //Инициализация пользователя.           
-            var user = new User(
-                email,
-                name,
-                birthDate,
-                driverLicenseDate,
-                password.GetHashCode().ToString()
-                );
+            var clientModel = new ClientModel()
+            {
+                EMail = email,
+                Name = name,
+                BirthDate = birthDate,
+                DriverLicenseDate = driverLicenseDate,
+                PasswordHash = password.GetHashCode().ToString(),
+                Roles = roleList
+            };
 
-            user.Role.Add(administratorRole);
-
-            repository.Registration(user);
+            try
+            {
+                context.Client.Add(clientModel);
+                context.SaveChanges();
+            }
+            catch
+            {
+                return;
+            }
         }
     }
 }

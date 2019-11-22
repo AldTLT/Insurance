@@ -22,16 +22,5 @@ namespace Insurance.WCF.Properties {
                 return defaultInstance;
             }
         }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local)\\SQLEXPRESS;Initial Catalog=InsuranceDB;Integrated Security=Tr" +
-            "ue")]
-        public string InsuranceDbConnection {
-            get {
-                return ((string)(this["InsuranceDbConnection"]));
-            }
-        }
     }
 }

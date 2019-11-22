@@ -15,11 +15,6 @@ namespace Insurance.WCF
     public class PolicyService : IPolicyService
     {
         /// <summary>
-        /// Контекст соединения БД.
-        /// </summary>
-        private readonly DataContext _context = new DataContext();
-
-        /// <summary>
         /// Экземпляр репозитория управления полисом.
         /// </summary>
         private readonly IPolicyRepository _policyRepository;
@@ -41,10 +36,10 @@ namespace Insurance.WCF
 
         public PolicyService()
         {
-            _policyRepository = new PolicyRepository(_context);
-            _ratioRepository = new RatioRepository(_context);
-            _carRepository = new CarRepository(_context);
-            _authRepository = new AuthRepository(_context);
+            _policyRepository = new PolicyRepository();
+            _ratioRepository = new RatioRepository();
+            _carRepository = new CarRepository();
+            _authRepository = new AuthRepository();
         }
 
         /// <summary>

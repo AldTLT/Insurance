@@ -12,11 +12,6 @@ namespace Insurance.WCF
     public class AuthService : IAuthService
     {
         /// <summary>
-        /// Контекст соединения БД.
-        /// </summary>
-        private readonly DataContext _context = new DataContext();
-
-        /// <summary>
         /// Экземпляр репозитория управления аккаунтом.
         /// </summary>
         private readonly IAuthRepository _authRepository;
@@ -26,7 +21,7 @@ namespace Insurance.WCF
         /// </summary>
         public AuthService()
         {
-            _authRepository = new AuthRepository(_context);
+            _authRepository = new AuthRepository();
         }
 
         /// <summary>
@@ -36,7 +31,8 @@ namespace Insurance.WCF
         /// <returns>Insurance.BL.Models.User соответствующий email если присутствует, иначе - null.</returns>
         public User GetUser(string email)
         {
-            return _authRepository.GetUser(email);
+            var user = _authRepository.GetUser(email);
+            return user;
         }
 
         /// <summary>

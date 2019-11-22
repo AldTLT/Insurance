@@ -1,5 +1,5 @@
 ﻿using Insurance.BL.Models;
-using Insurance.WCF;
+using Insurance.WebApi.AuthService;
 using NLog;
 using System.Linq;
 using System.Web.Http;
@@ -29,8 +29,8 @@ namespace Insurance.WebApi.Controllers
         /// </summary>
         public AccountController()
         {
-            _authService = new AuthService();
             _logger = LogManager.GetCurrentClassLogger();
+            _authService = new AuthServiceClient();
         }
 
         /// <summary>

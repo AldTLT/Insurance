@@ -19,7 +19,7 @@ namespace MainRepositoryTest
         [TestInitialize]
         public void Initialize()
         {
-            _ratioRepository = new RatioRepository(_dataContext);
+            _ratioRepository = new RatioRepository();
         }
 
         /// <summary>

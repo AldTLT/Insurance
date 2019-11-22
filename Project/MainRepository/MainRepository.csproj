@@ -52,9 +52,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InitializeDb.cs" />
-    <Compile Include="Migrations\201911121821595_db1.cs" />
-    <Compile Include="Migrations\201911121821595_db1.designer.cs">
-      <DependentUpon>201911121821595_db1.cs</DependentUpon>
+    <Compile Include="Migrations\201911221539053_InitialCreate.cs" />
+    <Compile Include="Migrations\201911221539053_InitialCreate.designer.cs">
+      <DependentUpon>201911221539053_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911221543578_DB.cs" />
+    <Compile Include="Migrations\201911221543578_DB.designer.cs">
+      <DependentUpon>201911221543578_DB.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelsRepository\AuthRepository.cs" />
@@ -90,8 +94,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201911121821595_db1.resx">
-      <DependentUpon>201911121821595_db1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201911221539053_InitialCreate.resx">
+      <DependentUpon>201911221539053_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911221543578_DB.resx">
+      <DependentUpon>201911221543578_DB.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -12,25 +12,25 @@ namespace Insurance.BL.Models
         /// Коэффициент возраста автомобиля.
         /// </summary>
         [DataMember]
-        public double CarAge { get; }
+        public double CarAge { get; private set; }
 
         /// <summary>
         /// Коэффициент стажа вождения.
         /// </summary>
         [DataMember]
-        public double DrivingExperience { get; }
+        public double DrivingExperience { get; private set; }
 
         /// <summary>
         /// Коэффициент возраста водителя.
         /// </summary>
         [DataMember]
-        public double DriverAge { get; }
+        public double DriverAge { get; private set; }
 
         /// <summary>
         /// Коэффициент мощности двигателя.
         /// </summary>
         [DataMember]
-        public double EnginePower { get; }
+        public double EnginePower { get; private set; }
 
         public Ratio(double carAge, double drivingExperience, double driverAge, double enginePower)
         {

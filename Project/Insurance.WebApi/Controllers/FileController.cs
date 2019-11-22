@@ -1,4 +1,4 @@
-﻿using Insurance.WCF;
+﻿using Insurance.WebApi.FileService;
 using NLog;
 using System.Net;
 using System.Net.Http;
@@ -30,7 +30,7 @@ namespace Insurance.WebApi.Controllers
         /// </summary>
         FileController()
         {
-            _fileService = new FileService();
+            _fileService = new FileServiceClient();
             _logger = LogManager.GetCurrentClassLogger();
         }
 

@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-using Insurance.WCF;
 using Insurance.BL.Models;
 using System.Web.Http.Description;
 using WebApi.Models;
 using NLog;
+using Insurance.WebApi.PolicyService;
+using Insurance.WebApi.AuthService;
 
 namespace Insurance.WebApi.Controllers
 {
@@ -32,8 +33,8 @@ namespace Insurance.WebApi.Controllers
 
         public PolicyController()
         {
-            _policyService = new PolicyService();
-            _authService = new AuthService();
+            _policyService = new PolicyServiceClient();
+            _authService = new AuthServiceClient();
             _logger = LogManager.GetCurrentClassLogger();
         }
 
@@ -90,7 +91,7 @@ namespace Insurance.WebApi.Controllers
             //Логгирование: запрос выполнен.
             _logger.Trace(
                 $"Запрос на получение полисов пользователя <{email}> выполнен. " +
-                $"Найдено полисов: <{policyCollection.Count}>."
+                $"Найдено полисов: <{policyCollection.Length}>."
                 );
 
             return Ok(policyCollection);
@@ -229,17 +230,6 @@ namespace Insurance.WebApi.Controllers
                 $" Стоимость полиса <{policyCost}> рублей.");
 
             return Ok(policyCost);
-        }
-
-
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
         }
     }
 }

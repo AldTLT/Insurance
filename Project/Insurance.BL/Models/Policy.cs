@@ -8,6 +8,8 @@ namespace Insurance.BL.Models
     /// Класс представляет объект Policy.
     /// </summary>
     [DataContract]
+    [KnownType(typeof(Car))]
+    [KnownType(typeof(Ratio))]
     public class Policy
     {
         /// <summary>
@@ -21,6 +23,8 @@ namespace Insurance.BL.Models
         /// </summary>
         [DataMember]
         private int _cost;
+
+        [DataMember]
         public int Cost
         {
             get
@@ -40,25 +44,25 @@ namespace Insurance.BL.Models
         /// Клиент - владелец полиса.
         /// </summary>
         [DataMember]
-        public string UsersEmail { get; }
+        public string UsersEmail { get; private set; }
 
         /// <summary>
         /// Дата заключения полиса.
         /// </summary>
         [DataMember]
-        public DateTime PolicyDate { get; }
+        public DateTime PolicyDate { get; private set; }
 
         /// <summary>
         /// Экземпляр класса Insurance.BL.Model.Car который привязан к полису.
         /// </summary>
         [DataMember]
-        public Car Car { get; }
+        public Car Car { get; private set; }
 
         /// <summary>
         /// Экземпляр класса Insurance.BL.Model.Coefficient который привязан к полису.
         /// </summary>
         [DataMember]
-        public Ratio Ratio { get; }
+        public Ratio Ratio { get; private set; }
 
         public Policy(int cost, string usersEmail, DateTime policyDate, Car car, Ratio ratio)
         {

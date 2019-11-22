@@ -37,8 +37,9 @@ export class DataComponent implements OnInit {
     this.authService.getUser(this.email).subscribe((data: any) => {
       this.user.EMail = data.EMail;
       this.user.Name = data.Name;
-      this.user.BirthDate = data._birthDate;
-      this.user.DriverLicenseDate = data._driverLicenseDate;
+      this.user.BirthDate = data.BirthDate;
+      this.user.DriverLicenseDate = data.DriverLicenseDate;
+      console.log(data);
     },    
     (err: HttpErrorResponse) => {
       this.GetItemError = true;

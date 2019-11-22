@@ -36,19 +36,20 @@ namespace Insurance.BL.Models
         /// E-mail клиента.
         /// </summary>
         [DataMember]
-        public string EMail { get; }
+        public string EMail { get; private set; }
 
         /// <summary>
         /// Полное имя клиента.
         /// </summary>
         [DataMember]
-        public string Name { get; }
+        public string Name { get; private set; }
 
         /// <summary>
         /// Дата рождения клиента.
         /// </summary>
-        [DataMember]
         private DateTime _birthDate;
+
+        [DataMember]
         public DateTime BirthDate
         {
             get
@@ -76,8 +77,9 @@ namespace Insurance.BL.Models
         /// <summary>
         /// Дата выдачи водительских прав клиента.
         /// </summary>
-        [DataMember]
         private DateTime _driverLicenseDate;
+
+        [DataMember]
         public DateTime DriverLicenseDate
         {
             get
@@ -106,7 +108,7 @@ namespace Insurance.BL.Models
         /// Хэш-код пароля пользователя.
         /// </summary>
         [DataMember]
-        public string PasswordHash { get; }
+        public string PasswordHash { get; private set; }
 
         /// <summary>
         /// Коллекция ролей пользователя.

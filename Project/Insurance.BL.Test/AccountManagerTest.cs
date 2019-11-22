@@ -17,7 +17,7 @@ namespace Insurance.BL.Test
         [DataRow(false, "123@mail.ru", "124")]
         public void SignInTest(bool expectedResult, string email, string passwordHash)
         {
-            var repository = new AuthRepository(new DataContext());
+            var repository = new AuthRepository();
             var manager = new AccountManager(repository);
 
             Assert.AreEqual(expectedResult, manager.SignIn(email, passwordHash));
@@ -26,7 +26,7 @@ namespace Insurance.BL.Test
         [TestMethod]
         public void CreateNewClientTest()
         {
-            var repository = new AuthRepository(new DataContext());
+            var repository = new AuthRepository();
             var manager = new AccountManager(repository);
 
             var user = new User(

@@ -20,7 +20,7 @@ namespace MainRepositoryTest
         [TestInitialize]
         public void Initialize()
         {
-            _policyRepository = new PolicyRepository(_dataContext);
+            _policyRepository = new PolicyRepository();
 
             _client = new ClientModel()
             {

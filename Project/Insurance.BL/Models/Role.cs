@@ -22,7 +22,7 @@ namespace Insurance.BL.Models
         /// Наименование роли.
         /// </summary>
         [DataMember]
-        public string RoleName { get; }
+        public string RoleName { get; private set; }
 
         public Role(string roleName)
         {

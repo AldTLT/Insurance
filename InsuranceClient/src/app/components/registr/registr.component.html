@@ -71,6 +71,7 @@
         </div>
 
       <!-- Дата рождения -->
+      <p *ngIf="birthDateError">Для регистрации допускаются лица не моложе 12 лет!</p>
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Дата рождения</span>
@@ -87,6 +88,7 @@
         </div>
 
       <!-- Дата выдачи прав -->
+      <p *ngIf="driverLicenseDateError">Возраст получения прав не может быть меньше 12 лет!</p>
       <div class="input-group mb-3">
           <div class="input-group-prepend">
             <span class="input-group-text" id="basic-addon1">Дата выдачи прав</span>

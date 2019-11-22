@@ -19,7 +19,7 @@ namespace MainRepositoryTest
         [TestInitialize]
         public void Initialize()
         {
-            _carRepository = new CarRepository(_dataContext);
+            _carRepository = new CarRepository();
         }
 
         /// <summary>

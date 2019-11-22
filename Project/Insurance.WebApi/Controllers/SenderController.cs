@@ -1,4 +1,4 @@
-﻿using Insurance.WCF;
+﻿using Insurance.WebApi.MailService;
 using NLog;
 using System.Linq;
 using System.Web.Http;
@@ -23,7 +23,7 @@ namespace Insurance.WebApi.Controllers
 
         public SenderController()
         {
-            _smtpService = new MailService();
+            _smtpService = new MailServiceClient();
             _logger = LogManager.GetCurrentClassLogger();
         }
 

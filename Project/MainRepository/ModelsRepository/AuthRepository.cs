@@ -17,10 +17,11 @@ namespace MainRepository
         /// </summary>
         private readonly DataContext _context;
 
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="context">Контекст подключения к БД.</param>
+        public AuthRepository()
+        {
+            _context = new DataContext();
+        }
+
         public AuthRepository(DataContext context)
         {
             _context = context;
@@ -52,15 +53,15 @@ namespace MainRepository
 
             var client = UserToClientModel(user);
 
-            try
-            {
+            //try
+            //{
                 _context.Client.Add(client);
                 _context.SaveChanges();
-            }
-            catch
-            {
-                return false;
-            }
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
 
             return true;
         }

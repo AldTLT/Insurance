@@ -14,15 +14,13 @@ export class RegistrComponent implements OnInit {
 
   constructor(private authService: AuthService, private router: Router) {
 
-    // this.userData.EMail = "vr0rtex@mail.ru";
-    // this.clientName.name = "Vasiliy";
-    // this.clientName.surname = "Pupkin";
-    // this.clientName.patronymic = "Ivanovich";
-    // this.userData.BirthDate = new Date(1980, 1, 1, 0, 0, 0, 0);
-    // this.userData.DriverLicenseDate = new Date(2010, 2, 2, 0, 0, 0, 0);
-    // this.userData.Password = "qwerty123456";
-    // this.confirmPassword = "qwerty123456";
+    this.birthDateError = false;
+    this.driverLicenseDateError = false;
+
   }
+
+  birthDateError: boolean;
+  driverLicenseDateError: boolean;
 
   userData: User = new User();
   isDataCorrect: boolean = true;
@@ -122,8 +120,8 @@ export class RegistrComponent implements OnInit {
   checkDriverLicenseDate(){
     let driverDate = new Date(this.userData.DriverLicenseDate);
     let birthDate = new Date(this.userData.BirthDate);
-    //Минимальный возраст получения прав - 10 лет.
-    const age = 10; 
+    //Минимальный возраст получения прав - 12 лет.
+    const age = 12; 
     this.isDriverLicenseDateCorrect = this.getYears(driverDate, birthDate) >  age;
     this.driverLicenzeDateColor = this.isDriverLicenseDateCorrect ? 'rgb(240, 240, 240)' : 'rgb(216, 149, 149)';
   }
@@ -164,6 +162,9 @@ export class RegistrComponent implements OnInit {
     this.checkBirthDate();
     this.checkDriverLicenseDate();
     this.checkPassword();
+
+    this.birthDateError = !this.isBirthDateCorrect;
+    this.driverLicenseDateError = !this.isDriverLicenseDateCorrect;
 
     if (
       !this.isEmailCorrect

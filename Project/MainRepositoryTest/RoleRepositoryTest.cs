@@ -19,7 +19,7 @@ namespace MainRepositoryTest
         [TestInitialize]
         public void Initialize()
         {
-            _roleRepository = new RoleRepository(_dataContext);
+            _roleRepository = new RoleRepository();
         }
 
         /// <summary>

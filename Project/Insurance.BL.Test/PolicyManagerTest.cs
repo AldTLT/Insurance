@@ -11,7 +11,7 @@ namespace Insurance.Auth.Test
         [TestMethod]
         public void GetPolicyTest()
         {
-            var repository = new PolicyRepository(new DataContext());
+            var repository = new PolicyRepository();
             var manager = new PolicyManager(repository);
         }
     }

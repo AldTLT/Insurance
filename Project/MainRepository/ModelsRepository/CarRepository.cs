@@ -19,10 +19,11 @@ namespace MainRepository.ModelsRepository
         /// </summary>
         private readonly DataContext _context;
 
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="context">Контекст подключения к БД.</param>
+        public CarRepository()
+        {
+            _context = new DataContext();
+        }
+
         public CarRepository(DataContext context)
         {
             _context = context;

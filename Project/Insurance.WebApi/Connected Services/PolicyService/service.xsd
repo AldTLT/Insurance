@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Insurance.BL.Models" />
+  <xs:element name="PolicyCalculate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="carCost" type="xs:int" />
+        <xs:element minOccurs="0" name="manufacturedYear" type="xs:int" />
+        <xs:element minOccurs="0" name="driverLicenseDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="birthDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="enginePower" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PolicyCalculateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PolicyCalculateResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PolicyRegistration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="carCost" type="xs:int" />
+        <xs:element minOccurs="0" name="carNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="carModel" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="manufacturedYear" type="xs:int" />
+        <xs:element minOccurs="0" name="enginePower" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PolicyRegistrationResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="PolicyRegistrationResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPolicy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="email" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPolicyResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Insurance.BL.Models" minOccurs="0" name="GetPolicyResult" nillable="true" type="q1:ArrayOfPolicy" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

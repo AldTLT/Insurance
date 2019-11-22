@@ -21,10 +21,11 @@ namespace MainRepository
         /// </summary>
         private readonly DataContext _context;
 
-        /// <summary>
-        /// Конструктор класса.
-        /// </summary>
-        /// <param name="context">Контекст подключения к БД.</param>
+        public PolicyRepository()
+        {
+            _context = new DataContext();
+        }
+
         public PolicyRepository(DataContext context)
         {
             _context = context;
